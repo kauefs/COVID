@@ -1,0 +1,67 @@
+# https://docs.streamlit.io/library/advanced-features/configuration
+
+[global]
+
+disableWatchdogWarning               =  false
+disableWidgetStateDuplicationWarning =  false
+showWarningOnDirectExecution         =  true
+dataFrameSerialization               = 'arrow'
+
+[logger]
+
+level                                = 'info'
+messageFormat                        = '%(asctime)s %(message)s'
+
+[client]
+
+caching                              =  true
+showErrorDetails                     =  true
+toolbarMode                          = 'auto'
+
+[runner]
+
+installTracer                        =  false
+fixMatplotlib                        =  true
+postScriptGC                         =  true
+fastReruns                           =  true
+enforceSerializableSessionState      =  false
+
+[browser]
+
+gatherUsageStats                     =  false
+serverAddress                        = 'localhost'
+
+[server]
+
+fileWatcherType                      = 'auto'
+cookieSecret                         =  false
+runOnSave                            =  true
+port                                 =  8501
+enableCORS                           =  true
+enableXsrfProtection                 =  true
+maxUploadSize                        =  200
+maxMessageSize                       =  200
+enableWebsocketCompression           =  false
+enableStaticServing                  =  false
+
+[theme]
+
+base                                 = 'dark'
+primaryColor                         = '#00BFFF'
+backgroundColor                      = '#000000'
+secondaryBackgroundColor             = '#282828'
+textColor                            = '#FFFFFF'
+font                                 = 'sans serif' # Font Family (serif | sans serif | monospace)
+
+#https://www.w3schools.com/colors/colors_names.asp
+#PurpleMediumSlate* #7B70EE
+#CornFlowerBlue*    #6595EE
+#Blue*              #0065FF
+#Orange             #FFA500
+#DarkOrange         #FF8C00
+#OrangeRed          #FF4500
+#Gold               #FFD700
+#Lime               #00FF00
+#Green*             #4CAF50
+#Cyan               #00FFFF
+#DeepSkyBlue        #00BFFF
