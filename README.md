@@ -1,7 +1,7 @@
 ---
 # Panorama da COVID-19
 
-$$13\ October\ 2023$$
+$$15\ October\ 2023$$
 
 COVID-19 é uma doença infecciosa causada pelo recém-descoberto CoronaVírus, transmitido principalmente por meio de gotículas provenientes de tosses ou espirros de pessoas infectadas, sendo que a gravidade dos sintomas varia de acordo com cada indivíduo. Não obstante, dada a atual dinâmica de fluxos de pessoas mundialmente, a doença, cujos primeiros casos foram identificados na China, espalhou-se rapidamente pelo planeta, levando à grande redução de atividades não essenciais e à adoção de trabalho em casa em larga escala, em alguns casos, por mais de ano, incluíndo atividades escolares **&** acadêmicas.
 
