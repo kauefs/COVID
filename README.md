@@ -25,11 +25,13 @@ Organização cuja missão é publicar pesquisas **&** dados que levem ao progre
 
 Uma vez que a série de dados é bastante extensa e atualizada diariamente, será utilizada o banco de dados com informações da Johns Hopkins University, que parou de publicar os dados em março de 2023, o que também ajudará a manter a coerência interpretativa da análise, sem que sofra alterações.
 
-<p align=center><img alt=Top5 src=https://github.com/kauefs/COVID/raw/%40/img/TopCOVID.png width=75%></p>
+<p align=center><img alt=BCR    src=https://github.com/kauefs/COVID/raw/%40/img/BCR0.png width=75%></p>
 
-<p align=center><img alt=Top5 src=https://github.com/kauefs/COVID/raw/%40/img/BrazilCOVID.png width=75%></p>
+<p align=center><img alt=Top5   src=https://github.com/kauefs/COVID/raw/%40/img/TopCOVID.png width=75%></p>
 
-<p align=center><img alt=Top5 src=https://github.com/kauefs/COVID/raw/%40/img/TotalCOVID.png width=75%></p>
+<p align=center><img alt=Brazil src=https://github.com/kauefs/COVID/raw/%40/img/BrazilCOVID.png width=75%></p>
+
+<p align=center><img alt=World  src=https://github.com/kauefs/COVID/raw/%40/img/TotalCOVID.png width=75%></p>
 
 <!--
 ## DashBoard
