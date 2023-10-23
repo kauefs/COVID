@@ -23,7 +23,7 @@ Organização cuja missão é publicar pesquisas **&** dados que levem ao progre
 
 ### Delimitação do Escopo
 
-Uma vez que a série de dados é bastante extensa e atualizada diariamente, será utilizada o banco de dados com informações da Johns Hopkins University, que parou de publicar os dados em março de 2023, o que também ajudará a manter a coerência interpretativa da análise, sem que sofra alterações.
+Uma vez que a série de dados é bastante extensa e atualizada diariamente, será utilizado banco de dados com informações da Johns Hopkins University, que parou de publicar os dados em março de 2023, o que também ajudará a manter a coerência interpretativa da análise, sem que sofra alterações.
 
 <p align=center><img alt=BCR    src=https://github.com/kauefs/COVID/raw/%40/img/BCR.png width=75%></p>
 
