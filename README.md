@@ -21,6 +21,8 @@ Fonte: [Our World in Data](https://covid.ourworldindata.org/data/owid-covid-data
 
 Organização cuja missão é publicar pesquisas **&** dados que levem ao progresso em face a grandes problemas mundiais. Dados licenciados via [Creative Commons BY licence](https://creativecommons.org/licenses/by/4.0/).
 
+<p align=center><img alt=WordCloud src=https://github.com/kauefs/COVID/raw/%40/img/COVID.png width=65%></p>
+
 ### Delimitação do Escopo
 
 Uma vez que a série de dados é bastante extensa e atualizada diariamente, será utilizado banco de dados com informações do Centro de Ciência de Sistemas **&** Engenharia **(**CSSE**)** da Johns Hopkins University, que parou de publicar os dados em março de 2023, o que também ajudará a manter a coerência interpretativa da análise, sem que sofra alterações.
