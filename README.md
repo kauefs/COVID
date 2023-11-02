@@ -31,15 +31,17 @@ Uma vez que a série de dados é bastante extensa e atualizada diariamente, ser�
 
 <p align=center><img alt=Top5      src=https://github.com/kauefs/COVID/raw/%40/img/TopCOVID.png width=75%></p>
 
-<p align=center><img alt=Brazil    src=https://github.com/kauefs/COVID/raw/%40/img/BrazilCOVID.png width=75%></p>
+<p align=center><img alt=Brazil    src=https://github.com/kauefs/COVID/raw/%40/img/CovidBrazil.png width=75%></p>
 
-<p align=center><img alt=BR        src=https://github.com/kauefs/COVID/raw/%40/img/COVID-BR.png width=75%></p>
+<p align=center><img alt=BR        src=https://github.com/kauefs/COVID/raw/%40/img/CovidBR.png width=75%></p>
 
-<p align=center><img alt=World     src=https://github.com/kauefs/COVID/raw/%40/img/TotalCOVID.png width=75%></p>
+<p align=center><img alt=World     src=https://github.com/kauefs/COVID/raw/%40/img/CovidTotal.png width=75%></p>
 
-<p align=center><img alt=Continent src=https://github.com/kauefs/COVID/raw/%40/img/ContinentCOVID.png width=75%></p>
+<p align=center><img alt=Continent src=https://github.com/kauefs/COVID/raw/%40/img/CovidContinents.png width=75%></p>
 
-<p align=center><img alt=Income    src=https://github.com/kauefs/COVID/raw/%40/img/IncomeCOVID.png width=75%></p>
+<p align=center><img alt=Income    src=https://github.com/kauefs/COVID/raw/%40/img/CovidIncome.png width=75%></p>
+
+<p align=center><img alt=GDP       src=https://github.com/kauefs/COVID/raw/%40/img/CovidGDP.png width=75%></p>
 
 <!--
 ## DashBoard
