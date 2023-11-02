@@ -43,12 +43,11 @@ Uma vez que a série de dados é bastante extensa e atualizada diariamente, ser�
 
 <p align=center><img alt=GDP       src=https://github.com/kauefs/COVID/raw/%40/img/CovidGDP.png width=75%></p>
 
-<!--
 ## DashBoard
 
 StreamLit InterActive DashBoard
 
-<p align=center><img alt=DashBoard src=https://github.com/kauefs/COVID/raw/%40/img/DashBoardCOVID.png width=75%></p>
+<p align=center><img alt=DashBoard src=https://github.com/kauefs/COVID/raw/%40/img/CovidDashBoard.png width=75%></p>
 
 > In order to view DashBoard:
 
@@ -56,4 +55,3 @@ StreamLit InterActive DashBoard
 pip install streamlit
 streamlit run {path}filename.py
 ```
--->
