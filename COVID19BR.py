@@ -139,8 +139,8 @@ plt.rcParams['font.family']='sans-serif'
 plt.show()
 st.pyplot(fig)
 st.markdown('''
-The world has lost a population of about the one that lives in the metropolitan area of Rio de Janeiro,
-about 10% of the worldwide deaths happened in Brazil!
+The world has lost a population of about the size the one that lives in the metropolitan area of Rio de Janeiro,
+and about 10% of the worldwide deaths happened in Brazil!
             ''')
 
 st.subheader('Chart 3: Linear Evolution for COVID-19 in Brazil (Cases & Deaths)')
@@ -272,7 +272,7 @@ It was fortunate a vaccine so effective could had been produced somewhat so quic
 # SIDE:
 st.sidebar.header(   'COVID-19 in Brazil')
 st.sidebar.subheader('Data Analysis')
-st.markdown('''Source:    [Our World in Data](https://covid.ourworldindata.org/) Johns Hopkins University reports from 2020.01.01 to 2023.03.07''')
+st.markdown('''Source:    [Our World in Data](https://covid.ourworldindata.org/) – Johns Hopkins University daily reports from 2020.01.01 to 2023.03.07''')
 st.markdown('''Reference: [Data Cleaning Techniques in Python**:** the Ultimate Guide](https://www.justintodata.com/data-cleaning-techniques-python-guide/)''')
 st.divider()
 with st.container():
