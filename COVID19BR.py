@@ -42,7 +42,7 @@ st.sidebar.markdown('''Source:    [Our World in Data](https://covid.ourworldinda
 st.sidebar.write(    'Johns Hopkins University daily reports from 2020.01.01 to 2023.03.07')
 st.sidebar.markdown('''Reference: [Data Cleaning Techniques in Python: the Ultimate Guide](https://www.justintodata.com/data-cleaning-techniques-python-guide/)''')
 st.sidebar.divider()
-with st.container():
+with st.sidebar.container():
      C1,  C2,  C3 = st.columns(3)
      with C1:st.empty()
      with C2:st.markdown('''©2023™''')
