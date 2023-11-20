@@ -24,7 +24,7 @@ installTracer                        =  false
 fixMatplotlib                        =  true
 postScriptGC                         =  true
 fastReruns                           =  true
-enforceSerializableSessionState      =  false
+#enforceSerializableSessionState      =  false
 
 [browser]
 
