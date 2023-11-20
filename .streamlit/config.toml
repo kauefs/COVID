@@ -28,14 +28,14 @@ enforceSerializableSessionState      =  false
 [browser]
 
 gatherUsageStats                     =  false
-serverAddress                        = 'localhost'
+#serverAddress                        = 'localhost'
 
 [server]
 
 fileWatcherType                      = 'auto'
 cookieSecret                         =  false
 runOnSave                            =  true
-port                                 =  8501
+#port                                 =  8501
 enableCORS                           =  true
 enableXsrfProtection                 =  true
 maxUploadSize                        =  200
