@@ -138,7 +138,10 @@ ax2.spines[['top', 'right', 'left', 'bottom']].set_visible(False)
 plt.rcParams['font.family']='sans-serif'
 plt.show()
 st.pyplot(fig)
-st.write('The world has lost a population of about the one that lives in the metropolitan area of Rio de Janeiro, about 10% of those where Brazilians!')
+st.markdown('''
+The world has lost a population of about the one that lives in the metropolitan area of Rio de Janeiro,
+about 10% of the worldwide deaths happened in Brazil!
+            ''')
 
 st.subheader('Chart 3: Linear Evolution for COVID-19 in Brazil (Cases & Deaths)')
 BR = OWID.loc[OWID.location == 'Brazil'].copy()
@@ -206,12 +209,12 @@ plt.show()
 st.pyplot(fig)
 st.markdown('''
 Brazil has always had a history of vaccinations with a National Program of Immunization efficient and effective,
-famous for the eradication of polio for which the vaccination campaign Zé Gotinha ('Doplet Joe') mascot was created in 1986 and became a universal symbol in saving lives.
+famous for the eradication of polio for which the vaccination campaign _Zé Gotinha_ ('Droplet Joe') mascot was created in 1986 and became a universal symbol in saving lives.
             ''')
 with st.container():
     c1, c2, c3, c4, c5 = st.columns(5)
     with c1:st.empty()
-    with c2:st.markdown('''![Doplet Joe](https://www.gov.br/saude/pt-br/campanhas-da-saude/2023/vacinacao/ze-gotinha/ze-gotinha/@@govbr.institucional.banner/f0ed8b09-fbd2-47b6-b441-d54c6fa4a87b/@@images/201a5721-4a35-4010-a373-c3e89f3399b2.gif''')
+    with c2:st.markdown('''![Droplet Joe](https://www.gov.br/saude/pt-br/campanhas-da-saude/2023/vacinacao/ze-gotinha/ze-gotinha/@@govbr.institucional.banner/f0ed8b09-fbd2-47b6-b441-d54c6fa4a87b/@@images/201a5721-4a35-4010-a373-c3e89f3399b2.gif''')
     with c3:st.empty()
     with c4:st.empty()
     with c5:st.empty()
