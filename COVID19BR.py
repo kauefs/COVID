@@ -22,7 +22,7 @@ def LoadData():
                  'new_deaths_smoothed',
                  'new_vaccinations_smoothed']].copy()
     df.reset_index(inplace=True)
-    df['date'] = pd.to_datetime(df['date'], format='%Y.%m.%d')
+    df['date'] = pd.to_datetime(df['date'], format='%Y-%m-%d')
     df.set_index('date',         inplace=True)
     df.sort_index(inplace=True)
     return df
