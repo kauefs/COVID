@@ -5,7 +5,6 @@
 disableWatchdogWarning               =  false
 disableWidgetStateDuplicationWarning =  false
 showWarningOnDirectExecution         =  true
-#dataFrameSerialization               = 'arrow'
 
 [logger]
 
@@ -15,16 +14,18 @@ messageFormat                        = '%(asctime)s %(message)s'
 [client]
 
 caching                              =  true
+displayEnable                        =  true
 showErrorDetails                     =  true
 toolbarMode                          = 'auto'
 
 [runner]
 
+magicEnable                          =  true
 installTracer                        =  false
 fixMatplotlib                        =  true
 postScriptGC                         =  true
 fastReruns                           =  true
-#enforceSerializableSessionState      =  false
+enforceSerializableSessionState      =  false
 
 [browser]
 
@@ -43,6 +44,11 @@ maxUploadSize                        =  200
 maxMessageSize                       =  200
 enableWebsocketCompression           =  false
 enableStaticServing                  =  false
+
+[deprecation]
+
+showfileUploadEncoding               =  true
+showPyplotGlobalUse                  =  true
 
 [theme]
 
