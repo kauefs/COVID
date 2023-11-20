@@ -11,7 +11,7 @@ st.set_page_config(page_title='COVID19BR', page_icon='😷', initial_sidebar_sta
 DATA     = 'https://covid.ourworldindata.org/data/owid-covid-data-old.csv'
 @st.cache_data
 def LoadData():
-    data = pd.read_csv(DATA, index_col=0, parse_dates=True)
+    data = pd.read_csv(DATA, index_col=0, parse_dates=True, format='%Y-%m-%d')
 # Selecting Coluns:
     df   = data[['date',
                      'location',
