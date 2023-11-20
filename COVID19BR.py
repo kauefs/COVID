@@ -225,7 +225,7 @@ so much so the world has pretty much outcome it and life has basically returned 
             ''')
 st.subheader('Chart 4: Logarithmic Evolution for COVID-19 in Brazil (Vaccination & Cases & Deaths)')
 fig , ax = plt.subplots(figsize=(12,8), tight_layout=True)
-OWID.loc[OWID.location == 'Brazil','new_vaccinations_smoothed'].sort_values(ascending=False).plot(
+RAW.loc[RAW.location == 'Brazil','new_vaccinations_smoothed'].sort_values(ascending=False).plot(
                 kind       ='line'   ,
                 label      ='Vaccination',
                 ax         = ax      ,
@@ -234,7 +234,7 @@ OWID.loc[OWID.location == 'Brazil','new_vaccinations_smoothed'].sort_values(asce
                 color      ='#4CAF50',
                 linewidth  ='2.25'   ,
                 ms=.01, mec='#4CAF50',mfc='#4CAF50')
-OWID.loc[OWID.location == 'Brazil','new_cases_smoothed'].sort_values(ascending=False).plot(
+RAW.loc[RAW.location == 'Brazil','new_cases_smoothed'].sort_values(ascending=False).plot(
                 kind       ='line'   ,
                 label      ='Cases'  ,
                 ax         = ax      ,
@@ -243,7 +243,7 @@ OWID.loc[OWID.location == 'Brazil','new_cases_smoothed'].sort_values(ascending=F
                 color      ='#FF8C00',
                 linewidth  ='2.25'   ,
                 ms=.01, mec='#FF8C00', mfc='#FF8C00')
-OWID.loc[OWID.location == 'Brazil','new_deaths_smoothed'].sort_values(ascending=False).plot(
+RAW.loc[RAW.location == 'Brazil','new_deaths_smoothed'].sort_values(ascending=False).plot(
                 kind       ='line'   ,
                 label      ='Deaths' ,
                 ax         = ax      ,
