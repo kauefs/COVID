@@ -218,7 +218,7 @@ with st.container():
     with c1:st.empty()
     with c2:st.empty()
     with c3:st.image('https://www.gov.br/saude/pt-br/campanhas-da-saude/2023/vacinacao/ze-gotinha/ze-gotinha/@@govbr.institucional.banner/f0ed8b09-fbd2-47b6-b441-d54c6fa4a87b/@@images/201a5721-4a35-4010-a373-c3e89f3399b2.gif',
-                      caption='Droplet Joe', width=500)
+                      caption='Droplet Joe', width=300)
     with c4:st.empty()
     with c5:st.empty()
 st.markdown('''The following chart makes it cristal clear how the vaccines were very effective in fighting the disease,
