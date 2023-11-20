@@ -224,7 +224,6 @@ st.markdown('''The following chart makes it cristal clear how the vaccines were 
 so much so the world has pretty much outcome it and life has basically returned to what it used to be in many ways, no more lockdowns and no more masks.
             ''')
 st.subheader('Chart 4: Logarithmic Evolution for COVID-19 in Brazil (Vaccination & Cases & Deaths)')
-st.pyplot(fig)
 fig , ax = plt.subplots(figsize=(12,8), tight_layout=True)
 OWID.loc[OWID.location == 'Brazil','new_vaccinations_smoothed'].sort_values(ascending=False).plot(
                 kind       ='line'   ,
@@ -267,6 +266,7 @@ ax.legend(loc='best', fontsize=13)
 plt.rcParams[ 'font.family']=    'sans-serif'
 plt.yscale(   'log')
 plt.show()
+st.pyplot(fig)
 st.markdown('''
 Nonetheless, has any lesson been learned at all? Is the world better equipped to deal with another pandemic?
 It was fortunate a vaccine so effective could had been produced somewhat so quickly; lucky may not be around another time.
@@ -275,7 +275,7 @@ It was fortunate a vaccine so effective could had been produced somewhat so quic
 st.sidebar.header(   'COVID-19 in Brazil')
 st.sidebar.subheader('Data Analysis')
 st.markdown('''Source:    [Our World in Data](https://covid.ourworldindata.org/) – Johns Hopkins University daily reports from 2020.01.01 to 2023.03.07''')
-st.markdown('''Reference: [Data Cleaning Techniques in Python**:** the Ultimate Guide](https://www.justintodata.com/data-cleaning-techniques-python-guide/)''')
+st.markdown('''Reference: [Data Cleaning Techniques in Python: the Ultimate Guide](https://www.justintodata.com/data-cleaning-techniques-python-guide/)''')
 st.divider()
 with st.container():
      C1,  C2,C3,C4, C5 = st.columns(5)
