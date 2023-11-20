@@ -79,7 +79,7 @@ The consequences could not have been more sinister. Brazil has become the countr
 only behind the United States. A death toll rate that was almost twice the worldwide rate of 1% of deaths from registered cases.
             ''')
 
-st.subheader('Chart 2: Line Evolution for COVID-19 WorldWide (Cases & Death)')
+st.subheader('Chart 2: Line Evolution for COVID-19 WorldWide (Cases & Deaths)')
 fig, (ax1, ax2) = plt.subplots(nrows=2, ncols=1, figsize=(12,8), tight_layout=True)
 OWID.loc[OWID.location =='World', 'total_cases'].sort_values(ascending=False).plot(
                 kind       ='line'   ,
