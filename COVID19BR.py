@@ -7,6 +7,7 @@ import matplotlib.ticker   as ticker
 import matplotlib.dates    as mdates
 import seaborn             as sns
 import streamlit           as st
+import datetime
 st.set_page_config(page_title='COVID19BR', page_icon='😷', initial_sidebar_state='collapsed')
 DATA     = 'https://covid.ourworldindata.org/data/owid-covid-data-old.csv'
 @st.cache_data
@@ -21,7 +22,7 @@ def LoadData():
                  'new_deaths_smoothed',
                  'new_vaccinations_smoothed']].copy()
     df.reset_index(inplace=True)
-    df.pd.to_datetime(df['date'], format='%Y.%m.%d')
+    df['date'] = pd.to_datetime(df['date'], format='%Y.%m.%d')
     df.set_index('date',         inplace=True)
     df.sort_index(inplace=True)
     return df
