@@ -55,11 +55,9 @@ The then President diminished the disease and discredited vaccines.
             ''')
 
 st.subheader('Chart 1: Top 5 Countries with most Deaths')
-top_deaths = (OWID.loc[(OWID.index[-1]),
-                        ['location', 'total_deaths']].sort_values(by='total_deaths',
-                                                        ascending=False).iloc[9:14])
 fig,ax = plt.subplots(figsize=(15,5), tight_layout=True)
-sns.barplot(x='location',  y= 'total_deaths', data=top_deaths, ax=ax, palette='autumn', saturation=.75)
+deaths = (OWID.loc[(OWID.index[-1]), ['location', 'total_deaths']].sort_values(by='total_deaths', ascending=False).iloc[9:14])
+sns.barplot(x='location',   y='total_deaths', data=deaths, ax=ax, palette='autumn', saturation=.75)
 ax.set_title('COVID-19: Top 5 Countries with Most Deaths', fontsize=22, fontweight='bold')
 for spine in ['top', 'right', 'left', 'bottom']:ax.spines[spine].set_visible(False)
 plt.gca().axes.get_yaxis().set_visible(False)
@@ -70,9 +68,9 @@ for tick in ax.get_xticklabels():
 plt.tick_params(axis  = 'both',
                 which = 'both',
                 bottom=  False)
-values=  top_deaths.value_counts(ascending=False).iloc[9:14].values
-ax.bar_label(container=ax.containers[0], labels=values, fmt='{:,.0f}',
-              fontsize=13,  padding=10 , fontweight='bold')
+for c in ax.containers:
+    values = deaths.value_counts(ascending=False).iloc[9:14].values
+    ax.bar_label(container=c, labels=values, fmt='{:,.0f}', fontsize=13, padding=10, fontweight='bold')
 ax.set(xlabel=None)
 plt.show()
 st.pyplot(fig)
