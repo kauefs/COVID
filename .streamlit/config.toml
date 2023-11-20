@@ -14,13 +14,11 @@ messageFormat                        = '%(asctime)s %(message)s'
 [client]
 
 caching                              =  true
-displayEnable                        =  true
 showErrorDetails                     =  true
 toolbarMode                          = 'auto'
 
 [runner]
 
-magicEnable                          =  true
 installTracer                        =  false
 fixMatplotlib                        =  true
 postScriptGC                         =  true
@@ -47,7 +45,6 @@ enableStaticServing                  =  false
 
 [deprecation]
 
-showfileUploadEncoding               =  true
 showPyplotGlobalUse                  =  true
 
 [theme]
