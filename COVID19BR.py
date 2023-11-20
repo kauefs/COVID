@@ -37,6 +37,16 @@ OWID     = X.copy()
 # SIDE:
 st.sidebar.header(   'COVID-19 in Brazil')
 st.sidebar.subheader('Data Analysis')
+st.sidebar.divider()
+st.sidebar.markdown('''Source:    [Our World in Data](https://covid.ourworldindata.org/)''')
+st.sidebar.write(    'Johns Hopkins University daily reports from 2020.01.01 to 2023.03.07')
+st.sidebar.markdown('''Reference: [Data Cleaning Techniques in Python: the Ultimate Guide](https://www.justintodata.com/data-cleaning-techniques-python-guide/)''')
+st.sidebar.divider()
+with st.container():
+     C1,  C2,  C3 = st.columns(3)
+     with C1:st.empty()
+     with C2:st.markdown('''©2023™''')
+     with C3:st.empty()
 # MAIN:
 st.title(   'The case of COVID-19 in Brazil')
 st.markdown('''
@@ -272,15 +282,4 @@ st.markdown('''
 Nonetheless, has any lesson been learned at all? Is the world better equipped to deal with another pandemic?
 It was fortunate a vaccine so effective could had been produced somewhat so quickly; lucky may not be around another time.
 ''')
-st.divider()
-st.markdown('''Source:    [Our World in Data](https://covid.ourworldindata.org/) – Johns Hopkins University daily reports from 2020.01.01 to 2023.03.07''')
-st.markdown('''Reference: [Data Cleaning Techniques in Python: the Ultimate Guide](https://www.justintodata.com/data-cleaning-techniques-python-guide/)''')
-st.divider()
-with st.container():
-     C1,  C2,C3,C4, C5 = st.columns(5)
-     with C1:st.empty()
-     with C2:st.empty()
-     with C3:st.markdown('''©2023™''')
-     with C4:st.empty()
-     with C5:st.empty()
 st.toast('Vaccine!', icon='💉')
