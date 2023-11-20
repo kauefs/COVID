@@ -45,7 +45,7 @@ st.markdown('''
 st.write('23 November 2023')
 st.markdown('''
 Brazil is the fifth largest country in the world and the seventh in population with over 200 million inhabitants.
-When COVID-19 outbreak begun in the eve of 2020; and even though the first case had been registered at the end of February,
+When COVID-19 outbreak begun on the eve of 2020; and even though the first case had been registered at the end of February,
 with the first death coming the following month, fifteen days later, the country had been relatively 'safe' during the first semester of 2020.
 Signs of how the country was going to deal with the outbreak though were less hopeful. A month into 'lockdown' the then Minister of Health,
 a physician, was fired by the then President because the Minister was trying to keep the population safe from the pandemic,
