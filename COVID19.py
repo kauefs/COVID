@@ -7,19 +7,7 @@ import matplotlib.ticker   as ticker
 import matplotlib.dates    as mdates
 import seaborn             as sns
 import streamlit           as st
-#import bar_chart_race      as bcr
-#from   wordcloud         import WordCloud, STOPWORDS, ImageColorGenerator
-#from   PIL import Image
 from   datetime        import date, datetime, timedelta
-# st.set_page_config(page_title='COVID-19', page_icon='😷')
-# # DATA:https://covid.ourworldindata.org/data/owid-covid-data-old.csv
-# DATA         = 'datasets/COVID19W.csv'
-# @st.cache_data
-# def LoadData():
-#     data     = pd.read_csv(DATA, index_col=0, parse_dates=True)
-#     return data
-# df           = LoadData()
-# MAIN:
 st.set_page_config(page_title='COVID19', page_icon='😷')
 DATA     = 'https://covid.ourworldindata.org/data/owid-covid-data-old.csv'
 @st.cache_data
@@ -37,15 +25,15 @@ def LoadData():
     X.sort_index(inplace=True)
     return X
 df      = LoadData()
-st.title(    'COVID-19')
-# Table:
-st.subheader('DATA')
-st.markdown( '''Source: [Our World in Data](https://covid.ourworldindata.org/)''')
-st.markdown( 'Period covered by The Johns Hopkins CoronaVirus Resource Center: from {} to {}'.format(df.index.min(), df.index.max()))
 # SIDE:
 st.sidebar.header(   'COVID-19     ')
 st.sidebar.subheader('Data Analysis')
 st.sidebar.write(    'Comparissons')
+st.sidebar.divider()
+st.sidebar.markdown('''Source:    [Our World in Data](https://covid.ourworldindata.org/)''')
+st.sidebar.write(    'Johns Hopkins University daily reports from from {} to {}'.format(df.index.min(), df.index.max())')
+st.sidebar.markdown('''Reference: [Data Cleaning Techniques in Python: the Ultimate Guide](https://www.justintodata.com/data-cleaning-techniques-python-guide/)''')
+st.sidebar.divider()
 
 Location1    = df['location'].unique()
 # SelectBox for Location:
@@ -59,6 +47,16 @@ FilteredDF1  = df[df['location'].str.contains(FilteredLoc1)]
 # Updating PlaceHoder:
 SideBarInfo1.info('{} Entries for {}'.format(FilteredDF1.shape[0], FilteredLoc1))
 
+st.sidebar.divider()
+with st.sidebar.container():
+     C1,  C2,  C3 = st.columns(3)
+     with C1:st.empty()
+     with C2:st.markdown('''©2023™''')
+     with C3:st.empty()
+
+# MAIN:
+st.title(    'COVID-19')
+st.subheader('Comparisson Charts')
 st.markdown(f'''➡️ {'**{}**'.format(FilteredDF1.shape[0])} Entries for **{FilteredLoc1}**:'''
             'from {} to {}'.format(df.loc[df.location == FilteredLoc1].index.min(), df.loc[df.location == FilteredLoc1].index.max()))
 fig,ax= plt.subplots(figsize=(12,8)  , tight_layout=True)
