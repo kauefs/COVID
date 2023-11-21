@@ -50,10 +50,10 @@ with st.sidebar.container():
 # MAIN:
 st.title(   'The case of COVID-19 in Brazil')
 st.markdown('''
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-kauefs-blue.svg)](https://www.linkedin.com/in/kauefs/)
-[![GitHub](https://img.shields.io/badge/GitHub-kauefs-black.svg)](https://github.com/kauefs/)
-[![](https://img.shields.io/badge/Python-3-blue.svg)](https://www.python.org/)
-[![GPLv3 license](https://img.shields.io/badge/License-Apache2-black.svg)](http://perso.crans.org/besson/LICENSE.html)
+[![GitHub](https://img.shields.io/badge/GitHub-000000?logo=github&logoColor=white)](https://github.com/kauefs/)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?logo=linkedin&logoColor=white)](https://www.linkedin.com/in/kauefs/)
+[![Python](https://img.shields.io/badge/Python-3-blue.svg)](https://www.python.org/)
+[![License](https://img.shields.io/badge/License-Apache2-black.svg)](https://www.apache.org/licenses/LICENSE-2.0)
             ''')
 st.write('23 November 2023')
 st.markdown('''
