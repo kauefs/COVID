@@ -11,15 +11,32 @@ import streamlit           as st
 #from   wordcloud         import WordCloud, STOPWORDS, ImageColorGenerator
 #from   PIL import Image
 from   datetime        import date, datetime, timedelta
-st.set_page_config(page_title='COVID-19', page_icon='😷')
-# DATA:https://covid.ourworldindata.org/data/owid-covid-data-old.csv
-DATA         = 'datasets/COVID19W.csv'
+# st.set_page_config(page_title='COVID-19', page_icon='😷')
+# # DATA:https://covid.ourworldindata.org/data/owid-covid-data-old.csv
+# DATA         = 'datasets/COVID19W.csv'
+# @st.cache_data
+# def LoadData():
+#     data     = pd.read_csv(DATA, index_col=0, parse_dates=True)
+#     return data
+# df           = LoadData()
+# MAIN:
+st.set_page_config(page_title='COVID19', page_icon='😷')
+DATA     = 'https://covid.ourworldindata.org/data/owid-covid-data-old.csv'
 @st.cache_data
 def LoadData():
-    data     = pd.read_csv(DATA, index_col=0, parse_dates=True)
-    return data
-df           = LoadData()
-# MAIN:
+    data = pd.read_csv(DATA, index_col=0)
+# Selecting Coluns:
+    X    = data[['date',
+                 'location',
+                 'new_cases_smoothed',
+                 'new_deaths_smoothed',
+                 'new_vaccinations_smoothed']].copy()
+    X.reset_index(inplace=True)
+    X['date'] = pd.to_datetime(df['date'], format='%Y-%m-%d')
+    X.set_index('date',    inplace=True)
+    X.sort_index(inplace=True)
+    return X
+df      = LoadData()
 st.title(    'COVID-19')
 # Table:
 st.subheader('DATA')
