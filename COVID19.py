@@ -28,10 +28,10 @@ df      = LoadData()
 # SIDE:
 st.sidebar.header(   'COVID-19     ')
 st.sidebar.subheader('Data Analysis')
-st.sidebar.write(    'Comparissons')
+st.sidebar.write(    'Comparisson Charts')
 st.sidebar.divider()
 st.sidebar.markdown('''Source:    [Our World in Data](https://covid.ourworldindata.org/)''')
-st.sidebar.write(    "'Johns Hopkins University daily reports from from {} to {}'.format(df.index.min(), df.index.max())")
+st.sidebar.markdown('''"Johns Hopkins University daily reports from from {} to {}".format(df.index.min(), df.index.max())''')
 st.sidebar.markdown('''Reference: [Data Cleaning Techniques in Python: the Ultimate Guide](https://www.justintodata.com/data-cleaning-techniques-python-guide/)''')
 st.sidebar.divider()
 
