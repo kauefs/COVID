@@ -47,11 +47,4 @@ Uma vez que a série de dados é bastante extensa e atualizada diariamente, ser�
 
 StreamLit InterActive DashBoard
 
-<p align=center><img alt=DashBoard src=https://github.com/kauefs/COVID/raw/%40/img/CovidDashBoard.png width=75%></p>
-
-> In order to view DashBoard:
-
-```shell
-pip install streamlit
-streamlit run {path}filename.py
-```
+<p align=center><a href=https://covid19charts.streamlit.app/><img alt=DashBoard src=https://github.com/kauefs/COVID/raw/%40/img/CovidDashBoard.png width=75%></a></p>
