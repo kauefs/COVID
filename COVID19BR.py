@@ -118,7 +118,7 @@ ax1.tick_params(axis  ='both',
                 left  = False,
                 bottom= False)
 ax1.set_yticks([0, 100000000, 200000000, 300000000, 400000000,  500000000,  600000000], minor=False)
-ax1.set_xticks(['2020-01','2020-06','2021-01','2021-06','2022-01','2022-06','2023-01'], minor=False)
+#ax1.set_xticks(['2020-01','2020-06','2021-01','2021-06','2022-01','2022-06','2023-01'], minor=False)
 ax1.set(xlabel=None)
 ax1.spines[['top', 'right', 'left', 'bottom']].set_visible(False)
 OWID.loc[OWID.location =='World', 'total_deaths'].sort_values(ascending=False).plot(
@@ -234,6 +234,7 @@ with st.container():
 st.markdown('''The following chart makes it cristal clear how the vaccines were very effective in fighting the disease,
 so much so the world has pretty much outcome it and life has basically returned to what it used to be in many ways, no more lockdowns and no more masks.
             ''')
+
 st.subheader('Chart 4: Logarithmic Evolution for COVID-19 in Brazil (Vaccination & Cases & Deaths)')
 fig , ax = plt.subplots(figsize=(12,8), tight_layout=True)
 RAW.loc[RAW.location == 'Brazil','new_vaccinations_smoothed'].sort_values(ascending=False).plot(
@@ -282,4 +283,4 @@ st.markdown('''
 Nonetheless, has any lesson been learned at all? Is the world better equipped to deal with another pandemic?
 It was fortunate a vaccine so effective could had been produced somewhat so quickly; lucky may not be around another time.
 ''')
-st.toast('Vaccine!', icon='💉')
+st.toast('Vaccinate!', icon='💉')
