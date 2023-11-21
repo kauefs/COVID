@@ -156,8 +156,8 @@ plt.rcParams['font.family']='sans-serif'
 plt.show()
 st.pyplot(fig)
 st.markdown('''
-The world has lost a population of about the size the one that lives in the metropolitan area of Rio de Janeiro,
-and about 10% of those deaths happened in Brazil!
+The world has lost a population of about the size the one that lives in the metropolitan area of Rio de Janeiro.
+About 10% of those deaths happened in Brazil!
             ''')
 
 st.subheader('Chart 3: Linear Evolution for COVID-19 in Brazil (Cases & Deaths)')
