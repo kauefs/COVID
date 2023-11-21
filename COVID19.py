@@ -29,6 +29,7 @@ df      = LoadData()
 st.sidebar.header(   'COVID-19     ')
 st.sidebar.subheader('Data Analysis')
 st.sidebar.write(    'Comparisson Charts')
+st.sidebar.divider()
 
 Location1    = df['location'].unique()
 # SelectBox for Location:
@@ -41,7 +42,6 @@ table1       = st.sidebar.empty()
 FilteredDF1  = df[df['location'].str.contains(FilteredLoc1)]
 # Updating PlaceHoder:
 SideBarInfo1.info('{} Entries for {}'.format(FilteredDF1.shape[0], FilteredLoc1))
-st.sidebar.divider()
 
 # MAIN:
 st.title(    'COVID-19')
