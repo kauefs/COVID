@@ -58,13 +58,13 @@ st.markdown('''
 st.write('23 November 2023')
 st.markdown('''
 Brazil is the fifth largest country in the world and the seventh in population with over 200 million inhabitants.
-When COVID-19 outbreak begun on the eve of 2020; and even though the first case had been registered at the end of February,
+When COVID-19 outbreak begun on the eve of 2020; and even though the first case in the country had been registered at the end of February,
 with the first death coming the following month, fifteen days later, the country had been relatively 'safe' during the first semester of 2020.
-Signs of how the country was going to deal with the outbreak though were less hopeful. A month into 'lockdown' the then Minister of Health,
+Signs of how it was going to deal with the outbreak though were less hopeful. A month into 'lockdown' the then Minister of Health,
 a physician, was fired by the then President because the Minister was trying to keep the population safe from the pandemic,
-following the World Health Organization (WHO) directives. The then President, however was against it saying it would damage the economy.
-From there on the then President became the _de facto_ Minister of Health, instating new ministers that would only 'follow orders'.
-The then President diminished the disease and discredited vaccines.
+following the World Health Organization (WHO) directives. The then President, however, was against it, saying it would damage the economy.
+From there on the then President became the _de facto_ Minister of Health, instating new ministers that would only 'follow orders',
+diminishing the disease and discrediting vaccines.
             ''')
 
 st.subheader('Chart 1: Top 5 Countries with most Deaths')
@@ -157,7 +157,7 @@ plt.show()
 st.pyplot(fig)
 st.markdown('''
 The world has lost a population of about the size the one that lives in the metropolitan area of Rio de Janeiro,
-and about 10% of the worldwide deaths happened in Brazil!
+and about 10% of those deaths happened in Brazil!
             ''')
 
 st.subheader('Chart 3: Linear Evolution for COVID-19 in Brazil (Cases & Deaths)')
@@ -234,7 +234,7 @@ with st.container():
     with c2:st.image('https://www.gov.br/saude/pt-br/campanhas-da-saude/2023/vacinacao/ze-gotinha/ze-gotinha/@@govbr.institucional.banner/f0ed8b09-fbd2-47b6-b441-d54c6fa4a87b/@@images/201a5721-4a35-4010-a373-c3e89f3399b2.gif', width=250)
     with c3:st.empty()
 st.markdown('''The following chart makes it cristal clear how the vaccines were very effective in fighting the disease,
-so much so the world has pretty much outcome it and life has basically returned to what it used to be in many ways, no more lockdowns and no more masks.
+so much so the world has pretty much outcome it and life has basically resumed to what it used to be in many ways with no more lockdowns or masks.
             ''')
 
 st.subheader('Chart 4: Logarithmic Evolution for COVID-19 in Brazil (Vaccination & Cases & Deaths)')
