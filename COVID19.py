@@ -46,6 +46,7 @@ table1       = st.sidebar.empty()
 FilteredDF1  = df[df['location'].str.contains(FilteredLoc1)]
 # Updating PlaceHoder:
 SideBarInfo1.info('{} Entries for {}'.format(FilteredDF1.shape[0], FilteredLoc1))
+st.sidebar.divider()
 
 # MAIN:
 st.title(    'COVID-19')
@@ -96,8 +97,8 @@ plt.yscale(   'log')
 plt.show()
 st.pyplot(fig)
 if table1.checkbox('Show Table Data 1', value=False):st.write(FilteredDF1)
-
 st.divider()
+
 Location2    = df['location'].unique()
 # SelectBox for Location:
 FilteredLoc2 = st.sidebar.selectbox('Location 2:', Location2, index=8)
