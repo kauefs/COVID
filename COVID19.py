@@ -47,13 +47,6 @@ FilteredDF1  = df[df['location'].str.contains(FilteredLoc1)]
 # Updating PlaceHoder:
 SideBarInfo1.info('{} Entries for {}'.format(FilteredDF1.shape[0], FilteredLoc1))
 
-st.sidebar.divider()
-with st.sidebar.container():
-     C1,  C2,  C3 = st.columns(3)
-     with C1:st.empty()
-     with C2:st.markdown('''©2023™''')
-     with C3:st.empty()
-
 # MAIN:
 st.title(    'COVID-19')
 st.subheader('Comparisson Charts')
@@ -117,6 +110,13 @@ FilteredDF2  = df[df['location'].str.contains(FilteredLoc2)]
 # Updating PlaceHoder:
 SideBarInfo2.success('{} Entries for {}'.format(FilteredDF2.shape[0], FilteredLoc2))
 
+st.sidebar.divider()
+with st.sidebar.container():
+     C1,  C2,  C3 = st.columns(3)
+     with C1:st.empty()
+     with C2:st.markdown('''©2023™''')
+     with C3:st.empty()
+
 st.markdown(f'''➡️ {'**{}**'.format(FilteredDF2.shape[0])} Entries for **{FilteredLoc2}**:'''
             'from {} to {}'.format(df.loc[df.location == FilteredLoc2].index.min(), df.loc[df.location == FilteredLoc2].index.max()))
 fig,ax= plt.subplots(figsize=(12,8)  , tight_layout=True)
@@ -163,12 +163,4 @@ plt.yscale(   'log')
 plt.show()
 st.pyplot(fig)
 if table2.checkbox('Show Table Data 2', value=False):st.write(FilteredDF2)
-st.divider()
-with st.container():
-     C1,  C2,C3,C4, C5 = st.columns(5)
-     with C1:st.empty()
-     with C2:st.empty()
-     with C3:st.markdown('''©2023™''')
-     with C4:st.empty()
-     with C5:st.empty()
 st.toast('Vaccinate!', icon='💉')
