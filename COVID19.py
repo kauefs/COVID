@@ -29,11 +29,6 @@ df      = LoadData()
 st.sidebar.header(   'COVID-19     ')
 st.sidebar.subheader('Data Analysis')
 st.sidebar.write(    'Comparisson Charts')
-st.sidebar.divider()
-st.sidebar.markdown('''Source:    [Our World in Data](https://covid.ourworldindata.org/)''')
-st.sidebar.write(    'Johns Hopkins University daily reports from {} to {}'.format(df.index.min(), df.index.max()))
-st.sidebar.markdown('''Reference: [Data Cleaning Techniques in Python: the Ultimate Guide](https://www.justintodata.com/data-cleaning-techniques-python-guide/)''')
-st.sidebar.divider()
 
 Location1    = df['location'].unique()
 # SelectBox for Location:
@@ -119,6 +114,11 @@ FilteredDF2  = df[df['location'].str.contains(FilteredLoc2)]
 SideBarInfo2.success('{} Entries for {}'.format(FilteredDF2.shape[0], FilteredLoc2))
 
 st.sidebar.divider()
+st.sidebar.markdown('''Source:    [Our World in Data](https://covid.ourworldindata.org/)''')
+st.sidebar.write(    'Johns Hopkins University daily reports from {} to {}'.format(df.index.min(), df.index.max()))
+st.sidebar.markdown('''Reference: [Data Cleaning Techniques in Python: the Ultimate Guide](https://www.justintodata.com/data-cleaning-techniques-python-guide/)''')
+st.sidebar.divider()
+
 with st.sidebar.container():
      C1,  C2,  C3 = st.columns(3)
      with C1:st.empty()
