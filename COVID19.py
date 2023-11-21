@@ -7,9 +7,9 @@ import matplotlib.ticker   as ticker
 import matplotlib.dates    as mdates
 import seaborn             as sns
 import streamlit           as st
-import bar_chart_race      as bcr
-from   wordcloud         import WordCloud, STOPWORDS, ImageColorGenerator
-from   PIL import Image
+#import bar_chart_race      as bcr
+#from   wordcloud         import WordCloud, STOPWORDS, ImageColorGenerator
+#from   PIL import Image
 from   datetime        import date, datetime, timedelta
 st.set_page_config(page_title='COVID-19', page_icon='😷')
 # DATA:https://covid.ourworldindata.org/data/owid-covid-data-old.csv
