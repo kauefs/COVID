@@ -123,7 +123,7 @@ ax1.xaxis.set_major_formatter(mdates.DateFormatter('%Y\n%b'))
 ax1.xaxis.set_tick_params(rotation=0)
 ax1.set(xlabel=None)
 ax1.spines[['top', 'right', 'left', 'bottom']].set_visible(False)
-OWID.loc[OWID.location =='World', 'total_deaths'].sort_values(ascending=False).plot(
+OWID.loc[OWID.location  == 'World', 'total_deaths'].sort_values(ascending=False).plot(
                 kind       ='line'   ,
                 ax         = ax2     ,
                 marker     ='o'      ,
@@ -163,7 +163,7 @@ and about 10% of the worldwide deaths happened in Brazil!
 st.subheader('Chart 3: Linear Evolution for COVID-19 in Brazil (Cases & Deaths)')
 BR = OWID.loc[OWID.location == 'Brazil'].copy()
 fig, (ax1, ax2) = plt.subplots(nrows=2, ncols=1, figsize=(12,8), tight_layout=True)
-OWID.loc[OWID.location =='Brazil', 'total_cases'].sort_values(ascending=False).plot(
+OWID.loc[OWID.location == 'Brazil', 'total_cases'].sort_values(ascending=False).plot(
                 kind       ='line'   ,
                 ax         = ax1     ,
                 marker     ='o'      ,
@@ -192,7 +192,7 @@ ax1.xaxis.set_major_formatter(mdates.DateFormatter('%Y\n%b'))
 ax1.xaxis.set_tick_params(rotation=0)
 ax1.set(xlabel=None)
 ax1.spines[['top', 'right', 'left', 'bottom']].set_visible(False)
-OWID.loc[OWID.location =='Brazil', 'total_deaths'].sort_values(ascending=False).plot(
+OWID.loc[OWID.location == 'Brazil', 'total_deaths'].sort_values(ascending=False).plot(
                 kind       ='line'   ,
                 ax         = ax2     ,
                 marker     ='o'      ,
@@ -210,7 +210,7 @@ ax2.annotate('{:,.0f}'.format(BR['total_deaths'].sort_values(ascending=False)[0]
                 fontweight='semibold')
 ax2.set_title('COVID-19: Deaths in Brazil', fontsize=15, fontweight='bold')
 ax2.yaxis.set_major_formatter(ticker.StrMethodFormatter('{x:,.0f}'))
-ax2.grid(linestyle=':', linewidth=1, color='#DCDCDC')
+ax2.grid(linestyle=':',  linewidth=1, color='#DCDCDC')
 ax2.tick_params(axis  ='both',
                 which ='both',
                 left  = False,
@@ -220,7 +220,7 @@ ax2.set_xticks(['2020-01','2020-06','2021-01','2021-06','2022-01','2022-06','202
 ax2.xaxis.set_major_formatter(mdates.DateFormatter('%Y\n%b'))
 ax2.xaxis.set_tick_params(rotation=360)
 ax2.set(xlabel=None)
-ax2.spines[[ 'top','right',  'left', 'bottom']].set_visible(False)
+ax2.spines[[ 'top', 'right', 'left', 'bottom']].set_visible(False)
 plt.rcParams['font.family'] ='sans-serif'
 plt.show()
 st.pyplot(fig)
@@ -229,18 +229,16 @@ Brazil has always had a history of vaccinations with a National Program of Immun
 famous for the eradication of polio for which the vaccination campaign _Zé Gotinha_ ('Droplet Joe') mascot was created in 1986 and became a symbol in saving lives.
             ''')
 with st.container():
-    c1, c2, c3, c4, c5 = st.columns(5)
+    c1, c2, c3 = st.columns(3)
     with c1:st.empty()
-    with c2:st.empty()
-    with c3:st.image('https://www.gov.br/saude/pt-br/campanhas-da-saude/2023/vacinacao/ze-gotinha/ze-gotinha/@@govbr.institucional.banner/f0ed8b09-fbd2-47b6-b441-d54c6fa4a87b/@@images/201a5721-4a35-4010-a373-c3e89f3399b2.gif', width=250)
-    with c4:st.empty()
-    with c5:st.empty()
+    with c2:st.image('https://www.gov.br/saude/pt-br/campanhas-da-saude/2023/vacinacao/ze-gotinha/ze-gotinha/@@govbr.institucional.banner/f0ed8b09-fbd2-47b6-b441-d54c6fa4a87b/@@images/201a5721-4a35-4010-a373-c3e89f3399b2.gif', width=250)
+    with c3:st.empty()
 st.markdown('''The following chart makes it cristal clear how the vaccines were very effective in fighting the disease,
 so much so the world has pretty much outcome it and life has basically returned to what it used to be in many ways, no more lockdowns and no more masks.
             ''')
 
 st.subheader('Chart 4: Logarithmic Evolution for COVID-19 in Brazil (Vaccination & Cases & Deaths)')
-fig , ax = plt.subplots(figsize=(12,8), tight_layout=True)
+fig, ax=plt.subplots(figsize=(12,8)  ,tight_layout=True)
 RAW.loc[RAW.location == 'Brazil','new_vaccinations_smoothed'].sort_values(ascending=False).plot(
                 kind       ='line'   ,
                 label      ='Vaccination',
@@ -286,5 +284,5 @@ st.pyplot(fig)
 st.markdown('''
 Nonetheless, has any lesson been learned at all? Is the world better equipped to deal with another pandemic?
 It was fortunate a vaccine so effective could had been produced somewhat so quickly; lucky may not be around another time.
-''')
+            ''')
 st.toast('Vaccinate!', icon='💉')
