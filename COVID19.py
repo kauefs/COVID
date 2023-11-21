@@ -32,8 +32,8 @@ def LoadData():
                  'new_deaths_smoothed',
                  'new_vaccinations_smoothed']].copy()
     X.reset_index(inplace=True)
-    X['date'] = pd.to_datetime(df['date'], format='%Y-%m-%d')
-    X.set_index('date',    inplace=True)
+    X['date'] = pd.to_datetime(X['date'], format='%Y-%m-%d')
+    X.set_index('date',   inplace=True)
     X.sort_index(inplace=True)
     return X
 df      = LoadData()
