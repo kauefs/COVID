@@ -50,6 +50,13 @@ st.sidebar.divider()
 
 # MAIN:
 st.title(    'COVID-19')
+st.markdown('''
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-kauefs-blue.svg)](https://www.linkedin.com/in/kauefs/)
+[![GitHub](https://img.shields.io/badge/GitHub-kauefs-black.svg)](https://github.com/kauefs/)
+[![](https://img.shields.io/badge/Python-3-blue.svg)](https://www.python.org/)
+[![GPLv3 license](https://img.shields.io/badge/License-Apache2-black.svg)](http://perso.crans.org/besson/LICENSE.html)
+            ''')
+st.write('23 October 2023')
 st.subheader('Comparisson Charts')
 st.markdown(f'''➡️ {'**{}**'.format(FilteredDF1.shape[0])} Entries for **{FilteredLoc1}**:'''
             'from {} to {}'.format(df.loc[df.location == FilteredLoc1].index.min(), df.loc[df.location == FilteredLoc1].index.max()))
