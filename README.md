@@ -33,7 +33,7 @@ Uma vez que a série de dados é bastante extensa e atualizada diariamente, ser�
 
 <p align=center><img alt=Brazil    src=https://github.com/kauefs/COVID/raw/%40/img/CovidBrazil.png width=75%></p>
 
-<p align=center><img alt=BR        src=https://github.com/kauefs/COVID/raw/%40/img/CovidBR.png width=75%></p>
+<p align=center><a href=https://covid19br.streamlit.app/><img alt=BR src=https://github.com/kauefs/COVID/raw/%40/img/CovidBR.png width=75%></a></p>
 
 <p align=center><img alt=World     src=https://github.com/kauefs/COVID/raw/%40/img/CovidTotal.png width=75%></p>
 
