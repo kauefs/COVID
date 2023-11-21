@@ -118,7 +118,8 @@ ax1.tick_params(axis  ='both',
                 left  = False,
                 bottom= False)
 ax1.set_yticks([0, 100000000, 200000000, 300000000, 400000000,  500000000,  600000000], minor=False)
-#ax1.set_xticks(['2020-01','2020-06','2021-01','2021-06','2022-01','2022-06','2023-01'], minor=False)
+ax1.set_xticks(['2020-01','2020-06','2021-01','2021-06','2022-01','2022-06','2023-01'], minor=False)
+ax1.xaxis.set_major_formatter(mdates.DateFormatter('%Y\n%b'))
 ax1.set(xlabel=None)
 ax1.spines[['top', 'right', 'left', 'bottom']].set_visible(False)
 OWID.loc[OWID.location =='World', 'total_deaths'].sort_values(ascending=False).plot(
@@ -146,6 +147,7 @@ ax2.tick_params(axis  ='both',
                 bottom= False)
 ax2.set_yticks([0,1000000, 2000000 , 3000000 , 4000000 , 5000000 , 6000000],            minor=False)
 ax2.set_xticks(['2020-01','2020-06','2021-01','2021-06','2022-01','2022-06','2023-01'], minor=False)
+ax2.xaxis.set_major_formatter(mdates.DateFormatter('%Y\n%b'))
 ax2.set(xlabel=None)
 ax2.spines[['top', 'right', 'left', 'bottom']].set_visible(False)
 plt.rcParams['font.family']='sans-serif'
