@@ -49,7 +49,7 @@ st.markdown('''
 [![GitHub](https://img.shields.io/badge/GitHub-000000?logo=github&logoColor=white)](https://github.com/kauefs/)
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?logo=linkedin&logoColor=white)](https://www.linkedin.com/in/kauefs/)
 [![Python](https://img.shields.io/badge/Python-3-blue.svg)](https://www.python.org/)
-[![License](https://img.shields.io/badge/License-Apache2-black.svg)](https://www.apache.org/licenses/LICENSE-2.0)
+[![License](https://img.shields.io/badge/License-Apache_2.0-black.svg)](https://www.apache.org/licenses/LICENSE-2.0)
             ''')
 st.write('23 October 2023')
 st.subheader('Comparisson Charts')
