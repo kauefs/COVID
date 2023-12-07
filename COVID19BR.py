@@ -233,7 +233,8 @@ with st.container():
     with c1:st.empty()
     with c2:st.image('https://www.gov.br/saude/pt-br/campanhas-da-saude/2023/vacinacao/ze-gotinha/ze-gotinha/@@govbr.institucional.banner/f0ed8b09-fbd2-47b6-b441-d54c6fa4a87b/@@images/201a5721-4a35-4010-a373-c3e89f3399b2.gif', width=250)
     with c3:st.empty()
-st.markdown('''The following chart makes it cristal clear how the vaccines were very effective in fighting the disease,
+st.markdown('''
+The following chart makes it cristal clear how the vaccines were very effective in fighting the disease,
 so much so the world has pretty much outcome it and life has basically resumed to what it used to be in many ways with no more lockdowns or masks.
             ''')
 
