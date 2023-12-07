@@ -225,7 +225,7 @@ plt.rcParams['font.family'] ='sans-serif'
 plt.show()
 st.pyplot(fig)
 st.markdown('''
-Brazil has always had a history of vaccinations with a National Program of Immunization efficient and effective,
+Brazil has always had a history of vaccinations with a National Immunization Program efficient and effective,
 famous for the eradication of polio for which the vaccination campaign _Zé Gotinha_ ('Droplet Joe') mascot was created in 1986 and became a symbol in saving lives.
             ''')
 with st.container():
