@@ -1,6 +1,6 @@
 pip
 numpy
-pandas==2.1.4
+pandas==2.0.3
 matplotlib
 seaborn
 datetime
