@@ -1,6 +1,6 @@
 pip
 numpy
 pandas==2.0.3
-matplotlib
-seaborn
+matplotlib==3.8.2
+seaborn==0.13.2
 datetime
