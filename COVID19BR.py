@@ -85,7 +85,6 @@ for c in ax.containers:
     values = deaths.value_counts(ascending=False).iloc[9:14].values
     ax.bar_label(container=c, labels=values, fmt='{:,.0f}', fontsize=13, padding=10, fontweight='bold')
 ax.set(xlabel=None)
-plt.show()
 st.pyplot(fig)
 st.markdown('''
 The consequences could not have been more sinister. Brazil has become the country with the second highest death toll,
@@ -102,8 +101,8 @@ OWID.loc[OWID.location =='World', 'total_cases'].sort_values(ascending=False).pl
                 color      ='#FF8C00',
                 linewidth  ='2.25'   ,
                 ms=.01, mec='#FF8C00',    mfc='#FF8C00')
-ax1.annotate('{:,.0f}'.format(OWID['total_cases'].sort_values(ascending=False)[0]),
-                xy=(1, OWID['total_cases'].sort_values(ascending=False)[0]),
+ax1.annotate('{:,.0f}'.format(OWID['total_cases'].sort_values(ascending=False).iloc[0]),
+                xy=(1, OWID['total_cases'].sort_values(ascending=False).iloc[0]),
                 xycoords=('axes fraction', 'data'),
                 xytext=(-85,1.15),
                 textcoords='offset points',
@@ -131,8 +130,8 @@ OWID.loc[OWID.location  == 'World', 'total_deaths'].sort_values(ascending=False)
                 color      ='#FF103F',
                 linewidth  ='2.25'   ,
                 ms=.01, mec='#FF103F',     mfc='#FF103F')
-ax2.annotate('{:,.0f}'.format(OWID['total_deaths'].sort_values(ascending=False)[0]),
-                xy=(1, OWID['total_deaths'].sort_values(ascending=False)[0]),
+ax2.annotate('{:,.0f}'.format(OWID['total_deaths'].sort_values(ascending=False).iloc[0]),
+                xy=(1, OWID['total_deaths'].sort_values(ascending=False).iloc[0]),
                 xycoords=('axes fraction', 'data'),
                 xytext=(-70,1.15),
                 textcoords='offset points',
@@ -153,7 +152,6 @@ ax2.xaxis.set_tick_params(rotation=360)
 ax2.set(xlabel=None)
 ax2.spines[['top', 'right', 'left', 'bottom']].set_visible(False)
 plt.rcParams['font.family']='sans-serif'
-plt.show()
 st.pyplot(fig)
 st.markdown('''
 The world has lost a population of about the size the one that lives in the metropolitan area of Rio de Janeiro.
@@ -171,8 +169,8 @@ OWID.loc[OWID.location == 'Brazil', 'total_cases'].sort_values(ascending=False).
                 color      ='#FF8C00',
                 linewidth  ='2.25'   ,
                 ms=.01, mec='#FF8C00',    mfc='#FF8C00')
-ax1.annotate('{:,.0f}'.format(BR['total_cases'].sort_values(ascending=False)[0]),
-                xy=(1, BR['total_cases'].sort_values(ascending=False)[0]),
+ax1.annotate('{:,.0f}'.format(BR['total_cases'].sort_values(ascending=False).iloc[0]),
+                xy=(1, BR['total_cases'].sort_values(ascending=False).iloc[0]),
                 xycoords=('axes fraction', 'data'),
                 xytext=(-105,1.15),
                 textcoords='offset points',
@@ -200,8 +198,8 @@ OWID.loc[OWID.location == 'Brazil', 'total_deaths'].sort_values(ascending=False)
                 color      ='#FF103F',
                 linewidth  ='2.25'   ,
                 ms=.01, mec='#FF103F',     mfc='#FF103F')
-ax2.annotate('{:,.0f}'.format(BR['total_deaths'].sort_values(ascending=False)[0]),
-                xy=(1, BR['total_deaths'].sort_values(ascending=False)[0]),
+ax2.annotate('{:,.0f}'.format(BR['total_deaths'].sort_values(ascending=False).iloc[0]),
+                xy=(1, BR['total_deaths'].sort_values(ascending=False).iloc[0]),
                 xycoords=('axes fraction', 'data'),
                 xytext=(-85,1.15),
                 textcoords='offset points',
@@ -222,7 +220,6 @@ ax2.xaxis.set_tick_params(rotation=360)
 ax2.set(xlabel=None)
 ax2.spines[[ 'top', 'right', 'left', 'bottom']].set_visible(False)
 plt.rcParams['font.family'] ='sans-serif'
-plt.show()
 st.pyplot(fig)
 st.markdown('''
 Brazil has always had a history of vaccinations with a National Immunization Program efficient and effective,
@@ -280,7 +277,6 @@ ax.spines[['top',  'right', 'left', 'bottom']].set_visible(False)
 ax.legend(loc='best', fontsize=13)
 plt.rcParams[ 'font.family']=    'sans-serif'
 plt.yscale(   'log')
-plt.show()
 st.pyplot(fig)
 st.markdown('''
 Nonetheless, has any lesson been learned at all? Is the world better equipped to deal with another pandemic?
