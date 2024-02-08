@@ -56,7 +56,7 @@ st.subheader('Comparisson Charts')
 st.markdown(f'''➡️ {'**{}**'.format(FilteredDF1.shape[0])} Entries for **{FilteredLoc1}**:'''
             'from {} to {}'.format(df.loc[df.location == FilteredLoc1].index.min(), df.loc[df.location == FilteredLoc1].index.max()))
 fig,ax= plt.subplots(figsize=(12,8)  , tight_layout=True)
-df.loc[df.location == FilteredLoc1,'new_vaccinations_smoothed'].sort_values(ascending=False).plot(
+df.loc[df.location == FilteredLoc1,'new_vaccinations_smoothed'].plot(
                 kind       ='line'   ,
                 label      ='Vaccinations',
                 ax         = ax      ,
@@ -65,7 +65,7 @@ df.loc[df.location == FilteredLoc1,'new_vaccinations_smoothed'].sort_values(asce
                 color      ='#4CAF50',
                 linewidth  ='2.25'   ,
                 ms=.01, mec='#4CAF50',   mfc='#4CAF50')
-df.loc[df.location == FilteredLoc1,'new_cases_smoothed'].sort_values(ascending=False).plot(
+df.loc[df.location == FilteredLoc1,'new_cases_smoothed'].plot(
                 kind       ='line'   ,
                 label      ='Cases'  ,
                 ax         = ax      ,
@@ -74,7 +74,7 @@ df.loc[df.location == FilteredLoc1,'new_cases_smoothed'].sort_values(ascending=F
                 color      ='#FF8C00',
                 linewidth  ='2.25'   ,
                 ms=.01, mec='#FF8C00',   mfc='#FF8C00')
-df.loc[df.location == FilteredLoc1,'new_deaths_smoothed'].sort_values(ascending=False).plot(
+df.loc[df.location == FilteredLoc1,'new_deaths_smoothed'].plot(
                 kind       ='line'   ,
                 label      ='Deaths' ,
                 ax         = ax      ,
@@ -128,7 +128,7 @@ with st.sidebar.container():
 st.markdown(f'''➡️ {'**{}**'.format(FilteredDF2.shape[0])} Entries for **{FilteredLoc2}**:'''
             'from {} to {}'.format(df.loc[df.location == FilteredLoc2].index.min(), df.loc[df.location == FilteredLoc2].index.max()))
 fig,ax= plt.subplots(figsize=(12,8)  , tight_layout=True)
-df.loc[df.location == FilteredLoc2,'new_vaccinations_smoothed'].sort_values(ascending=False).plot(
+df.loc[df.location == FilteredLoc2,'new_vaccinations_smoothed'].plot(
                 kind       ='line'   ,
                 label      ='Vaccinations',
                 ax         = ax      ,
@@ -137,7 +137,7 @@ df.loc[df.location == FilteredLoc2,'new_vaccinations_smoothed'].sort_values(asce
                 color      ='#4CAF50',
                 linewidth  ='2.25'   ,
                 ms=.01, mec='#4CAF50',   mfc='#4CAF50')
-df.loc[df.location == FilteredLoc2,'new_cases_smoothed'].sort_values(ascending=False).plot(
+df.loc[df.location == FilteredLoc2,'new_cases_smoothed'].plot(
                 kind       ='line'   ,
                 label      ='Cases'  ,
                 ax         = ax      ,
@@ -146,7 +146,7 @@ df.loc[df.location == FilteredLoc2,'new_cases_smoothed'].sort_values(ascending=F
                 color      ='#FF8C00',
                 linewidth  ='2.25'   ,
                 ms=.01, mec='#FF8C00',   mfc='#FF8C00')
-df.loc[df.location == FilteredLoc2,'new_deaths_smoothed'].sort_values(ascending=False).plot(
+df.loc[df.location == FilteredLoc2,'new_deaths_smoothed'].plot(
                 kind       ='line'   ,
                 label      ='Deaths' ,
                 ax         = ax      ,
