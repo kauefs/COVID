@@ -236,8 +236,8 @@ so much so the world has pretty much outcome it and life has basically resumed t
             ''')
 
 st.subheader('Chart 4: Logarithmic Evolution for COVID-19 in Brazil (Vaccination & Cases & Deaths)')
-fig, ax=plt.subplots(figsize=(12,8)  ,tight_layout=True)
-RAW.loc[RAW.location == 'Brazil','new_vaccinations_smoothed'].sort_values(ascending=False).plot(
+fig , ax = plt.subplots(figsize=(12,8), tight_layout=True)
+RAW.loc[RAW.location == 'Brazil'   ,'new_vaccinations_smoothed'].plot(
                 kind       ='line'   ,
                 label      ='Vaccination',
                 ax         = ax      ,
@@ -246,7 +246,7 @@ RAW.loc[RAW.location == 'Brazil','new_vaccinations_smoothed'].sort_values(ascend
                 color      ='#4CAF50',
                 linewidth  ='2.25'   ,
                 ms=.01, mec='#4CAF50',mfc='#4CAF50')
-RAW.loc[RAW.location == 'Brazil','new_cases_smoothed'].sort_values(ascending=False).plot(
+RAW.loc[RAW.location == 'Brazil'   ,'new_cases_smoothed'].plot(
                 kind       ='line'   ,
                 label      ='Cases'  ,
                 ax         = ax      ,
@@ -255,7 +255,7 @@ RAW.loc[RAW.location == 'Brazil','new_cases_smoothed'].sort_values(ascending=Fal
                 color      ='#FF8C00',
                 linewidth  ='2.25'   ,
                 ms=.01, mec='#FF8C00', mfc='#FF8C00')
-RAW.loc[RAW.location == 'Brazil','new_deaths_smoothed'].sort_values(ascending=False).plot(
+RAW.loc[RAW.location == 'Brazil'   ,'new_deaths_smoothed'].plot(
                 kind       ='line'   ,
                 label      ='Deaths' ,
                 ax         = ax      ,
@@ -264,14 +264,12 @@ RAW.loc[RAW.location == 'Brazil','new_deaths_smoothed'].sort_values(ascending=Fa
                 color      ='#FF103F',
                 linewidth  ='2.25'   ,
                 ms=.01, mec='#FF103F',   mfc='#FF103F')
-ax.set_title('COVID-19 in Brazil: Vaccination & Cases & Deaths (Log Scale)', fontsize=18, fontweight='bold')
+ax.set_title('COVID in Brazil: Vaccination & Cases & Deaths (Log Scale)', fontsize=18, fontweight='bold')
 ax.grid(linestyle=':' , linewidth=1  , color='#DCDCDC')
 ax.tick_params(axis   ='both',
                 which ='both',
                 left  = False,
                 bottom= False)
-ax.xaxis.set_major_formatter(mdates.DateFormatter('%Y\n%b'))
-ax.xaxis.set_tick_params(rotation=0)
 ax.set(xlabel=None)
 ax.spines[['top',  'right', 'left', 'bottom']].set_visible(False)
 ax.legend(loc='best', fontsize=13)
