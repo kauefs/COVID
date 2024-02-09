@@ -9,7 +9,7 @@ import seaborn             as sns
 import streamlit           as st
 from   datetime        import date, datetime, timedelta
 st.set_page_config(page_title='COVID19', page_icon='😷')
-DATA     = 'https://covid.ourworldindata.org/data/owid-covid-data-old.csv'
+DATA     = 'https://covid.ourworldindata.org/data/owid-covid-data.csv'
 @st.cache_data
 def LoadData():
     data = pd.read_csv(DATA, index_col=0)
