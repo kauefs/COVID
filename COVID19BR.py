@@ -157,7 +157,7 @@ About 10% of those deaths happened in Brazil!
             ''')
 
 st.write('Lastest entries for the World:')
-W = OWID.loc[OWID.location == 'World'].copy()
+W = RAW.loc[RAW.location == 'World'].copy()
 D = W.index[W['new_deaths_smoothed']!=0.0][-1].strftime('%d %b %Y')
 C = W.index[W['new_cases_smoothed' ]!=0.0][-1].strftime('%d %b %Y')
 st.write('Lastest Death:       {}'.format(D))
@@ -286,7 +286,7 @@ Nonetheless, has any lesson been learned at all? Is the world better equipped to
 It was fortunate a vaccine so effective could had been produced somewhat so quickly; lucky may not be around another time.
             ''')
 
-st.write('Lastest resgistered entries for Brazil:')
+st.write('Lastest entries for Brazil:')
 BR = RAW.loc[RAW.location == 'Brazil'].copy()
 d = BR.index[BR['new_deaths_smoothed']!=0.0][-1].strftime('%d %b %Y')
 c = BR.index[BR['new_cases_smoothed' ]!=0.0][-1].strftime('%d %b %Y')
