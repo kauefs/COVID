@@ -31,9 +31,9 @@ st.sidebar.subheader('Data Analysis')
 st.sidebar.write(    'Comparisson Charts')
 st.sidebar.divider()
 
-Location1    = df['location'].unique()
+Location1    = df['location'].sort_values(ascending=True).unique()
 # SelectBox for Location:
-FilteredLoc1 = st.sidebar.selectbox('Location 1:', Location1, index=152)
+FilteredLoc1 = st.sidebar.selectbox('Location 1:', Location1, index=241)
 # PlaceHolder for Filtered Entries:
 SideBarInfo1 = st.sidebar.empty()
 # PlaceHolder for Table:
@@ -94,15 +94,16 @@ ax.xaxis.set_tick_params(rotation=0)
 ax.set(xlabel=None)
 ax.spines[['top',  'right', 'left', 'bottom']].set_visible(False)
 ax.legend(loc='upper left', fontsize=15)
+plt.gca().set_ylim(bottom=10**0)
 plt.rcParams[ 'font.family']=    'sans-serif'
 plt.yscale(   'log')
 st.pyplot(fig)
 if table1.checkbox('Show Table Data 1', value=False):st.write(FilteredDF1)
 st.divider()
 
-Location2    = df['location'].unique()
+Location2    = df['location'].sort_values(ascending=True).unique()
 # SelectBox for Location:
-FilteredLoc2 = st.sidebar.selectbox('Location 2:', Location2, index=223)
+FilteredLoc2 = st.sidebar.selectbox('Location 2:', Location2, index=128)
 # PlaceHolder for Filtered Entries:
 SideBarInfo2 = st.sidebar.empty()
 # PlaceHolder for Table:
@@ -165,6 +166,7 @@ ax.xaxis.set_tick_params(rotation=0)
 ax.set(xlabel=None)
 ax.spines[['top',  'right', 'left', 'bottom']].set_visible(False)
 ax.legend(loc='upper left', fontsize=15)
+plt.gca().set_ylim(bottom=10**0)
 plt.rcParams[ 'font.family']=    'sans-serif'
 plt.yscale(   'log')
 st.pyplot(fig)
