@@ -151,10 +151,6 @@ ax2.set(xlabel=None)
 ax2.spines[['top', 'right', 'left', 'bottom']].set_visible(False)
 plt.rcParams['font.family']='sans-serif'
 st.pyplot(fig)
-st.markdown('''
-The world has lost a population of about the size the one that lives in the metropolitan area of Rio de Janeiro.
-About 10% of those deaths happened in Brazil!
-            ''')
 
 st.write('Lastest entries for the World:')
 W = RAW.loc[RAW.location == 'World'].copy()
@@ -162,6 +158,11 @@ D = W.index[W['new_deaths_smoothed']!=0.0][-1].strftime('%d %b %Y')
 C = W.index[W['new_cases_smoothed' ]!=0.0][-1].strftime('%d %b %Y')
 st.write('• Lastest death:       {}'.format(D))
 st.write('• Lastest  case:       {}'.format(C))
+
+st.markdown('''
+The world has lost a population of about the size the one that lives in the metropolitan area of Rio de Janeiro.
+About 10% of those deaths happened in Brazil!
+            ''')
 
 st.subheader('Chart 3: Linear Evolution for COVID-19 in Brazil (Cases & Deaths)')
 BR = OWID.loc[OWID.location == 'Brazil'].copy()
@@ -281,10 +282,6 @@ plt.gca().set_xlim(left=None)
 plt.rcParams[ 'font.family']=    'sans-serif'
 plt.yscale(   'log')
 st.pyplot(fig)
-st.markdown('''
-Nonetheless, has any lesson been learned at all? Is the world better equipped to deal with another pandemic?
-It was fortunate a vaccine so effective could had been produced somewhat so quickly; lucky may not be around another time.
-            ''')
 
 st.write('Lastest entries for Brazil:')
 BR = RAW.loc[RAW.location == 'Brazil'].copy()
@@ -296,7 +293,7 @@ st.write('• Lastest  case:       {}'.format(c))
 st.write('• Lastest vaccination: {}'.format(v))
 st.markdown('''
 Vaccinations have been ongoing but perhaps not reported anymore, as well as some cases.
-Deaths indeed seems to have, fortunantelly, pretty much ended.
+Deaths indeed seems to have, fortunantelly, pretty much ended. Nonetheless, has any lesson been learned at all? Is the world better equipped to deal with another pandemic?
+It was fortunate a vaccine so effective could had been produced somewhat so quickly; lucky may not be around another time.
             ''')
-
 st.toast('Vaccinate!', icon='💉')
