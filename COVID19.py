@@ -33,7 +33,7 @@ st.sidebar.divider()
 
 Location1    = df['location'].sort_values(ascending=True).unique()
 # SelectBox for Location:
-FilteredLoc1 = st.sidebar.selectbox('Location 1:', Location1, index=241)
+FilteredLoc1 = st.sidebar.selectbox('Location 1:', Location1, index=234)
 # PlaceHolder for Filtered Entries:
 SideBarInfo1 = st.sidebar.empty()
 # PlaceHolder for Table:
@@ -103,7 +103,7 @@ st.divider()
 
 Location2    = df['location'].sort_values(ascending=True).unique()
 # SelectBox for Location:
-FilteredLoc2 = st.sidebar.selectbox('Location 2:', Location2, index=128)
+FilteredLoc2 = st.sidebar.selectbox('Location 2:', Location2, index=126)
 # PlaceHolder for Filtered Entries:
 SideBarInfo2 = st.sidebar.empty()
 # PlaceHolder for Table:
