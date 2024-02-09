@@ -297,5 +297,6 @@ st.write('Lastest Vaccination: {}'.format(v))
 st.markdown('''
 Vaccinations have been ongoing but perhaps not reported anymore, as well as some cases.
 Deaths indeed seems to have, fortunantelly, pretty much ended.
+            ''')
 
 st.toast('Vaccinate!', icon='💉')
