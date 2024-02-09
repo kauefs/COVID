@@ -22,7 +22,7 @@ Com o objetivo de elevar a consciência situacional a respeito da COVID-19 no Br
 
 ## Dados
 
-Fonte: [Our World in Data](https://covid.ourworldindata.org/data/owid-covid-data.csv)
+Fonte: [Our World in Data](https://covid.ourworldindata.org/)
 
 Organização cuja missão é publicar pesquisas **&** dados que levem ao progresso em face a grandes problemas mundiais. Dados licenciados via [Creative Commons BY licence](https://creativecommons.org/licenses/by/4.0/).
 
