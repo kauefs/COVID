@@ -33,7 +33,7 @@ st.sidebar.divider()
 
 Location1    = df['location'].unique()
 # SelectBox for Location:
-FilteredLoc1 = st.sidebar.selectbox('Location 1:', Location1, index=7)
+FilteredLoc1 = st.sidebar.selectbox('Location 1:', Location1, index=152)
 # PlaceHolder for Filtered Entries:
 SideBarInfo1 = st.sidebar.empty()
 # PlaceHolder for Table:
@@ -102,7 +102,7 @@ st.divider()
 
 Location2    = df['location'].unique()
 # SelectBox for Location:
-FilteredLoc2 = st.sidebar.selectbox('Location 2:', Location2, index=8)
+FilteredLoc2 = st.sidebar.selectbox('Location 2:', Location2, index=223)
 # PlaceHolder for Filtered Entries:
 SideBarInfo2 = st.sidebar.empty()
 # PlaceHolder for Table:
@@ -114,7 +114,7 @@ SideBarInfo2.success('{} Entries for {}'.format(FilteredDF2.shape[0], FilteredLo
 
 st.sidebar.divider()
 st.sidebar.markdown('''Source:    [Our World in Data](https://covid.ourworldindata.org/)''')
-st.sidebar.write(    'Johns Hopkins University daily reports from {} to {}'.format(df.index.min(), df.index.max()))
+st.sidebar.write(    'OWID daily reports from {} to {}'.format(df.index.min(), df.index.max()))
 st.sidebar.markdown('''Reference: [Data Cleaning Techniques in Python: the Ultimate Guide](https://www.justintodata.com/data-cleaning-techniques-python-guide/)''')
 st.sidebar.divider()
 
