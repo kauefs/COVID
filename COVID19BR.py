@@ -160,8 +160,8 @@ st.write('Lastest entries for the World:')
 W = RAW.loc[RAW.location == 'World'].copy()
 D = W.index[W['new_deaths_smoothed']!=0.0][-1].strftime('%d %b %Y')
 C = W.index[W['new_cases_smoothed' ]!=0.0][-1].strftime('%d %b %Y')
-st.write('Lastest Death:       {}'.format(D))
-st.write('Lastest  Case:       {}'.format(C))
+st.write('• Lastest death:       {}'.format(D))
+st.write('• Lastest  case:       {}'.format(C))
 
 st.subheader('Chart 3: Linear Evolution for COVID-19 in Brazil (Cases & Deaths)')
 BR = OWID.loc[OWID.location == 'Brazil'].copy()
@@ -291,9 +291,9 @@ BR = RAW.loc[RAW.location == 'Brazil'].copy()
 d = BR.index[BR['new_deaths_smoothed']!=0.0][-1].strftime('%d %b %Y')
 c = BR.index[BR['new_cases_smoothed' ]!=0.0][-1].strftime('%d %b %Y')
 v = BR.index[BR['new_vaccinations_smoothed']!=0.0][-1].strftime('%d %b %Y')
-st.write('Lastest Death:       {}'.format(d))
-st.write('Lastest  Case:       {}'.format(c))
-st.write('Lastest Vaccination: {}'.format(v))
+st.write('• Lastest death:       {}'.format(d))
+st.write('• Lastest  case:       {}'.format(c))
+st.write('• Lastest vaccination: {}'.format(v))
 st.markdown('''
 Vaccinations have been ongoing but perhaps not reported anymore, as well as some cases.
 Deaths indeed seems to have, fortunantelly, pretty much ended.
