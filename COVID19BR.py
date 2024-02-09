@@ -9,7 +9,7 @@ import seaborn             as sns
 import streamlit           as st
 import datetime
 st.set_page_config(page_title='COVID19BR', page_icon='😷', initial_sidebar_state='collapsed')
-DATA     = 'https://covid.ourworldindata.org/data/owid-covid-data-old.csv'
+DATA     = 'https://covid.ourworldindata.org/data/owid-covid-data.csv'
 @st.cache_data
 def LoadData():
     data = pd.read_csv(DATA, index_col=0)
@@ -39,7 +39,7 @@ st.sidebar.header(   'COVID-19 in Brazil')
 st.sidebar.subheader('Data Analysis')
 st.sidebar.divider()
 st.sidebar.markdown('''Source:    [Our World in Data](https://covid.ourworldindata.org/)''')
-st.sidebar.write(    'Johns Hopkins University daily reports from 2020.01.01 to 2023.03.07')
+st.sidebar.write(    'OWID daily reports from {} to {}'.format(df.index.min(), df.index.max())')
 st.sidebar.markdown('''Reference: [Data Cleaning Techniques in Python: the Ultimate Guide](https://www.justintodata.com/data-cleaning-techniques-python-guide/)''')
 st.sidebar.divider()
 with st.sidebar.container():
@@ -48,7 +48,7 @@ with st.sidebar.container():
      with cols[1]:st.markdown('''©2023™''')
      with cols[2]:st.empty()
 # MAIN:
-st.title(   'The case of COVID-19 in Brazil')
+st.title(   'COVID-19 in Brazil')
 st.markdown('''
 [![GitHub](https://img.shields.io/badge/GitHub-000000?logo=github&logoColor=white)](https://github.com/kauefs/)
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?logo=linkedin&logoColor=white)](https://www.linkedin.com/in/kauefs/)
@@ -117,7 +117,6 @@ ax1.tick_params(axis  ='both',
                 left  = False,
                 bottom= False)
 ax1.set_yticks([0, 100000000, 200000000, 300000000, 400000000,  500000000,  600000000], minor=False)
-ax1.set_xticks(['2020-01','2020-07','2021-01','2021-07','2022-01','2022-07','2023-01'], minor=False)
 ax1.xaxis.set_major_formatter(mdates.DateFormatter('%Y\n%b'))
 ax1.xaxis.set_tick_params(rotation=0)
 ax1.set(xlabel=None)
@@ -146,7 +145,6 @@ ax2.tick_params(axis  ='both',
                 left  = False,
                 bottom= False)
 ax2.set_yticks([0,1000000, 2000000 , 3000000 , 4000000 , 5000000 , 6000000],            minor=False)
-ax2.set_xticks(['2020-01','2020-07','2021-01','2021-07','2022-01','2022-07','2023-01'], minor=False)
 ax2.xaxis.set_major_formatter(mdates.DateFormatter('%Y\n%b'))
 ax2.xaxis.set_tick_params(rotation=360)
 ax2.set(xlabel=None)
@@ -157,6 +155,13 @@ st.markdown('''
 The world has lost a population of about the size the one that lives in the metropolitan area of Rio de Janeiro.
 About 10% of those deaths happened in Brazil!
             ''')
+
+st.write('Lastest entries for the World:')
+W = OWID.loc[OWID.location == 'World'].copy()
+D = W.index[W['new_deaths_smoothed']!=0.0][-1].strftime('%d %b %Y')
+C = W.index[W['new_cases_smoothed' ]!=0.0][-1].strftime('%d %b %Y')
+st.write('Lastest Death:       {}'.format(D))
+st.write('Lastest  Case:       {}'.format(C))
 
 st.subheader('Chart 3: Linear Evolution for COVID-19 in Brazil (Cases & Deaths)')
 BR = OWID.loc[OWID.location == 'Brazil'].copy()
@@ -185,7 +190,6 @@ ax1.tick_params(axis  ='both',
                 left  = False,
                 bottom= False)
 ax1.set_yticks([0, 5000000, 10000000, 15000000, 20000000, 25000000, 30000000, 35000000], minor=False)
-ax1.set_xticks(['2020-01' ,'2020-06','2021-01','2021-06','2022-01','2022-06','2023-01'], minor=False)
 ax1.xaxis.set_major_formatter(mdates.DateFormatter('%Y\n%b'))
 ax1.xaxis.set_tick_params(rotation=0)
 ax1.set(xlabel=None)
@@ -214,7 +218,6 @@ ax2.tick_params(axis  ='both',
                 left  = False,
                 bottom= False)
 ax2.set_yticks([0,100000 , 200000  , 300000  , 400000  , 500000  , 600000 ],            minor=False)
-ax2.set_xticks(['2020-01','2020-06','2021-01','2021-06','2022-01','2022-06','2023-01'], minor=False)
 ax2.xaxis.set_major_formatter(mdates.DateFormatter('%Y\n%b'))
 ax2.xaxis.set_tick_params(rotation=360)
 ax2.set(xlabel=None)
@@ -273,6 +276,8 @@ ax.tick_params(axis   ='both',
 ax.set(xlabel=None)
 ax.spines[['top',  'right', 'left', 'bottom']].set_visible(False)
 ax.legend(loc='best', fontsize=13)
+plt.gca().set_ylim(bottom=10**0)
+plt.gca().set_xlim(left=None)
 plt.rcParams[ 'font.family']=    'sans-serif'
 plt.yscale(   'log')
 st.pyplot(fig)
@@ -280,4 +285,17 @@ st.markdown('''
 Nonetheless, has any lesson been learned at all? Is the world better equipped to deal with another pandemic?
 It was fortunate a vaccine so effective could had been produced somewhat so quickly; lucky may not be around another time.
             ''')
+
+st.write('Lastest resgistered entries for Brazil:')
+BR = RAW.loc[RAW.location == 'Brazil'].copy()
+d = BR.index[BR['new_deaths_smoothed']!=0.0][-1].strftime('%d %b %Y')
+c = BR.index[BR['new_cases_smoothed' ]!=0.0][-1].strftime('%d %b %Y')
+v = BR.index[BR['new_vaccinations_smoothed']!=0.0][-1].strftime('%d %b %Y')
+st.write('Lastest Death:       {}'.format(d))
+st.write('Lastest  Case:       {}'.format(c))
+st.write('Lastest Vaccination: {}'.format(v))
+st.markdown('''
+Vaccinations have been ongoing but perhaps not reported anymore, as well as some cases.
+Deaths indeed seems to have, fortunantelly, pretty much ended.
+
 st.toast('Vaccinate!', icon='💉')
