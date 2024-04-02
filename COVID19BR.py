@@ -23,8 +23,8 @@ def LoadData():
                  'new_vaccinations_smoothed']].copy()
     df.reset_index(inplace=True)
     df['date'] = pd.to_datetime(df['date'], format='%Y-%m-%d')
-    df.set_index('date',         inplace=True)
-    df.sort_index(inplace=True)
+    df.set_index('date',                   inplace=True)
+    df.sort_index(                         inplace=True)
     return df
 RAW      = LoadData()
 # Filling Missing Data:
@@ -67,10 +67,29 @@ From there on the then President became the _de facto_ Minister of Health, insta
 diminishing the disease and discrediting vaccines.
             ''')
 
+# st.subheader('Chart 1: Top 5 Countries with most Deaths')
+# fig,ax = plt.subplots(figsize=(15,5), tight_layout=True)
+# deaths = (OWID.loc[(OWID.index[-1]), ['location', 'total_deaths']].sort_values(by='total_deaths', ascending=False).iloc[9:14])
+# sns.barplot(x='location',   y='total_deaths', data=deaths, ax=ax, palette='autumn', saturation=.75)
+# ax.set_title('COVID-19: Top 5 Countries with Most Deaths', fontsize=22, fontweight='bold')
+# for spine in ['top', 'right', 'left', 'bottom']:ax.spines[spine].set_visible(False)
+# plt.gca().axes.get_yaxis().set_visible(False)
+# plt.gca().axes.get_xaxis().set_visible(True)
+# for tick in ax.get_xticklabels():
+#     tick.set_fontweight('bold')
+#     tick.set_fontsize(15)
+# plt.tick_params(axis  = 'both',
+#                 which = 'both',
+#                 bottom=  False)
+# for c in ax.containers:
+#     values = deaths.value_counts(ascending=False).iloc[9:14].values
+#     ax.bar_label(container=c, labels=values, fmt='{:,.0f}', fontsize=13, padding=10, fontweight='bold')
+# ax.set(xlabel=None)
+# st.pyplot(fig)
 st.subheader('Chart 1: Top 5 Countries with most Deaths')
 fig,ax = plt.subplots(figsize=(15,5), tight_layout=True)
-deaths = (OWID.loc[(OWID.index[-1]), ['location', 'total_deaths']].sort_values(by='total_deaths', ascending=False).iloc[9:14])
-sns.barplot(x='location',   y='total_deaths', data=deaths, ax=ax, palette='autumn', saturation=.75)
+deaths = (OWID.loc[(OWID.index[-450]), ['location', 'total_deaths']].sort_values(by='total_deaths', ascending=False).iloc[9:14])
+sns.barplot(x='location',   y='total_deaths', data=deaths, ax=ax, hue='location', palette='autumn', saturation=.75, legend=False)
 ax.set_title('COVID-19: Top 5 Countries with Most Deaths', fontsize=22, fontweight='bold')
 for spine in ['top', 'right', 'left', 'bottom']:ax.spines[spine].set_visible(False)
 plt.gca().axes.get_yaxis().set_visible(False)
