@@ -55,7 +55,11 @@ st.markdown('''
 [![Python](https://img.shields.io/badge/Python-3-blue.svg)](https://www.python.org/)
 [![License](https://img.shields.io/badge/License-Apache_2.0-black.svg)](https://www.apache.org/licenses/LICENSE-2.0)
             ''')
-st.write('23 November 2023')
+with st.container():
+     cols = st.columns(3)
+     with cols[0]:st.empty()
+     with cols[1]:st.write('23 November 2023')
+     with cols[2]:st.empty()
 st.markdown('''
 Brazil is the fifth largest country in the world and the seventh in population with over 200 million inhabitants.
 When COVID-19 outbreak begun on the eve of 2020; and even though the first case in the country had been registered at the end of February,
