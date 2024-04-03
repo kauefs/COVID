@@ -51,7 +51,11 @@ st.markdown('''
 [![Python](https://img.shields.io/badge/Python-3-blue.svg)](https://www.python.org/)
 [![License](https://img.shields.io/badge/License-Apache_2.0-black.svg)](https://www.apache.org/licenses/LICENSE-2.0)
             ''')
-st.write('23 October 2023')
+with st.container():
+     cols = st.columns(3)
+     with cols[0]:st.empty()
+     with cols[1]:st.write('23 October 2023')
+     with cols[2]:st.empty()
 st.subheader('Comparisson Charts')
 st.markdown(f'''➡️ {'**{}**'.format(FilteredDF1.shape[0])} Entries for **{FilteredLoc1}**:'''
             'from {} to {}'.format(df.loc[df.location == FilteredLoc1].index.min(), df.loc[df.location == FilteredLoc1].index.max()))
