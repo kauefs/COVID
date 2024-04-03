@@ -22,6 +22,7 @@ magicEnabled                         =  true
 postScriptGC                         =  true
 fastReruns                           =  true
 enforceSerializableSessionState      =  false
+enumCoercion                         = 'nameOnly'
 
 [browser]
 
