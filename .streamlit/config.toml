@@ -2,7 +2,6 @@
 
 [global]
 
-disableWatchdogWarning               =  false
 disableWidgetStateDuplicationWarning =  false
 showWarningOnDirectExecution         =  true
 
@@ -13,14 +12,13 @@ messageFormat                        = '%(asctime)s %(message)s'
 
 [client]
 
-caching                              =  true
 showErrorDetails                     =  true
 toolbarMode                          = 'auto'
+showSidebarNavigation                =  true
 
 [runner]
 
-installTracer                        =  false
-fixMatplotlib                        =  true
+magicEnabled                         =  true
 postScriptGC                         =  true
 fastReruns                           =  true
 enforceSerializableSessionState      =  false
@@ -28,24 +26,18 @@ enforceSerializableSessionState      =  false
 [browser]
 
 gatherUsageStats                     =  false
-#serverAddress                        = 'localhost'
 
 [server]
 
 fileWatcherType                      = 'auto'
 cookieSecret                         =  false
 runOnSave                            =  true
-#port                                 =  8501
 enableCORS                           =  true
 enableXsrfProtection                 =  true
 maxUploadSize                        =  200
 maxMessageSize                       =  200
 enableWebsocketCompression           =  false
 enableStaticServing                  =  false
-
-[deprecation]
-
-showPyplotGlobalUse                  =  true
 
 [theme]
 
@@ -54,22 +46,4 @@ primaryColor                         = '#00BFFF'
 backgroundColor                      = '#000000'
 secondaryBackgroundColor             = '#282828'
 textColor                            = '#FFFFFF'
-font                                 = 'sans serif' # Font Family (serif | sans serif | monospace)
-
-#https://www.w3schools.com/colors/colors_names.asp
-#https://htmlcolorcodes.com/
-#PurpleMediumSlate* #7B70EE
-#CornFlowerBlue*    #6595EE
-#Blue*              #0065FF
-#Orange             #FFA500
-#DarkOrange         #FF8C00
-#OrangeRed          #FF4500
-#Gold               #FFD700
-#Yellow             #FFFF00
-#Lime               #00FF00
-#Green*             #4CAF50
-#Cyan               #00FFFF
-#DeepSkyBlue        #00BFFF
-#Maroon             #800000
-#Silver             #C0C0C0
-#Gray               #808080
+font                                 = 'sans serif'
