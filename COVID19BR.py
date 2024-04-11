@@ -54,7 +54,7 @@ st.markdown('''
 [![Medium](  https://img.shields.io/badge/-000000?logo=medium&logoColor=FFFFFF)](                                 https://medium.com/@kauefs)
 [![LinkedIn](https://img.shields.io/badge/-0077B5?logo=linkedin&logoColor=FFFFFF)](                               https://www.linkedin.com/in/kauefs/)
 [![Python](  https://img.shields.io/badge/-3-4584B6?logo=python&logoColor=FFDE57&labelColor=4584B6&color=646464)](https://www.python.org/)
-[![License](https://img.shields.io/github/license/kauefs/COVID?logo=mit&logoColor=FFFFFF&label=License&labelColor=8B959E&color=750014)](https://web.mit.edu/Saltzer/www/publications/MITLicense.pdf)
+[![License]( https://img.shields.io/github/license/kauefs/COVID?logo=mit&logoColor=FFFFFF&label=License&labelColor=8B959E&color=750014)](https://web.mit.edu/Saltzer/www/publications/MITLicense.pdf)
             ''')
 with st.container():
      cols = st.columns(3)
