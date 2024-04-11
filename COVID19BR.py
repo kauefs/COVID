@@ -312,9 +312,9 @@ BR = RAW.loc[RAW.location == 'Brazil'].copy()
 d = BR.index[BR['new_deaths_smoothed']!=0.0][-1].strftime('%d %b %Y')
 c = BR.index[BR['new_cases_smoothed' ]!=0.0][-1].strftime('%d %b %Y')
 v = BR.index[BR['new_vaccinations_smoothed']!=0.0][-1].strftime('%d %b %Y')
-st.write('• Lastest death:      \t{}'.format(d))
-st.write('• Lastest  case:      \t{}'.format(c))
-st.write('• Lastest vaccination:\t{}'.format(v))
+st.write('• Lastest death:       {}'.format(d))
+st.write('• Lastest  case:       {}'.format(c))
+st.write('• Lastest vaccination: {}'.format(v))
 st.markdown('''
 Vaccinations have been ongoing but perhaps not reported anymore, as well as some cases.
 Deaths indeed seems to have, fortunantelly, pretty much ended. Nonetheless, has any lesson been learned at all? Is the world better equipped to deal with another pandemic?
