@@ -29,6 +29,8 @@ df      = LoadData()
 st.sidebar.header(   'COVID-19     ')
 st.sidebar.subheader('Data Analysis')
 st.sidebar.write(    'Comparisson Charts')
+st.sidebar.markdown('''
+                ''')
 st.sidebar.divider()
 
 Location1    = df['location'].sort_values(ascending=True).unique()
@@ -46,10 +48,11 @@ SideBarInfo1.info('{} Entries for {}'.format(FilteredDF1.shape[0], FilteredLoc1)
 # MAIN:
 st.title(    'COVID-19')
 st.markdown('''
-[![GitHub](https://img.shields.io/badge/GitHub-000000?logo=github&logoColor=white)](https://github.com/kauefs/)
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?logo=linkedin&logoColor=white)](https://www.linkedin.com/in/kauefs/)
-[![Python](https://img.shields.io/badge/Python-3-blue.svg)](https://www.python.org/)
-[![License](https://img.shields.io/badge/License-Apache_2.0-black.svg)](https://www.apache.org/licenses/LICENSE-2.0)
+[![GitHub](  https://img.shields.io/badge/-000000?logo=github&logoColor=FFFFFF)](                                 https://github.com/kauefs/)
+[![Medium](  https://img.shields.io/badge/-000000?logo=medium&logoColor=FFFFFF)](                                 https://medium.com/@kauefs)
+[![LinkedIn](https://img.shields.io/badge/-0077B5?logo=linkedin&logoColor=FFFFFF)](                               https://www.linkedin.com/in/kauefs/)
+[![Python](  https://img.shields.io/badge/-3-4584B6?logo=python&logoColor=FFDE57&labelColor=4584B6&color=646464)](https://www.python.org/)
+[![License]( https://img.shields.io/badge/Apache_2.0-D22128?style=flat&logo=apache&logoColor=CB2138&label=License&labelColor=6D6E71&color=D22128)](https://www.apache.org/licenses/LICENSE-2.0)
             ''')
 with st.container():
      cols = st.columns(3)
