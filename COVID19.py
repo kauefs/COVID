@@ -59,7 +59,6 @@ st.sidebar.divider()
 st.sidebar.markdown('''Source:    [Our World in Data](https://covid.ourworldindata.org/)''')
 st.sidebar.write(     'OWID daily reports from {} to {}'.format(df.index.min(), df.index.max()))
 st.sidebar.markdown('''Reference: [Data Cleaning Techniques in Python: the Ultimate Guide](https://www.justintodata.com/data-cleaning-techniques-python-guide/)''')
-st.sidebar.divider(               )
 st.sidebar.markdown('''©2023™     [ƊⱭȾɅViƧi🧿Ƞ](https://datavision.one/)''')
 # MAIN:
 st.divider(            )
@@ -113,6 +112,8 @@ plt.rcParams[ 'font.family']=    'sans-serif'
 plt.yscale(   'log')
 st.pyplot(fig)
 if table1.checkbox('DataFrame 1', value=False):st.write(FilteredDF1)
+st.markdown('''
+            ''')
 # Chart2:
 st.markdown(f'''➡️ {'**{}**'.format(FilteredDF2.shape[0])} Entries for **{FilteredLoc2}**:'''
             'from {} to {}'.format(df.loc[df.location == FilteredLoc2].index.min(), df.loc[df.location == FilteredLoc2].index.max()))
