@@ -8,12 +8,13 @@ import matplotlib.dates    as mdates
 import seaborn             as sns
 import streamlit           as st
 from   datetime        import date, datetime, timedelta
-st.set_page_config(page_title='COVID19', page_icon='😷')
+st.set_page_config(page_title='COVID19', page_icon='😷', layout='wide', initial_sidebar_state='expanded')
+# DATA:
 DATA     = 'https://covid.ourworldindata.org/data/owid-covid-data.csv'
 @st.cache_data
 def LoadData():
     data = pd.read_csv(DATA, index_col=0)
-# Selecting Coluns:
+# Selecting Columns:
     X    = data[['date',
                  'location',
                  'new_cases_smoothed',
@@ -26,40 +27,46 @@ def LoadData():
     return X
 df      = LoadData()
 # SIDE:
-st.sidebar.header(   'COVID-19     ')
-st.sidebar.subheader('Data Analysis')
-st.sidebar.write(    'Comparisson Charts')
 st.sidebar.markdown('''
-                ''')
-st.sidebar.divider()
-
-Location1    = df['location'].sort_values(ascending=True).unique()
-# SelectBox for Location:
-FilteredLoc1 = st.sidebar.selectbox('Location 1:', Location1, index=241)
-# PlaceHolder for Filtered Entries:
-SideBarInfo1 = st.sidebar.empty()
-# PlaceHolder for Table:
-table1       = st.sidebar.empty()
-# Filtered Data:
-FilteredDF1  = df[df['location'].str.contains(FilteredLoc1)]
-# Updating PlaceHoder:
-SideBarInfo1.info('{} Entries for {}'.format(FilteredDF1.shape[0], FilteredLoc1))
-
-# MAIN:
-st.title(    'COVID-19')
-st.markdown('''
 [![GitHub](  https://img.shields.io/badge/-000000?logo=github&logoColor=FFFFFF)](                                 https://github.com/kauefs/)
 [![Medium](  https://img.shields.io/badge/-000000?logo=medium&logoColor=FFFFFF)](                                 https://medium.com/@kauefs)
 [![LinkedIn](https://img.shields.io/badge/-0077B5?logo=linkedin&logoColor=FFFFFF)](                               https://www.linkedin.com/in/kauefs/)
 [![Python](  https://img.shields.io/badge/-3-4584B6?logo=python&logoColor=FFDE57&labelColor=4584B6&color=646464)](https://www.python.org/)
 [![License]( https://img.shields.io/github/license/kauefs/COVID?logo=mit&logoColor=FFFFFF&label=License&labelColor=8B959E&color=750014)](https://web.mit.edu/Saltzer/www/publications/MITLicense.pdf)
             ''')
-with st.container():
-     cols = st.columns(3)
-     with cols[0]:st.empty()
-     with cols[1]:st.write('23 October 2023')
-     with cols[2]:st.empty()
+st.sidebar.text(     '23 October 2023'   )
+st.sidebar.divider(                      )
+st.sidebar.title(    'COVID-19'          )
+st.sidebar.header(   'Data Analysis'     )
+st.sidebar.subheader('Comparisson Charts')
+st.sidebar.divider()
+
+Location1    = df['location'].sort_values(ascending=True).unique()
+FilteredLoc1 = st.sidebar.selectbox('Location 1:', Location1, index=241)
+SideBarInfo1 = st.sidebar.empty()
+table1       = st.sidebar.empty()
+FilteredDF1  = df[df['location'].str.contains(FilteredLoc1)]
+SideBarInfo1.info('{} Entries for {}'.format(FilteredDF1.shape[0], FilteredLoc1))
+
+Location2    = df['location'].sort_values(ascending=True).unique()
+FilteredLoc2 = st.sidebar.selectbox('Location 2:', Location2, index=128)
+SideBarInfo2 = st.sidebar.empty()
+table2       = st.sidebar.empty()
+FilteredDF2  = df[df['location'].str.contains(FilteredLoc2)]
+SideBarInfo2.success('{} Entries for {}'.format(FilteredDF2.shape[0], FilteredLoc2))
+
+st.sidebar.divider()
+st.sidebar.markdown('''Source:    [Our World in Data](https://covid.ourworldindata.org/)''')
+st.sidebar.write(     'OWID daily reports from {} to {}'.format(df.index.min(), df.index.max()))
+st.sidebar.markdown('''Reference: [Data Cleaning Techniques in Python: the Ultimate Guide](https://www.justintodata.com/data-cleaning-techniques-python-guide/)''')
+st.sidebar.divider(               )
+st.sidebar.markdown('''©2023™     [ƊⱭȾɅViƧi🧿Ƞ](https://datavision.one/)''')
+# MAIN:
+st.divider(            )
+st.title(    'COVID-19')
+st.divider(            )
 st.subheader('Comparisson Charts')
+# Chart1:
 st.markdown(f'''➡️ {'**{}**'.format(FilteredDF1.shape[0])} Entries for **{FilteredLoc1}**:'''
             'from {} to {}'.format(df.loc[df.location == FilteredLoc1].index.min(), df.loc[df.location == FilteredLoc1].index.max()))
 fig,ax= plt.subplots(figsize=(12,8)  , tight_layout=True)
@@ -105,33 +112,8 @@ plt.gca().set_ylim(bottom=10**0)
 plt.rcParams[ 'font.family']=    'sans-serif'
 plt.yscale(   'log')
 st.pyplot(fig)
-if table1.checkbox('Show Table Data 1', value=False):st.write(FilteredDF1)
-st.divider()
-
-Location2    = df['location'].sort_values(ascending=True).unique()
-# SelectBox for Location:
-FilteredLoc2 = st.sidebar.selectbox('Location 2:', Location2, index=128)
-# PlaceHolder for Filtered Entries:
-SideBarInfo2 = st.sidebar.empty()
-# PlaceHolder for Table:
-table2       = st.sidebar.empty()
-# Filtered Data:
-FilteredDF2  = df[df['location'].str.contains(FilteredLoc2)]
-# Updating PlaceHoder:
-SideBarInfo2.success('{} Entries for {}'.format(FilteredDF2.shape[0], FilteredLoc2))
-
-st.sidebar.divider()
-st.sidebar.markdown('''Source:    [Our World in Data](https://covid.ourworldindata.org/)''')
-st.sidebar.write(    'OWID daily reports from {} to {}'.format(df.index.min(), df.index.max()))
-st.sidebar.markdown('''Reference: [Data Cleaning Techniques in Python: the Ultimate Guide](https://www.justintodata.com/data-cleaning-techniques-python-guide/)''')
-st.sidebar.divider()
-
-with st.sidebar.container():
-     cols = st.columns(3)
-     with cols[0]:st.empty()
-     with cols[1]:st.markdown('''©2023™''')
-     with cols[2]:st.empty()
-
+if table1.checkbox('DataFrame 1', value=False):st.write(FilteredDF1)
+# Chart2:
 st.markdown(f'''➡️ {'**{}**'.format(FilteredDF2.shape[0])} Entries for **{FilteredLoc2}**:'''
             'from {} to {}'.format(df.loc[df.location == FilteredLoc2].index.min(), df.loc[df.location == FilteredLoc2].index.max()))
 fig,ax= plt.subplots(figsize=(12,8)  , tight_layout=True)
@@ -177,5 +159,5 @@ plt.gca().set_ylim(bottom=10**0)
 plt.rcParams[ 'font.family']=    'sans-serif'
 plt.yscale(   'log')
 st.pyplot(fig)
-if table2.checkbox('Show Table Data 2', value=False):st.write(FilteredDF2)
+if table2.checkbox('DataFrame 2', value=False):st.write(FilteredDF2)
 st.toast('Vaccinate!', icon='💉')
