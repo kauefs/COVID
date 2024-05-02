@@ -8,7 +8,8 @@ import matplotlib.dates    as mdates
 import seaborn             as sns
 import streamlit           as st
 import datetime
-st.set_page_config(page_title='COVID19BR', page_icon='😷', initial_sidebar_state='collapsed')
+st.set_page_config(page_title='COVID19BR', page_icon='😷', layout='wide', initial_sidebar_state='collapsed')
+# DATA:
 DATA     = 'https://covid.ourworldindata.org/data/owid-covid-data.csv'
 @st.cache_data
 def LoadData():
@@ -35,32 +36,27 @@ nan      = X.select_dtypes(exclude=['number']).columns
 X[nan]   = X[nan].fillna('N/A')
 OWID     = X.copy()
 # SIDE:
-st.sidebar.header(   'COVID-19 in Brazil')
-st.sidebar.subheader('Data Analysis')
-st.sidebar.divider()
-st.sidebar.markdown('''Source:    [Our World in Data](https://covid.ourworldindata.org/)''')
-st.sidebar.write(    'OWID daily reports from {} to {}'.format(RAW.index.min(), RAW.index.max()))
-st.sidebar.markdown('''Reference: [Data Cleaning Techniques in Python: the Ultimate Guide](https://www.justintodata.com/data-cleaning-techniques-python-guide/)''')
-st.sidebar.divider()
-with st.sidebar.container():
-     cols = st.columns(3)
-     with cols[0]:st.empty()
-     with cols[1]:st.markdown('''©2023™''')
-     with cols[2]:st.empty()
-# MAIN:
-st.title(   'COVID-19 in Brazil')
-st.markdown('''
+st.sidebar.markdown('''
 [![GitHub](  https://img.shields.io/badge/-000000?logo=github&logoColor=FFFFFF)](                                 https://github.com/kauefs/)
 [![Medium](  https://img.shields.io/badge/-000000?logo=medium&logoColor=FFFFFF)](                                 https://medium.com/@kauefs)
 [![LinkedIn](https://img.shields.io/badge/-0077B5?logo=linkedin&logoColor=FFFFFF)](                               https://www.linkedin.com/in/kauefs/)
 [![Python](  https://img.shields.io/badge/-3-4584B6?logo=python&logoColor=FFDE57&labelColor=4584B6&color=646464)](https://www.python.org/)
 [![License]( https://img.shields.io/github/license/kauefs/COVID?logo=mit&logoColor=FFFFFF&label=License&labelColor=8B959E&color=750014)](https://web.mit.edu/Saltzer/www/publications/MITLicense.pdf)
-            ''')
-with st.container():
-     cols = st.columns(3)
-     with cols[0]:st.empty()
-     with cols[1]:st.write('23 November 2023')
-     with cols[2]:st.empty()
+                    ''')
+st.sidebar.text(     '23 November 2023'  )
+st.sidebar.divider(                      )
+st.sidebar.header(   'COVID-19 in Brazil')
+st.sidebar.subheader('Data Analysis'     )
+st.sidebar.divider(                      )
+st.sidebar.markdown('''Source:    [Our World in Data](https://covid.ourworldindata.org/)''')
+st.sidebar.write(    'OWID daily reports from {} to {}'.format(RAW.index.min(), RAW.index.max()))
+st.sidebar.markdown('''Reference: [Data Cleaning Techniques in Python: the Ultimate Guide](https://www.justintodata.com/data-cleaning-techniques-python-guide/)''')
+st.sidebar.divider(                      )
+st.sidebar.markdown('''©2023™     [ƊⱭȾɅViƧi🧿Ƞ](https://datavision.one/)''')
+# MAIN:
+st.divider(                     )
+st.title(   'COVID-19 in Brazil')
+st.divider(                     )
 st.markdown('''
 Brazil is the fifth largest country in the world and the seventh in population with over 200 million inhabitants.
 When COVID-19 outbreak begun on the eve of 2020; and even though the first case in the country had been registered at the end of February,
@@ -91,6 +87,7 @@ diminishing the disease and discrediting vaccines.
 #     ax.bar_label(container=c, labels=values, fmt='{:,.0f}', fontsize=13, padding=10, fontweight='bold')
 # ax.set(xlabel=None)
 # st.pyplot(fig)
+
 st.subheader('Chart 1: Top 5 Countries with most Deaths')
 fig,ax = plt.subplots(figsize=(15,5), tight_layout=True)
 deaths = (OWID.loc[(OWID.index[-450]), ['location', 'total_deaths']].sort_values(by='total_deaths', ascending=False).iloc[9:14])
@@ -320,4 +317,5 @@ Vaccinations have been ongoing but perhaps not reported anymore, as well as some
 Deaths indeed seems to have, fortunantelly, pretty much ended. Nonetheless, has any lesson been learned at all? Is the world better equipped to deal with another pandemic?
 It was fortunate a vaccine so effective could had been produced somewhat so quickly; lucky may not be around another time.
             ''')
+st.divider(    )
 st.toast('Vaccinate!', icon='💉')
