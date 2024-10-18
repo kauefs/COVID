@@ -94,12 +94,8 @@ diminishing the disease and discrediting vaccines.
 
 st.subheader('Chart 1: Top 5 Countries with most Deaths')
 fig,ax = plt.subplots(figsize=(15,5), tight_layout=True)
-filter = OWID.index[OWID['total_deaths']!=0][-1]
-deaths = OWID.loc[filter].sort_values(by='total_deaths', ascending=False)
-rows   = deaths.loc[(deaths['location']=='United States')|(deaths['location']=='Brazil')|(deaths['location']=='India')|(deaths['location']=='Russia')|(deaths['location']=='Mexico')]
-top    =(rows.sort_values(by='total_deaths', ascending=False)) 
-# deaths = (OWID.loc[(OWID.index[-450]), ['location', 'total_deaths']].sort_values(by='total_deaths', ascending=False).iloc[9:14])
-sns.barplot(x='location',   y='total_deaths', data=top, ax=ax, hue='location', palette='autumn', saturation=.75, legend=False)
+deaths = (OWID.loc[(OWID.index[-450]), ['location', 'total_deaths']].sort_values(by='total_deaths', ascending=False).iloc[9:14])
+sns.barplot(x='location',   y='total_deaths', data=deaths, ax=ax, hue='location', palette='autumn', saturation=.75, legend=False)
 ax.set_title('COVID-19: Top 5 Countries with Most Deaths', fontsize=22, fontweight='bold')
 for spine in ['top', 'right', 'left', 'bottom']:ax.spines[spine].set_visible(False)
 plt.gca().axes.get_yaxis().set_visible(False)
@@ -111,7 +107,7 @@ plt.tick_params(axis  = 'both',
                 which = 'both',
                 bottom=  False)
 for c in ax.containers:
-    values = top['total_deaths'].values
+    values = deaths.value_counts(ascending=False).iloc[9:14].values
     ax.bar_label(container=c, labels=values, fmt='{:,.0f}', fontsize=13, padding=10, fontweight='bold')
 ax.set(xlabel=None)
 st.pyplot(fig)
