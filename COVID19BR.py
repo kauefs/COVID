@@ -50,12 +50,12 @@ st.sidebar.markdown('''
 
 [![GitHub](     https://img.shields.io/badge/-000000?logo=github&logoColor=FFFFFF)](https://github.com/kauefs/)
 [![Medium](     https://img.shields.io/badge/-000000?logo=medium&logoColor=FFFFFF)](https://medium.com/@kauefs)
-[![LinkedIn](   https://img.shields.io/badge/-0077B5?logo=linkedin&logoColor=FFFFFF)](https://www.linkedin.com/in/kauefs/)
-[![Python](     https://img.shields.io/badge/-3-4584B6?logo=python&logoColor=FFDE57&labelColor=4584B6&color=646464)](https://www.python.org/)
+[![LinkedIn](   https://img.shields.io/badge/-2867B2?logo=linkedin&logoColor=FFFFFF)](https://www.linkedin.com/in/kauefs/)
+[![Python](     https://img.shields.io/badge/-3-646464?logo=python&logoColor=FFDE57&labelColor=4584B6)](https://www.python.org/)
 
-[![License](    https://img.shields.io/badge/Apache--2.0-D22128?style=flat&logo=apache&logoColor=CB2138&label=License&labelColor=6D6E71&color=D22128)](https://www.apache.org/licenses/LICENSE-2.0)
+[![License](    https://img.shields.io/badge/Apache--2.0-D22128?style=flat&logo=apache&logoColor=CB2138&label=License&labelColor=6D6E71)](https://www.apache.org/licenses/LICENSE-2.0)
 
-[![ƊⱭȾɅViƧi🧿Ƞ](https://img.shields.io/badge/ƊⱭȾɅViƧi🧿Ƞ&trade;-0065FF?style=plastic&logo=&logoColor=0065FF&label=&copy;2023&labelColor=0065FF&color=0065FF)](https://datavision.one/)
+[![ƊⱭȾɅViƧi🧿Ƞ](https://img.shields.io/badge/ƊⱭȾɅViƧi🧿Ƞ&trade;-0065FF?style=plastic&logo=&logoColor=0065FF&label=&copy;2023&labelColor=0065FF)](https://datavision.one/)
                     ''')
 # MAIN:
 st.divider(                     )
@@ -128,9 +128,9 @@ OWID.loc[OWID.location =='World', 'total_cases'].sort_values(ascending=False).pl
                 linestyle  ='solid'  ,
                 color      ='#FF8C00',
                 linewidth  ='2.25'   ,
-                ms=.01, mec='#FF8C00',    mfc='#FF8C00')
+                ms=.01, mec='#FF8C00', mfc='#FF8C00')
 ax1.annotate('{:,.0f}'.format(OWID['total_cases'].sort_values(ascending=False).iloc[0]),
-                xy=(1, OWID['total_cases'].sort_values(ascending=False).iloc[0]),
+                xy=( 1,       OWID['total_cases'].sort_values(ascending=False).iloc[0]),
                 xycoords=('axes fraction', 'data'),
                 xytext=(-85,1.15),
                 textcoords='offset points',
@@ -156,7 +156,7 @@ OWID.loc[OWID.location  == 'World', 'total_deaths'].sort_values(ascending=False)
                 linestyle  ='solid'  ,
                 color      ='#FF103F',
                 linewidth  ='2.25'   ,
-                ms=.01, mec='#FF103F',     mfc='#FF103F')
+                ms=.01, mec='#FF103F', mfc='#FF103F')
 ax2.annotate('{:,.0f}'.format(OWID['total_deaths'].sort_values(ascending=False).iloc[0]),
                 xy=( 1,       OWID['total_deaths'].sort_values(ascending=False).iloc[0]),
                 xycoords=('axes fraction', 'data'),
@@ -202,9 +202,9 @@ OWID.loc[OWID.location == 'Brazil', 'total_cases'].sort_values(ascending=False).
                 linestyle  ='solid'  ,
                 color      ='#FF8C00',
                 linewidth  ='2.25'   ,
-                ms=.01, mec='#FF8C00',    mfc='#FF8C00')
+                ms=.01, mec='#FF8C00', mfc='#FF8C00')
 ax1.annotate('{:,.0f}'.format(BR['total_cases'].sort_values(ascending=False).iloc[0]),
-                xy=(1, BR['total_cases'].sort_values(ascending=False).iloc[0]),
+                xy=( 1,       BR['total_cases'].sort_values(ascending=False).iloc[0]),
                 xycoords=('axes fraction', 'data'),
                 xytext=(-105,1.15),
                 textcoords='offset points',
@@ -219,8 +219,8 @@ ax1.tick_params(axis  ='both',
                 left  = False,
                 bottom= False)
 ax1.set_yticks([0, 5000000, 10000000, 15000000, 20000000, 25000000, 30000000, 35000000], minor=False)
-ax1.xaxis.set_major_formatter(mdates.DateFormatter('%Y\n%b'))
-ax1.xaxis.set_tick_params(rotation=0)
+# ax1.xaxis.set_major_formatter(mdates.DateFormatter('%Y\n%b'))
+# ax1.xaxis.set_tick_params(rotation=0)
 ax1.set(xlabel=None)
 ax1.spines[['top', 'right', 'left', 'bottom']].set_visible(False)
 OWID.loc[OWID.location == 'Brazil', 'total_deaths'].sort_values(ascending=False).plot(
@@ -230,9 +230,9 @@ OWID.loc[OWID.location == 'Brazil', 'total_deaths'].sort_values(ascending=False)
                 linestyle  ='solid'  ,
                 color      ='#FF103F',
                 linewidth  ='2.25'   ,
-                ms=.01, mec='#FF103F',     mfc='#FF103F')
+                ms=.01, mec='#FF103F', mfc='#FF103F')
 ax2.annotate('{:,.0f}'.format(BR['total_deaths'].sort_values(ascending=False).iloc[0]),
-                xy=(1, BR['total_deaths'].sort_values(ascending=False).iloc[0]),
+                xy=( 1,       BR['total_deaths'].sort_values(ascending=False).iloc[0]),
                 xycoords=('axes fraction', 'data'),
                 xytext=(-85,1.15),
                 textcoords='offset points',
@@ -247,8 +247,8 @@ ax2.tick_params(axis  ='both',
                 left  = False,
                 bottom= False)
 ax2.set_yticks([0,100000 , 200000  , 300000  , 400000  , 500000  , 600000 ],            minor=False)
-ax2.xaxis.set_major_formatter(mdates.DateFormatter('%Y\n%b'))
-ax2.xaxis.set_tick_params(rotation=360)
+# ax2.xaxis.set_major_formatter(mdates.DateFormatter('%Y\n%b'))
+# ax2.xaxis.set_tick_params(rotation=360)
 ax2.set(xlabel=None)
 ax2.spines[[ 'top', 'right', 'left', 'bottom']].set_visible(False)
 plt.rcParams['font.family'] ='sans-serif'
