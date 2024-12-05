@@ -59,11 +59,11 @@ st.sidebar.markdown('''
 [![GitHub](     https://img.shields.io/badge/-000000?logo=github&logoColor=FFFFFF)](https://github.com/kauefs/)
 [![Medium](     https://img.shields.io/badge/-000000?logo=medium&logoColor=FFFFFF)](https://medium.com/@kauefs)
 [![LinkedIn](   https://img.shields.io/badge/-0077B5?logo=linkedin&logoColor=FFFFFF)](https://www.linkedin.com/in/kauefs/)
-[![Python](     https://img.shields.io/badge/-3-4584B6?logo=python&logoColor=FFDE57&labelColor=4584B6&color=646464)](https://www.python.org/)
+[![Python](     https://img.shields.io/badge/-3-646464?logo=python&logoColor=FFDE57&labelColor=4584B6)](https://www.python.org/)
 
-[![License](    https://img.shields.io/badge/Apache--2.0-D22128?style=flat&logo=apache&logoColor=CB2138&label=License&labelColor=6D6E71&color=D22128)](https://www.apache.org/licenses/LICENSE-2.0)
+[![License](    https://img.shields.io/badge/Apache--2.0-D22128?style=flat&logo=apache&logoColor=CB2138&label=License&labelColor=6D6E71)](https://www.apache.org/licenses/LICENSE-2.0)
 
-[![ƊⱭȾɅViƧi🧿Ƞ](https://img.shields.io/badge/ƊⱭȾɅViƧi🧿Ƞ&trade;-0065FF?style=plastic&logo=&logoColor=0065FF&label=&copy;2023&labelColor=0065FF&color=0065FF)](https://datavision.one/)
+[![ƊⱭȾɅViƧi🧿Ƞ](https://img.shields.io/badge/ƊⱭȾɅViƧi🧿Ƞ&trade;-0065FF?style=plastic&label=&copy;2023&labelColor=0065FF)](https://datavision.one/)
                     ''')
 # MAIN:
 st.divider(            )
@@ -72,7 +72,7 @@ st.divider(            )
 st.subheader('Comparisson Charts')
 # Chart1:
 st.markdown(f'''➡️ {'**{}**'.format(FilteredDF1.shape[0])} Entries for **{FilteredLoc1}**:'''
-            'from {} to {}'.format(df.loc[df.location == FilteredLoc1].index.min(), df.loc[df.location == FilteredLoc1].index.max()))
+             'from {} to {}'.format(df.loc[df.location == FilteredLoc1].index.min(), df.loc[df.location == FilteredLoc1].index.max()))
 fig,ax= plt.subplots(figsize=(12,8)  , tight_layout=True)
 df.loc[df.location == FilteredLoc1,'new_vaccinations_smoothed'].plot(
                 kind       ='line'   ,
@@ -119,9 +119,20 @@ st.pyplot(fig)
 if table1.checkbox('DataFrame 1', value=False):st.write(FilteredDF1)
 st.markdown('''
             ''')
+
+st.markdown(f'''Latest entries for **{FilteredLoc1}**:''')
+AA = df.loc[  df.location          == FilteredLoc1].copy()
+D  = AA.index[AA['new_deaths_smoothed'      ]!=0.0][-1].strftime('%d %b %Y')
+C  = AA.index[AA['new_cases_smoothed'       ]!=0.0][-1].strftime('%d %b %Y')
+V  = AA.index[AA['new_vaccinations_smoothed']!=0.0][-1].strftime('%d %b %Y')
+st.write('• Lastest death:       {}'.format(D))
+st.write('• Lastest  case:       {}'.format(C))
+st.write('• Lastest vaccination: {}'.format(V))
+
+
 # Chart2:
 st.markdown(f'''➡️ {'**{}**'.format(FilteredDF2.shape[0])} Entries for **{FilteredLoc2}**:'''
-            'from {} to {}'.format(df.loc[df.location == FilteredLoc2].index.min(), df.loc[df.location == FilteredLoc2].index.max()))
+             'from {} to {}'.format(df.loc[df.location == FilteredLoc2].index.min(), df.loc[df.location == FilteredLoc2].index.max()))
 fig,ax= plt.subplots(figsize=(12,8)  , tight_layout=True)
 df.loc[df.location == FilteredLoc2,'new_vaccinations_smoothed'].plot(
                 kind       ='line'   ,
@@ -166,4 +177,16 @@ plt.rcParams[ 'font.family']=    'sans-serif'
 plt.yscale(   'log')
 st.pyplot(fig)
 if table2.checkbox('DataFrame 2', value=False):st.write(FilteredDF2)
+
+
+st.markdown(f'''Latest entries for **{FilteredLoc2}**:''')
+aa = df.loc[  df.location          == FilteredLoc2].copy()
+d  = aa.index[aa['new_deaths_smoothed'      ]!=0.0][-1].strftime('%d %b %Y')
+c  = aa.index[aa['new_cases_smoothed'       ]!=0.0][-1].strftime('%d %b %Y')
+v  = aa.index[aa['new_vaccinations_smoothed']!=0.0][-1].strftime('%d %b %Y')
+st.write('• Lastest death:       {}'.format(d))
+st.write('• Lastest  case:       {}'.format(c))
+st.write('• Lastest vaccination: {}'.format(v))
+
+
 st.toast('Vaccinate!', icon='💉')
