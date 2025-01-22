@@ -1,13 +1,13 @@
 # Libraries:
-import numpy               as np
-import pandas              as pd
-import matplotlib.pyplot   as plt
+import      numpy          as np
+import     pandas          as pd
+import  streamlit          as st
 import matplotlib.gridspec as gs
+import matplotlib.pyplot   as plt
 import matplotlib.ticker   as ticker
 import matplotlib.dates    as mdates
-import seaborn             as sns
-import streamlit           as st
-import datetime
+import    seaborn          as sns
+import   datetime
 st.set_page_config(page_title='COVID19BR', page_icon='😷', layout='wide', initial_sidebar_state='collapsed')
 # DATA:
 DATA     = 'https://covid.ourworldindata.org/data/owid-covid-data.csv'
@@ -36,26 +36,26 @@ nan      = X.select_dtypes(exclude=['number']).columns
 X[nan]   = X[nan].fillna('N/A')
 OWID     = X.copy()
 # SIDE:
-st.sidebar.title(    'ƊⱭȾɅViƧi🧿Ƞ'      )
-st.sidebar.divider(                      )
-st.sidebar.header(   'COVID-19 in Brazil')
-st.sidebar.subheader('Data Analysis'     )
-st.sidebar.divider(                      )
+st.sidebar.title(    'ƊⱭȾɅViƧi🧿Ƞ&trade;')
+st.sidebar.divider(                       )
+st.sidebar.header(   'COVID-19 in Brazil' )
+st.sidebar.subheader('Data Analysis'      )
+st.sidebar.divider(                       )
 st.sidebar.markdown('''Source:    [Our World in Data](https://covid.ourworldindata.org/)''')
 st.sidebar.write(    'OWID daily reports from {} to {}'.format(RAW.index.min(), RAW.index.max()))
 st.sidebar.markdown('''Reference: [Data Cleaning Techniques in Python: the Ultimate Guide](https://www.justintodata.com/data-cleaning-techniques-python-guide/)''')
-st.sidebar.divider(                      )
+st.sidebar.divider(                       )
 st.sidebar.markdown('''
 ![2023.11.23](  https://img.shields.io/badge/2023.11.23-000000)
 
 [![GitHub](     https://img.shields.io/badge/-000000?logo=github&logoColor=FFFFFF)](https://github.com/kauefs/)
 [![Medium](     https://img.shields.io/badge/-000000?logo=medium&logoColor=FFFFFF)](https://medium.com/@kauefs)
-[![LinkedIn](   https://img.shields.io/badge/-2867B2?logo=linkedin&logoColor=FFFFFF)](https://www.linkedin.com/in/kauefs/)
-[![Python](     https://img.shields.io/badge/-3-646464?logo=python&logoColor=FFDE57&labelColor=4584B6)](https://www.python.org/)
+[![LinkedIn](   https://img.shields.io/badge/-0077B5?logo=linkedin&logoColor=FFFFFF)](https://www.linkedin.com/in/kauefs/)
+[![Python](     https://img.shields.io/badge/3-646464?logo=python&logoColor=FFDE57&labelColor=4584B6)](https://www.python.org/)
 
-[![License](    https://img.shields.io/badge/Apache--2.0-D22128?style=flat&logo=apache&logoColor=CB2138&label=License&labelColor=6D6E71)](https://www.apache.org/licenses/LICENSE-2.0)
+[![License](    https://img.shields.io/badge/Apache--2.0-D22128?&logo=apache&logoColor=CB2138&label=License&labelColor=6D6E71)](https://www.apache.org/licenses/LICENSE-2.0)
 
-[![ƊⱭȾɅViƧi🧿Ƞ](https://img.shields.io/badge/ƊⱭȾɅViƧi🧿Ƞ&trade;-0065FF?style=plastic&label=&copy;2023&labelColor=0065FF)](https://datavision.one/)
+[![ƊⱭȾɅViƧi🧿Ƞ](https://img.shields.io/badge/ƊⱭȾɅViƧi🧿Ƞ&trade;-0065FF?style=plastic&logoColor=0065FF&label=&copy;2024&labelColor=0065FF)](https://datavision.one/)
                     ''')
 # MAIN:
 st.divider(                     )
