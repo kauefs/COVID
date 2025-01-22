@@ -101,7 +101,7 @@ df.loc[df.location == FilteredLoc1,'new_deaths_smoothed'].plot(
                 color      ='#FF103F',
                 linewidth  ='2.25'   ,
                 ms=.01, mec='#FF103F',   mfc='#FF103F')
-ax.set_title('COVID in {}: Vaccinations & Cases & Deaths (Log Scale)'.format(FilteredLoc1), fontsize=20, fontweight='bold')
+ax.set_title('COVID in {}: Vaccinations & Cases & Deaths'.format(FilteredLoc1), fontsize=20, fontweight='bold')
 ax.grid(linestyle=':' ,   linewidth=1, color='#DCDCDC')
 ax.tick_params(axis   ='both',
                 which ='both',
@@ -161,7 +161,7 @@ df.loc[df.location == FilteredLoc2,'new_deaths_smoothed'].plot(
                 color      ='#FF103F',
                 linewidth  ='2.25'   ,
                 ms=.01, mec='#FF103F',   mfc='#FF103F')
-ax.set_title('COVID in {}: Vaccinations & Cases & Deaths (Log Scale)'.format(FilteredLoc2), fontsize=20, fontweight='bold')
+ax.set_title('COVID in {}: Vaccinations & Cases & Deaths'.format(FilteredLoc2), fontsize=20, fontweight='bold')
 ax.grid(linestyle=':' ,   linewidth=1, color='#DCDCDC')
 ax.tick_params(axis   ='both',
                 which ='both',
@@ -178,7 +178,6 @@ plt.yscale(   'log')
 st.pyplot(fig)
 if table2.checkbox('DataFrame 2', value=False):st.write(FilteredDF2)
 
-
 st.markdown(f'''Latest entries for **{FilteredLoc2}**:''')
 aa = df.loc[  df.location          == FilteredLoc2].copy()
 d  = aa.index[aa['new_deaths_smoothed'      ]!=0.0][-1].strftime('%d %b %Y')
@@ -187,6 +186,5 @@ v  = aa.index[aa['new_vaccinations_smoothed']!=0.0][-1].strftime('%d %b %Y')
 st.write('• Lastest death:       {}'.format(d))
 st.write('• Lastest  case:       {}'.format(c))
 st.write('• Lastest vaccination: {}'.format(v))
-
 
 st.toast('Vaccinate!', icon='💉')
