@@ -100,7 +100,7 @@ top    = rows.sort_values(by='total_deaths', ascending=False)
 fig,ax = plt.subplots(figsize=(15,5), tight_layout=True)
 sns.barplot(x='location',   y='total_deaths', data=top, ax=ax, hue='location', palette='autumn', saturation=.75, legend=False)
 ax.set_title('COVID-19: Top 5 Countries with Most Deaths', fontsize=22, fontweight='bold')
-for spine in ['top', 'right', 'left', 'bottom']:ax.spines[spine].set_visible(False)
+for spine in ['top','right','left','bottom']:ax.spines[spine].set_visible(False)
 plt.gca().axes.get_yaxis().set_visible(False)
 plt.gca().axes.get_xaxis().set_visible(True)
 for tick in ax.get_xticklabels():
@@ -148,7 +148,7 @@ ax1.set_yticks([0, 100000000, 200000000, 300000000, 400000000,  500000000,  6000
 # ax1.xaxis.set_major_formatter(mdates.DateFormatter('%Y\n%b'))
 # ax1.xaxis.set_tick_params(rotation=0)
 ax1.set(xlabel=None)
-ax1.spines[['top', 'right', 'left', 'bottom']].set_visible(False)
+ax1.spines[['top','right','left','bottom']].set_visible(False)
 OWID.loc[OWID.location  == 'World', 'total_deaths'].sort_values(ascending=False).plot(
                 kind       ='line'   ,
                 ax         = ax2     ,
@@ -222,7 +222,7 @@ ax1.set_yticks([0, 5000000, 10000000, 15000000, 20000000, 25000000, 30000000, 35
 # ax1.xaxis.set_major_formatter(mdates.DateFormatter('%Y\n%b'))
 # ax1.xaxis.set_tick_params(rotation=0)
 ax1.set(xlabel=None)
-ax1.spines[['top', 'right', 'left', 'bottom']].set_visible(False)
+ax1.spines[['top','right','left','bottom']].set_visible(False)
 OWID.loc[OWID.location == 'Brazil', 'total_deaths'].sort_values(ascending=False).plot(
                 kind       ='line'   ,
                 ax         = ax2     ,
@@ -296,18 +296,18 @@ RAW.loc[RAW.location == 'Brazil'   ,'new_deaths_smoothed'].plot(
                 color      ='#FF103F',
                 linewidth  ='2.25'   ,
                 ms=.01, mec='#FF103F',   mfc='#FF103F')
-ax.set_title('COVID in Brazil: Vaccination & Cases & Deaths (Log Scale)', fontsize=18, fontweight='bold')
+ax.set_title('COVID in Brazil: Vaccination & Cases & Deaths', fontsize=18, fontweight='bold')
 ax.grid(linestyle=':' , linewidth=1  , color='#DCDCDC')
 ax.tick_params(axis   ='both',
                 which ='both',
                 left  = False,
                 bottom= False)
 ax.set(xlabel=None)
-ax.spines[['top',  'right', 'left', 'bottom']].set_visible(False)
+ax.spines[['top','right','left','bottom']].set_visible(False)
 ax.legend(loc='best', fontsize=13)
 plt.gca().set_ylim(bottom=10**0)
 plt.gca().set_xlim(left=None)
-plt.rcParams[ 'font.family']=    'sans-serif'
+plt.rcParams[ 'font.family']='sans-serif'
 plt.yscale(   'log')
 st.pyplot(fig)
 
