@@ -1,12 +1,17 @@
 ---
 # Panorama da COVID-19
 
-[![ƊⱭȾɅViƧi🧿Ƞ](https://img.shields.io/badge/ƊⱭȾɅViƧi🧿Ƞ&trade;-0065FF?style=plastic               )](https://datavision.one/)
-[![GitHub     ](https://img.shields.io/badge/-000000?logo=github&logoColor=FFFFFF                   )](https://github.com/kauefs/)
-[![Medium     ](https://img.shields.io/badge/-000000?logo=medium&logoColor=FFFFFF                   )](https://medium.com/@kauefs)
-[![LinkedIn   ](https://img.shields.io/badge/-2867B2?logo=linkedin&logoColor=FFFFFF                 )](https://www.linkedin.com/in/kauefs/)
-[![Python     ](https://img.shields.io/badge/3-646464?logo=python&logoColor=FFDE57&labelColor=4584B6)](https://www.python.org/)
+<div align=center>
+
 [![License    ](https://img.shields.io/github/license/kauefs/COVID?label=License&labelColor=8B959E&color=750014)](https://web.mit.edu/Saltzer/www/publications/MITLicense.pdf)
+[![GitHub     ](https://img.shields.io/badge/GitHub-000000?logo=github&logoColor=FFFFFF)](https://github.com/kauefs/)
+[![Medium     ](https://img.shields.io/badge/Medium-000000?logo=medium&logoColor=FFFFFF)](https://medium.com/@kauefs)
+[![LinkedIn   ](https://img.shields.io/badge/LinkedIn-2867B2?logo=linkedin&logoColor=FFFFFF)](https://www.linkedin.com/in/kauefs/)
+[![Python     ](https://img.shields.io/badge/Python3-646464?logo=python&logoColor=FFDE57&labelColor=4584B6)](https://www.python.org/)
+
+[![ƊⱭȾɅViƧi🧿Ƞ](https://img.shields.io/badge/ƊⱭȾɅViƧi&#x1F9FF;Ƞ&trade;-0065FF?style=plastic&label=&copy;2025&labelColor=0065FF)](https://datavision.one/)
+
+</div>
 
 $$23\ October\ 2023$$
 
@@ -55,3 +60,11 @@ Uma vez que a série de dados é bastante extensa e atualizada diariamente, ser�
 StreamLit InterActive DashBoard
 
 <p align=center><a href=https://covid19charts.streamlit.app/><img alt=DashBoard src=https://github.com/kauefs/COVID/raw/%40/img/CovidDashBoard.png width=75%></a></p>
+
+##
+
+<div align=center>
+
+[![ƊⱭȾɅViƧi🧿Ƞ](https://img.shields.io/badge/ƊⱭȾɅViƧi&#x1F9FF;Ƞ&trade;-0065FF?style=plastic&label=&copy;2025&labelColor=0065FF)](https://datavision.one/)
+
+</div>
