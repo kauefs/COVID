@@ -26,7 +26,7 @@ enumCoercion                         = 'nameOnly'
 [server]
 
 fileWatcherType                      = 'auto'
-# cookieSecret                         = 'random-key'
+cookieSecret                         = 'random-key'
 headless                             =  false
 runOnSave                            =  true
 enableCORS                           =  true
