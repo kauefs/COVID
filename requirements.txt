@@ -1,4 +1,5 @@
 pip
+certifi
 numpy
 pandas
 matplotlib
