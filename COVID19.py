@@ -9,6 +9,9 @@ import matplotlib.dates    as   mdates
 import seaborn             as   sns
 from   datetime          import date, datetime, timedelta
 st.set_page_config(page_title='COVID19', page_icon='😷', layout='wide', initial_sidebar_state='expanded')
+# CookieSecret:
+cookie=st.secrets['cookie']
+STREAMLIT_SERVER_COOKIE_SECRET='cookie'
 # DATA:
 DATA     = 'https://covid.ourworldindata.org/data/owid-covid-data.csv'
 @st.cache_data
