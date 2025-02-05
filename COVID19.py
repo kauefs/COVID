@@ -17,7 +17,7 @@ def LoadData():
 # Selecting Columns:
     X    = data[['date',
                  'location',
-                 'tocal_cases',
+                 'total_cases',
                  'total_deaths',
                  'new_cases_smoothed',
                  'new_deaths_smoothed',
@@ -175,14 +175,14 @@ st.pyplot(fig)
 if table2.checkbox('DataFrame 2', value=False):st.write(FilteredDF2)
 st.markdown(f'''Latest entries for **{FilteredLoc2}**:''')
 aa = df.loc[  df.location          == FilteredLoc2].copy()
+C  = aa.index[aa['total_cases'              ]!=0.0][-1]
+D  = aa.index[aa['total_deaths'             ]!=0.0][-1]
 d  = aa.index[aa['new_deaths_smoothed'      ]!=0.0][-1].strftime('%d %b %Y')
 c  = aa.index[aa['new_cases_smoothed'       ]!=0.0][-1].strftime('%d %b %Y')
 v  = aa.index[aa['new_vaccinations_smoothed']!=0.0][-1].strftime('%d %b %Y')
-C  = aa.index[aa['total_cases'              ]!=0.0][-1]
-D  = aa.index[aa['total_deaths'             ]!=0.0][-1]
+st.write('• Total   cases:       {}'.format(C))
+st.write('• Total  deaths:       {}'.format(D))
 st.write('• Lastest death:       {}'.format(d))
 st.write('• Lastest  case:       {}'.format(c))
 st.write('• Lastest vaccination: {}'.format(v))
-st.write('• Total   cases:       {}'.format(C))
-st.write('• Total  deaths:       {}'.format(D))
 st.toast('Vaccinate!', icon='💉')
