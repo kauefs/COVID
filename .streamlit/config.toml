@@ -26,11 +26,11 @@ enumCoercion                         = 'nameOnly'
 [server]
 
 fileWatcherType                      = 'auto'
-cookieSecret                         = 'random-key'
+# cookieSecret                         = 'random-key'
 headless                             =  false
 runOnSave                            =  true
 enableCORS                           =  true
-enableXsrfProtection                 =  true
+enableXsrfProtection                 =  false
 maxUploadSize                        =  200
 maxMessageSize                       =  200
 enableWebsocketCompression           =  false
