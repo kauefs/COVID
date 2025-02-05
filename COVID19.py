@@ -25,29 +25,26 @@ def LoadData():
     X.set_index('date',   inplace=True)
     X.sort_index(inplace=True)
     return X
-df      = LoadData()
+df            =  LoadData(   )
 # SIDE:
-st.sidebar.title(    'ƊⱭȾɅViƧi🧿Ƞ&trade;'      )
-st.sidebar.divider(                      )
-st.sidebar.title(    'COVID-19'          )
-st.sidebar.header(   'Data Analysis'     )
-st.sidebar.subheader('Comparisson Charts')
-st.sidebar.divider()
-
+st.sidebar.title    ('ƊⱭȾɅViƧi🧿Ƞ&trade;')
+st.sidebar.divider  (                     )
+st.sidebar.title    ('COVID-19'           )
+st.sidebar.header   ('Data Analysis'      )
+st.sidebar.subheader('Comparisson Charts' )
+st.sidebar.divider  (                     )
 Location1    = df['location'].sort_values(ascending=True).unique()
 FilteredLoc1 = st.sidebar.selectbox('Location 1:', Location1, index=241)
 SideBarInfo1 = st.sidebar.empty()
 table1       = st.sidebar.empty()
 FilteredDF1  = df[df['location'].str.contains(FilteredLoc1)]
 SideBarInfo1.info('{} Entries for {}'.format(FilteredDF1.shape[0], FilteredLoc1))
-
 Location2    = df['location'].sort_values(ascending=True).unique()
 FilteredLoc2 = st.sidebar.selectbox('Location 2:', Location2, index=128)
 SideBarInfo2 = st.sidebar.empty()
 table2       = st.sidebar.empty()
 FilteredDF2  = df[df['location'].str.contains(FilteredLoc2)]
 SideBarInfo2.success('{} Entries for {}'.format(FilteredDF2.shape[0], FilteredLoc2))
-
 st.sidebar.divider()
 st.sidebar.markdown('''Source:    [Our World in Data](https://covid.ourworldindata.org/)''')
 st.sidebar.write(     'OWID daily reports from {} to {}'.format(df.index.min(), df.index.max()))
@@ -119,7 +116,6 @@ st.pyplot(fig)
 if table1.checkbox('DataFrame 1', value=False):st.write(FilteredDF1)
 st.markdown('''
             ''')
-
 st.markdown(f'''Latest entries for **{FilteredLoc1}**:''')
 AA = df.loc[  df.location          == FilteredLoc1].copy()
 D  = AA.index[AA['new_deaths_smoothed'      ]!=0.0][-1].strftime('%d %b %Y')
@@ -128,8 +124,6 @@ V  = AA.index[AA['new_vaccinations_smoothed']!=0.0][-1].strftime('%d %b %Y')
 st.write('• Lastest death:       {}'.format(D))
 st.write('• Lastest  case:       {}'.format(C))
 st.write('• Lastest vaccination: {}'.format(V))
-
-
 # Chart2:
 st.markdown(f'''➡️ {'**{}**'.format(FilteredDF2.shape[0])} Entries for **{FilteredLoc2}**:'''
              'from {} to {}'.format(df.loc[df.location == FilteredLoc2].index.min(), df.loc[df.location == FilteredLoc2].index.max()))
@@ -177,7 +171,6 @@ plt.rcParams[ 'font.family']=    'sans-serif'
 plt.yscale(   'log')
 st.pyplot(fig)
 if table2.checkbox('DataFrame 2', value=False):st.write(FilteredDF2)
-
 st.markdown(f'''Latest entries for **{FilteredLoc2}**:''')
 aa = df.loc[  df.location          == FilteredLoc2].copy()
 d  = aa.index[aa['new_deaths_smoothed'      ]!=0.0][-1].strftime('%d %b %Y')
@@ -186,5 +179,4 @@ v  = aa.index[aa['new_vaccinations_smoothed']!=0.0][-1].strftime('%d %b %Y')
 st.write('• Lastest death:       {}'.format(d))
 st.write('• Lastest  case:       {}'.format(c))
 st.write('• Lastest vaccination: {}'.format(v))
-
 st.toast('Vaccinate!', icon='💉')
