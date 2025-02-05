@@ -176,8 +176,8 @@ aa = df.loc[  df.location          == FilteredLoc2].copy()
 d  = aa.index[aa['new_deaths_smoothed'      ]!=0.0][-1].strftime('%d %b %Y')
 c  = aa.index[aa['new_cases_smoothed'       ]!=0.0][-1].strftime('%d %b %Y')
 v  = aa.index[aa['new_vaccinations_smoothed']!=0.0][-1].strftime('%d %b %Y')
-C  = aa.index[aa['total_cases'              ].sort_values(ascending=False)
-D  = aa.index[aa['total_deaths'             ].sort_values(ascending=False)
+C  = aa.index[aa['total_cases'              ]!=0.0][-1]
+D  = aa.index[aa['total_deaths'             ]!=0.0][-1]
 st.write('• Lastest death:       {}'.format(d))
 st.write('• Lastest  case:       {}'.format(c))
 st.write('• Lastest vaccination: {}'.format(v))
