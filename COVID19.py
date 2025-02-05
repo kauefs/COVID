@@ -45,27 +45,27 @@ SideBarInfo2 = st.sidebar.empty()
 table2       = st.sidebar.empty()
 FilteredDF2  = df[df['location'].str.contains(FilteredLoc2)]
 SideBarInfo2.success('{} Entries for {}'.format(FilteredDF2.shape[0], FilteredLoc2))
-st.sidebar.divider()
+st.sidebar.divider (   )
 st.sidebar.markdown('''Source:    [Our World in Data](https://covid.ourworldindata.org/)''')
-st.sidebar.write(     'OWID daily reports from {} to {}'.format(df.index.min(), df.index.max()))
+st.sidebar.write   (  'OWID daily reports from {} to {}'.format(df.index.min(), df.index.max()))
 st.sidebar.markdown('''Reference: [Data Cleaning Techniques in Python: the Ultimate Guide](https://www.justintodata.com/data-cleaning-techniques-python-guide/)''')
-st.sidebar.divider()
+st.sidebar.divider (   )
 st.sidebar.markdown('''
-![2023.10.23](  https://img.shields.io/badge/2023.10.23-000000)
+![2023.10.23   ](https://img.shields.io/badge/2023.10.23-000000)
 
-[![GitHub](     https://img.shields.io/badge/-000000?logo=github&logoColor=FFFFFF)](https://github.com/kauefs/)
-[![Medium](     https://img.shields.io/badge/-000000?logo=medium&logoColor=FFFFFF)](https://medium.com/@kauefs)
-[![LinkedIn](   https://img.shields.io/badge/-0077B5?logo=linkedin&logoColor=FFFFFF)](https://www.linkedin.com/in/kauefs/)
-[![Python](     https://img.shields.io/badge/3-646464?logo=python&logoColor=FFDE57&labelColor=4584B6)](https://www.python.org/)
+[![GitHub      ](https://img.shields.io/badge/GitHub-000000?logo=github&logoColor=FFFFFF)](https://github.com/kauefs/)
+[![Medium      ](https://img.shields.io/badge/Medium-000000?logo=medium&logoColor=FFFFFF)](https://medium.com/@kauefs)
+[![LinkedIn    ](https://img.shields.io/badge/LinkedIn-0077B5?logo=linkedin&logoColor=FFFFFF)](https://www.linkedin.com/in/kauefs/)
+[![Python      ](https://img.shields.io/badge/Python3-646464?logo=python&logoColor=FFDE57&labelColor=4584B6)](https://www.python.org/)
 
-[![License](    https://img.shields.io/badge/Apache--2.0-D22128?&logo=apache&logoColor=CB2138&label=License&labelColor=6D6E71)](https://www.apache.org/licenses/LICENSE-2.0)
+[![License     ](https://img.shields.io/badge/Apache--2.0-D22128?&logo=apache&logoColor=CB2138&label=License&labelColor=6D6E71)](https://www.apache.org/licenses/LICENSE-2.0)
 
 [![ƊⱭȾɅViƧi🧿Ƞ](https://img.shields.io/badge/ƊⱭȾɅViƧi🧿Ƞ&trade;-0065FF?style=plastic&logoColor=0065FF&label=&copy;2024&labelColor=0065FF)](https://datavision.one/)
                     ''')
 # MAIN:
-st.divider(            )
-st.title(    'COVID-19')
-st.divider(            )
+st.divider  (                    )
+st.title    ('COVID-19'          )
+st.divider  (                    )
 st.subheader('Comparisson Charts')
 # Chart1:
 st.markdown(f'''➡️ {'**{}**'.format(FilteredDF1.shape[0])} Entries for **{FilteredLoc1}**:'''
@@ -108,10 +108,10 @@ ax.xaxis.set_major_formatter(mdates.DateFormatter('%Y\n%b'))
 ax.xaxis.set_tick_params(rotation=0)
 ax.set(xlabel=None)
 ax.spines[['top',  'right', 'left', 'bottom']].set_visible(False)
-ax.legend(loc='upper left', fontsize=15)
+ax.legend(loc='upper left',  fontsize=15)
 plt.gca().set_ylim(bottom=10**0)
 plt.rcParams[ 'font.family']=    'sans-serif'
-plt.yscale(   'log')
+plt.yscale  ( 'log')
 st.pyplot(fig)
 if table1.checkbox('DataFrame 1', value=False):st.write(FilteredDF1)
 st.markdown('''
