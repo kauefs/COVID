@@ -12,26 +12,22 @@ messageFormat                        = '%(asctime)s %(message)s'
 
 [client]
 
-showErrorDetails                     =  true
-toolbarMode                          = 'auto'
+showErrorDetails                     = 'none'
+toolbarMode                          = 'minimal'
 showSidebarNavigation                =  true
 
 [runner]
 
 magicEnabled                         =  true
-postScriptGC                         =  true
 fastReruns                           =  true
 enforceSerializableSessionState      =  false
 enumCoercion                         = 'nameOnly'
 
-[browser]
-
-gatherUsageStats                     =  false
-
 [server]
 
 fileWatcherType                      = 'auto'
-cookieSecret                         =  false
+# cookieSecret                         = 'random-key'
+headless                             =  false
 runOnSave                            =  true
 enableCORS                           =  true
 enableXsrfProtection                 =  true
@@ -39,6 +35,11 @@ maxUploadSize                        =  200
 maxMessageSize                       =  200
 enableWebsocketCompression           =  false
 enableStaticServing                  =  false
+disconnectedSessionTTL               =  120
+
+[browser]
+
+gatherUsageStats                     =  false
 
 [theme]
 
@@ -46,5 +47,5 @@ base                                 = 'dark'
 primaryColor                         = '#6595EE'
 backgroundColor                      = '#000000'
 secondaryBackgroundColor             = '#252525'
-textColor                            = '#FFFFFF'
+textColor                            = '#F0F0F0'
 font                                 = 'sans serif'
