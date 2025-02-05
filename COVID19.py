@@ -175,7 +175,7 @@ st.pyplot(fig)
 if table2.checkbox('DataFrame 2', value=False):st.write(FilteredDF2)
 st.markdown(f'''Latest entries for **{FilteredLoc2}**:''')
 aa = df.loc[  df.location          == FilteredLoc2].copy()
-C  = df.loc[df.location == FilteredLoc2, 'total_cases'].sort_values(ascending=False)
+C  =          aa['total_cases'              ].sort_values(ascending=False)[0].format(f'{:,.2f}')
 D  =          aa['total_deaths'             ].sort_values(ascending=False)[0]
 d  = aa.index[aa['new_deaths_smoothed'      ]!=0.0][-1].strftime('%d %b %Y')
 c  = aa.index[aa['new_cases_smoothed'       ]!=0.0][-1].strftime('%d %b %Y')
