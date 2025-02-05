@@ -19,15 +19,18 @@ showSidebarNavigation                =  true
 [runner]
 
 magicEnabled                         =  true
+postScriptGC                         =  true
 fastReruns                           =  true
 enforceSerializableSessionState      =  false
-enumCoercion                         = 'nameOnly'
+
+[browser]
+
+gatherUsageStats                     =  false
 
 [server]
 
 fileWatcherType                      = 'auto'
 cookieSecret                         =  false
-headless                             =  false
 runOnSave                            =  true
 enableCORS                           =  true
 enableXsrfProtection                 =  true
@@ -36,10 +39,6 @@ maxMessageSize                       =  200
 enableWebsocketCompression           =  false
 enableStaticServing                  =  false
 disconnectedSessionTTL               =  120
-
-[browser]
-
-gatherUsageStats                     =  false
 
 [theme]
 
