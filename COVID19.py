@@ -17,6 +17,8 @@ def LoadData():
 # Selecting Columns:
     X    = data[['date',
                  'location',
+                 'tocal_cases',
+                 'total_deaths',
                  'new_cases_smoothed',
                  'new_deaths_smoothed',
                  'new_vaccinations_smoothed']].copy()
