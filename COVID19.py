@@ -120,11 +120,11 @@ st.markdown('''
             ''')
 st.markdown(f'''Latest entries for **{FilteredLoc1}**:''')
 AA=df.loc[  df.location          == FilteredLoc1].copy()
-C1=         aa['total_cases'              ].sort_values(ascending=False)[0]
-D1=         aa['total_deaths'             ].sort_values(ascending=False)[0]
-d1=aa.index[aa['new_deaths_smoothed'      ]!=0.0][-1].strftime('%d %b %Y')
-c1=aa.index[aa['new_cases_smoothed'       ]!=0.0][-1].strftime('%d %b %Y')
-v1=aa.index[aa['new_vaccinations_smoothed']!=0.0][-1].strftime('%d %b %Y')
+C1=         AA['total_cases'              ].sort_values(ascending=False)[0]
+D1=         AA['total_deaths'             ].sort_values(ascending=False)[0]
+d1=aa.index[AA['new_deaths_smoothed'      ]!=0.0][-1].strftime('%d %b %Y')
+c1=aa.index[AA['new_cases_smoothed'       ]!=0.0][-1].strftime('%d %b %Y')
+v1=aa.index[AA['new_vaccinations_smoothed']!=0.0][-1].strftime('%d %b %Y')
 st.write('• Total   cases:       {:,.0f}'.format(C1))
 st.write('  – Lastest  case:          {}'.format(c1))
 st.write('• Total  deaths:       {:,.0f}'.format(D1))
