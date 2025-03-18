@@ -5,4 +5,4 @@ pandas
 matplotlib
 seaborn
 datetime
-streamlit<1.42.0
+streamlit
