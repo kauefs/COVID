@@ -1,6 +1,6 @@
 pip
 certifi
-streamlit==1.43.0
+streamlit<1.42.0
 datetime
 numpy
 pandas
