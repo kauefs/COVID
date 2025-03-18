@@ -1,8 +1,8 @@
 pip
 certifi
+streamlit==1.43.0
+datetime
 numpy
 pandas
 matplotlib
 seaborn
-datetime
-streamlit
