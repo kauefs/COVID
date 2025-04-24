@@ -23,9 +23,9 @@ def LoadData():
                  'new_deaths_smoothed',
                  'new_vaccinations_smoothed']].copy()
     df.reset_index(inplace=True)
-    df['date'] = pd.to_datetime(df['date'], format='%Y-%m-%d')
-    df.set_index('date',                   inplace=True)
-    df.sort_index(                         inplace=True)
+    df['date']=pd.to_datetime(df['date'], format='%Y-%m-%d')
+    df.set_index (               'date' ,inplace=  True)
+    df.sort_index(                       inplace=  True)
     return df
 RAW      = LoadData()
 # Filling Missing Data:
@@ -94,9 +94,9 @@ diminishing the disease and discrediting vaccines.
 
 st.subheader('Chart 1: Top 5 Countries with most Deaths')
 filter = OWID.index[OWID['total_deaths']!=0.][-1]
-deaths = OWID.loc[filter].sort_values(by='total_deaths', ascending=False)
-rows   = deaths.loc[(deaths['location']=='United States')|(deaths['location']=='Brazil')|(deaths['location']=='India')|(deaths['location']=='Russia')|(deaths['location']=='Mexico')]
-top    = rows.sort_values(by='total_deaths', ascending=False)
+deaths = OWID.loc[filter].sort_values(by ='total_deaths', ascending=False)
+rows   = deaths.loc[(deaths['location'] =='United States')|(deaths['location']=='Brazil')|(deaths['location']=='India')|(deaths['location']=='Russia')|(deaths['location']=='Mexico')]
+top    =             rows.sort_values(by ='total_deaths', ascending=False)
 fig,ax = plt.subplots(figsize=(15,5), tight_layout=True)
 sns.barplot(x='location',   y='total_deaths', data=top, ax=ax, hue='location', palette='autumn', saturation=.75, legend=False)
 ax.set_title('COVID-19: Top 5 Countries with Most Deaths', fontsize=22, fontweight='bold')
@@ -131,11 +131,11 @@ OWID.loc[OWID.location =='World', 'total_cases'].sort_values(ascending=False).pl
                 ms=.01, mec='#FF8C00', mfc='#FF8C00')
 ax1.annotate('{:,.0f}'.format(OWID['total_cases'].sort_values(ascending=False).iloc[0]),
                 xy=( 1,       OWID['total_cases'].sort_values(ascending=False).iloc[0]),
-                xycoords=('axes fraction', 'data'),
-                xytext=(-85,1.15),
+                xycoords  =('axes fraction','data'),
+                xytext    =(-85, 1.15),
                 textcoords='offset points',
-                color='#FF4500',
-                fontsize=12,
+                color     ='#FF4500',
+                fontsize  =    12   ,
                 fontweight='semibold')
 ax1.set_title('COVID-19: WorldWide Cases', fontsize=15, fontweight='bold')
 ax1.yaxis.set_major_formatter(ticker.StrMethodFormatter('{x:,.0f}'))
@@ -149,7 +149,7 @@ ax1.set_yticks([0, 100000000, 200000000, 300000000, 400000000,  500000000,  6000
 # ax1.xaxis.set_tick_params(rotation=0)
 ax1.set(xlabel=None)
 ax1.spines[['top','right','left','bottom']].set_visible(False)
-OWID.loc[OWID.location  == 'World', 'total_deaths'].sort_values(ascending=False).plot(
+OWID.loc[OWID.location  =='World','total_deaths'].sort_values(ascending=False).plot(
                 kind       ='line'   ,
                 ax         = ax2     ,
                 marker     ='o'      ,
@@ -159,11 +159,11 @@ OWID.loc[OWID.location  == 'World', 'total_deaths'].sort_values(ascending=False)
                 ms=.01, mec='#FF103F', mfc='#FF103F')
 ax2.annotate('{:,.0f}'.format(OWID['total_deaths'].sort_values(ascending=False).iloc[0]),
                 xy=( 1,       OWID['total_deaths'].sort_values(ascending=False).iloc[0]),
-                xycoords=('axes fraction', 'data'),
-                xytext=(-70,1.15),
+                xycoords  =('axes fraction','data'),
+                xytext    =(-70,1.15),
                 textcoords='offset points',
-                color='#FF103F',
-                fontsize=12,
+                color     ='#FF103F',
+                fontsize  =    12   ,
                 fontweight='semibold')
 ax2.set_title('COVID-19: WorldWide Deaths', fontsize=15, fontweight='bold')
 ax2.yaxis.set_major_formatter(ticker.StrMethodFormatter('{x:,.0f}'))
@@ -176,7 +176,7 @@ ax2.set_yticks([0,1000000, 2000000 , 3000000 , 4000000 , 5000000 , 6000000],    
 # ax2.xaxis.set_major_formatter(mdates.DateFormatter('%Y\n%b'))
 # ax2.xaxis.set_tick_params(rotation=360)
 ax2.set(xlabel=None)
-ax2.spines[['top', 'right', 'left', 'bottom']].set_visible(False)
+ax2.spines[['top','right','left','bottom']].set_visible(False)
 plt.rcParams['font.family']='sans-serif'
 st.pyplot(fig)
 
@@ -193,9 +193,9 @@ About 10% of those deaths happened in Brazil!
             ''')
 
 st.subheader('Chart 3: Linear Evolution for COVID-19 in Brazil (Cases & Deaths)')
-BR = OWID.loc[OWID.location == 'Brazil'].copy()
+BR = OWID.loc[OWID.location =='Brazil'].copy()
 fig, (ax1, ax2) = plt.subplots(nrows=2, ncols=1, figsize=(12,8), tight_layout=True)
-OWID.loc[OWID.location == 'Brazil', 'total_cases'].sort_values(ascending=False).plot(
+OWID.loc[OWID.location == 'Brazil','total_cases'].sort_values(ascending=False).plot(
                 kind       ='line'   ,
                 ax         = ax1     ,
                 marker     ='o'      ,
@@ -205,11 +205,11 @@ OWID.loc[OWID.location == 'Brazil', 'total_cases'].sort_values(ascending=False).
                 ms=.01, mec='#FF8C00', mfc='#FF8C00')
 ax1.annotate('{:,.0f}'.format(BR['total_cases'].sort_values(ascending=False).iloc[0]),
                 xy=( 1,       BR['total_cases'].sort_values(ascending=False).iloc[0]),
-                xycoords=('axes fraction', 'data'),
-                xytext=(-105,1.15),
+                xycoords  =('axes fraction','data'),
+                xytext    =(-105,1.15),
                 textcoords='offset points',
-                color='#FF4500',
-                fontsize=12,
+                color     ='#FF4500',
+                fontsize  =    12   ,
                 fontweight='semibold')
 ax1.set_title('COVID-19: Cases in Brazil', fontsize=15, fontweight='bold')
 ax1.yaxis.set_major_formatter(ticker.StrMethodFormatter('{x:,.0f}'))
@@ -223,7 +223,7 @@ ax1.set_yticks([0, 5000000, 10000000, 15000000, 20000000, 25000000, 30000000, 35
 # ax1.xaxis.set_tick_params(rotation=0)
 ax1.set(xlabel=None)
 ax1.spines[['top','right','left','bottom']].set_visible(False)
-OWID.loc[OWID.location == 'Brazil', 'total_deaths'].sort_values(ascending=False).plot(
+OWID.loc[OWID.location == 'Brazil','total_deaths'].sort_values(ascending=False).plot(
                 kind       ='line'   ,
                 ax         = ax2     ,
                 marker     ='o'      ,
@@ -233,11 +233,11 @@ OWID.loc[OWID.location == 'Brazil', 'total_deaths'].sort_values(ascending=False)
                 ms=.01, mec='#FF103F', mfc='#FF103F')
 ax2.annotate('{:,.0f}'.format(BR['total_deaths'].sort_values(ascending=False).iloc[0]),
                 xy=( 1,       BR['total_deaths'].sort_values(ascending=False).iloc[0]),
-                xycoords=('axes fraction', 'data'),
-                xytext=(-85,1.15),
+                xycoords  =('axes fraction','data'),
+                xytext    =(-85,1.15),
                 textcoords='offset points',
-                color='#FF103F',
-                fontsize=12,
+                color     ='#FF103F',
+                fontsize  =    12   ,
                 fontweight='semibold')
 ax2.set_title('COVID-19: Deaths in Brazil', fontsize=15, fontweight='bold')
 ax2.yaxis.set_major_formatter(ticker.StrMethodFormatter('{x:,.0f}'))
@@ -250,18 +250,18 @@ ax2.set_yticks([0,100000 , 200000  , 300000  , 400000  , 500000  , 600000 ],    
 # ax2.xaxis.set_major_formatter(mdates.DateFormatter('%Y\n%b'))
 # ax2.xaxis.set_tick_params(rotation=360)
 ax2.set(xlabel=None)
-ax2.spines[[ 'top', 'right', 'left', 'bottom']].set_visible(False)
-plt.rcParams['font.family'] ='sans-serif'
+ax2.spines[[ 'top','right', 'left','bottom']].set_visible(False)
+plt.rcParams['font.family']='sans-serif'
 st.pyplot(fig)
 st.markdown('''
 Brazil has always had a history of vaccinations with a National Immunization Program efficient and effective,
 famous for the eradication of polio for which the vaccination campaign _Zé Gotinha_ ('Droplet Joe') mascot was created in 1986 and became a symbol in saving lives.
             ''')
 with st.container():
-    Cols = st.columns(3)
-    with Cols[0]:st.empty()
+    Cols      =  st.columns(3)
+    with Cols[0]:st.empty  ( )
     with Cols[1]:st.image('https://www.gov.br/saude/pt-br/campanhas-da-saude/2023/vacinacao/ze-gotinha/ze-gotinha/@@govbr.institucional.banner/f0ed8b09-fbd2-47b6-b441-d54c6fa4a87b/@@images/201a5721-4a35-4010-a373-c3e89f3399b2.gif', width=250)
-    with Cols[2]:st.empty()
+    with Cols[2]:st.empty  ( )
 st.markdown('''
 The following chart makes it cristal clear how the vaccines were very effective in fighting the disease,
 so much so the world has pretty much outcome it and life has basically resumed to what it used to be in many ways with no more lockdowns or masks.
@@ -269,33 +269,33 @@ so much so the world has pretty much outcome it and life has basically resumed t
 
 st.subheader('Chart 4: Logarithmic Evolution for COVID-19 in Brazil (Vaccination & Cases & Deaths)')
 fig , ax = plt.subplots(figsize=(12,8), tight_layout=True)
-RAW.loc[RAW.location == 'Brazil'   ,'new_vaccinations_smoothed'].plot(
-                kind       ='line'   ,
+RAW.loc[RAW.location      =='Brazil'  ,'new_vaccinations_smoothed'].plot(
+                kind       ='line'    ,
                 label      ='Vaccination',
-                ax         = ax      ,
-                marker     ='o'      ,
-                linestyle  ='solid'  ,
-                color      ='#4CAF50',
-                linewidth  ='2.25'   ,
-                ms=.01, mec='#4CAF50',mfc='#4CAF50')
-RAW.loc[RAW.location == 'Brazil'   ,'new_cases_smoothed'].plot(
-                kind       ='line'   ,
-                label      ='Cases'  ,
-                ax         = ax      ,
-                marker     ='o'      ,
-                linestyle  ='solid'  ,
-                color      ='#FF8C00',
-                linewidth  ='2.25'   ,
-                ms=.01, mec='#FF8C00', mfc='#FF8C00')
-RAW.loc[RAW.location == 'Brazil'   ,'new_deaths_smoothed'].plot(
-                kind       ='line'   ,
-                label      ='Deaths' ,
-                ax         = ax      ,
-                marker     ='o'      ,
-                linestyle  ='solid'  ,
-                color      ='#FF103F',
-                linewidth  ='2.25'   ,
-                ms=.01, mec='#FF103F',   mfc='#FF103F')
+                ax         = ax       ,
+                marker     ='o'       ,
+                linestyle  ='solid'   ,
+                color      ='#4CAF50' ,
+                linewidth  ='2.25'    ,
+                ms=.01, mec='#4CAF50' , mfc='#4CAF50')
+RAW.loc[RAW.location      =='Brazil'  ,'new_cases_smoothed'].plot(
+                kind       ='line'    ,
+                label      ='Cases'   ,
+                ax         = ax       ,
+                marker     ='o'       ,
+                linestyle  ='solid'   ,
+                color      ='#FF8C00' ,
+                linewidth  ='2.25'    ,
+                ms=.01, mec='#FF8C00' , mfc='#FF8C00')
+RAW.loc[RAW.location      =='Brazil'  ,'new_deaths_smoothed'].plot(
+                kind       ='line'    ,
+                label      ='Deaths'  ,
+                ax         = ax       ,
+                marker     ='o'       ,
+                linestyle  ='solid'   ,
+                color      ='#FF103F' ,
+                linewidth  ='2.25'    ,
+                ms=.01, mec='#FF103F' , mfc='#FF103F')
 ax.set_title('COVID in Brazil: Vaccination & Cases & Deaths', fontsize=18, fontweight='bold')
 ax.grid(linestyle=':' , linewidth=1  , color='#DCDCDC')
 ax.tick_params(axis   ='both',
@@ -304,12 +304,12 @@ ax.tick_params(axis   ='both',
                 bottom= False)
 ax.set(xlabel=None)
 ax.spines[['top','right','left','bottom']].set_visible(False)
-ax.legend(loc='best', fontsize=13)
-plt.gca().set_ylim(bottom=10**0)
-plt.gca().set_xlim(left=None)
-plt.rcParams[ 'font.family']='sans-serif'
-plt.yscale(   'log')
-st.pyplot(fig)
+ax.legend(loc='best', fontsize=13   )
+plt.gca().set_ylim(     bottom=10**0)
+plt.gca().set_xlim(       left=None )
+plt.rcParams ['font.family']='sans-serif'
+plt.yscale   ('log')
+st.pyplot     (fig)
 
 st.write('Lastest entries for Brazil:')
 BR = RAW.loc[RAW.location == 'Brazil'].copy()
