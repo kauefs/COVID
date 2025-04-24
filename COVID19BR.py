@@ -14,7 +14,7 @@ DATA     = 'https://covid.ourworldindata.org/data/owid-covid-data.csv'
 @st.cache_data
 def LoadData():
     data = pd.read_csv(DATA, index_col=0)
-# Selecting Coluns:
+# Selecting Columns:
     df   = data[['date',
                  'location',
                  'total_cases',
