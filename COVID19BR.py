@@ -35,6 +35,7 @@ X[num]   = X[num].fillna(0)
 nan      = X.select_dtypes(exclude=['number']).columns
 X[nan]   = X[nan].fillna('N/A')
 OWID     = X.copy()
+
 # SIDE:
 st.sidebar.title    ('ƊⱭȾɅViƧi🧿Ƞ&trade;')
 st.sidebar.divider  (                     )
@@ -181,11 +182,13 @@ plt.rcParams['font.family']='sans-serif'
 st.pyplot(fig)
 
 st.write('Lastest entries for the World:')
-W = RAW.loc[RAW.location == 'World'].copy()
-D = W.index[W['new_deaths_smoothed']!=0.0][-1].strftime('%d %b %Y')
-C = W.index[W['new_cases_smoothed' ]!=0.0][-1].strftime('%d %b %Y')
+W =RAW.loc[RAW.location == 'World'].copy()
+D =W.index[W[       'new_deaths_smoothed']!=np.nan][-1].strftime('%d %b %Y')
+C =W.index[W[        'new_cases_smoothed']!=np.nan][-1].strftime('%d %b %Y')
+V =W.index[W['new_vaccinations_smoothed' ]!=np.nan][-1].strftime('%d %b %Y')
 st.write('• Lastest death:       {}'.format(D))
 st.write('• Lastest  case:       {}'.format(C))
+st.write('• Lastest vaccination: {}'.format(V))
 
 st.markdown('''
 The world has lost a population of about the size the one that lives in the metropolitan area of Rio de Janeiro.
@@ -193,7 +196,7 @@ About 10% of those deaths happened in Brazil!
             ''')
 
 st.subheader('Chart 3: Linear Evolution for COVID-19 in Brazil (Cases & Deaths)')
-BR = OWID.loc[OWID.location =='Brazil'].copy()
+BR=OWID.loc[OWID.location=='Brazil'].copy()
 fig, (ax1, ax2) = plt.subplots(nrows=2, ncols=1, figsize=(12,8), tight_layout=True)
 OWID.loc[OWID.location == 'Brazil','total_cases'].sort_values(ascending=False).plot(
                 kind       ='line'   ,
@@ -268,9 +271,9 @@ so much so the world has pretty much outcome it and life has basically resumed t
             ''')
 
 st.subheader('Chart 4: Logarithmic Evolution for COVID-19 in Brazil (Vaccination & Cases & Deaths)')
-x=BR[BR['new_vaccinations_smoothed']!=0.0]
-y=BR[BR[       'new_cases_smoothed']!=0.0]
-z=BR[BR[      'new_deaths_smoothed']!=0.0]
+x=BR[BR['new_vaccinations_smoothed']!=np.nan]
+y=BR[BR[       'new_cases_smoothed']!=np.nan]
+z=BR[BR[      'new_deaths_smoothed']!=np.nan]
 fig , ax = plt.subplots(figsize=(12,8), tight_layout=True)
 x['new_vaccinations_smoothed'].plot(
                 kind       ='line'    ,
@@ -315,9 +318,10 @@ plt.yscale   ('log')
 st.pyplot     (fig)
 
 st.write('Lastest entries for Brazil:')
-d  =  BR.index[BR[      'new_deaths_smoothed']!=0.0][-1].strftime('%d %b %Y')
-c  =  BR.index[BR[      'new_cases_smoothed' ]!=0.0][-1].strftime('%d %b %Y')
-v  =  BR.index[BR['new_vaccinations_smoothed']!=0.0][-1].strftime('%d %b %Y')
+BR = RAW.loc [RAW.location =='Brazil'].copy()
+d  =  BR.index[BR[      'new_deaths_smoothed']!=np.nan][-1].strftime('%d %b %Y')
+c  =  BR.index[BR[      'new_cases_smoothed' ]!=np.nan][-1].strftime('%d %b %Y')
+v  =  BR.index[BR['new_vaccinations_smoothed']!=np.nan][-1].strftime('%d %b %Y')
 st.write('• Lastest death:       {}'.format(d))
 st.write('• Lastest  case:       {}'.format(c))
 st.write('• Lastest vaccination: {}'.format(v))
