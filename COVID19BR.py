@@ -268,7 +268,6 @@ so much so the world has pretty much outcome it and life has basically resumed t
             ''')
 
 st.subheader('Chart 4: Logarithmic Evolution for COVID-19 in Brazil (Vaccination & Cases & Deaths)')
-BR = RAW.loc[RAW.location == 'Brazil'].copy()
 x=BR[BR['new_vaccinations_smoothed']!=0.0]
 y=BR[BR[       'new_cases_smoothed']!=0.0]
 z=BR[BR[      'new_deaths_smoothed']!=0.0]
