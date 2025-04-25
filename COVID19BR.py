@@ -268,8 +268,12 @@ so much so the world has pretty much outcome it and life has basically resumed t
             ''')
 
 st.subheader('Chart 4: Logarithmic Evolution for COVID-19 in Brazil (Vaccination & Cases & Deaths)')
+BR = RAW.loc[RAW.location == 'Brazil'].copy()
+x=BR[BR['new_vaccinations_smoothed']!=0.0]
+y=BR[BR[       'new_cases_smoothed']!=0.0]
+z=BR[BR[      'new_deaths_smoothed']!=0.0]
 fig , ax = plt.subplots(figsize=(12,8), tight_layout=True)
-RAW.loc[RAW.location      =='Brazil'  ,'new_vaccinations_smoothed'].plot(
+x['new_vaccinations_smoothed'].plot(
                 kind       ='line'    ,
                 label      ='Vaccination',
                 ax         = ax       ,
@@ -278,7 +282,7 @@ RAW.loc[RAW.location      =='Brazil'  ,'new_vaccinations_smoothed'].plot(
                 color      ='#4CAF50' ,
                 linewidth  ='2.25'    ,
                 ms=.01, mec='#4CAF50' , mfc='#4CAF50')
-RAW.loc[RAW.location      =='Brazil'  ,'new_cases_smoothed'].plot(
+y['new_cases_smoothed'].plot(
                 kind       ='line'    ,
                 label      ='Cases'   ,
                 ax         = ax       ,
@@ -287,7 +291,7 @@ RAW.loc[RAW.location      =='Brazil'  ,'new_cases_smoothed'].plot(
                 color      ='#FF8C00' ,
                 linewidth  ='2.25'    ,
                 ms=.01, mec='#FF8C00' , mfc='#FF8C00')
-RAW.loc[RAW.location      =='Brazil'  ,'new_deaths_smoothed'].plot(
+z['new_deaths_smoothed'].plot(
                 kind       ='line'    ,
                 label      ='Deaths'  ,
                 ax         = ax       ,
@@ -312,9 +316,8 @@ plt.yscale   ('log')
 st.pyplot     (fig)
 
 st.write('Lastest entries for Brazil:')
-BR = RAW.loc[RAW.location == 'Brazil'].copy()
-d  =  BR.index[BR['new_deaths_smoothed']!=0.0][-1].strftime('%d %b %Y')
-c  =  BR.index[BR['new_cases_smoothed' ]!=0.0][-1].strftime('%d %b %Y')
+d  =  BR.index[BR[      'new_deaths_smoothed']!=0.0][-1].strftime('%d %b %Y')
+c  =  BR.index[BR[      'new_cases_smoothed' ]!=0.0][-1].strftime('%d %b %Y')
 v  =  BR.index[BR['new_vaccinations_smoothed']!=0.0][-1].strftime('%d %b %Y')
 st.write('• Lastest death:       {}'.format(d))
 st.write('• Lastest  case:       {}'.format(c))
