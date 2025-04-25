@@ -270,10 +270,10 @@ so much so the world has pretty much outcome it and life has basically resumed t
             ''')
 
 st.subheader('Chart 4: Logarithmic Evolution for COVID-19 in Brazil (Vaccination & Cases & Deaths)')
-x=BR[BR['new_vaccinations_smoothed']!=np.nan]
-y=BR[BR[       'new_cases_smoothed']!=np.nan]
-z=BR[BR[      'new_deaths_smoothed']!=np.nan]
-fig , ax = plt.subplots(figsize=(12,8), tight_layout=True)
+x=BR[BR['new_vaccinations_smoothed']!=0.]
+y=BR[BR[       'new_cases_smoothed']!=0.]
+z=BR[BR[      'new_deaths_smoothed']!=0.]
+fig , ax = plt.subplots(figsize=(12 , 8), tight_layout=True)
 x['new_vaccinations_smoothed'].plot(
                 kind       ='line'    ,
                 label      ='Vaccination',
