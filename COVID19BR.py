@@ -108,7 +108,7 @@ only behind the United States. A death toll rate that was almost twice the world
             ''')
 
 st.subheader('Chart 2: Linear Evolution for COVID-19 WorldWide (Cases & Deaths)')
-fig, (ax1, ax2) = plt.subplots(nrows=2, ncols=1, figsize=(12,6), tight_layout=True)
+fig, (ax1, ax2) = plt.subplots(nrows=2, ncols=1, figsize=(12,6), tight_layout=True)#12,8
 RAW.loc[RAW.location =='World','total_cases'].sort_values(ascending=False).plot(
                 kind       ='line'   ,
                 ax         = ax1     ,
@@ -126,14 +126,14 @@ ax1.annotate('{:,.0f}'.format(RAW['total_cases'].sort_values(ascending=False).il
                 fontsize  =    13   ,
                 fontweight='semibold')
 ax1.set_title('COVID-19: WorldWide Cases', fontsize=15, fontweight='bold')
-ax1.yaxis.set_major_formatter(ticker.StrMethodFormatter('{x:,.0f}'))
 ax1.grid(linestyle=':', linewidth=1, color='#DCDCDC', mouseover=True)
 ax1.tick_params(axis  ='both',
                 which ='both',
                 left  = False,
                 bottom= False)
-ax1.set_yticks([0, 100000000, 200000000, 300000000, 400000000,  500000000,  600000000], minor=False)
-# ax1.xaxis.set_major_formatter(mdates.DateFormatter('%Y\n%b'))
+ax1.set_yticks([0, 1e8, 2e8, 3e8, 4e8, 5e8, 6e8], minor=False)
+# ax1.yaxis.set_major_formatter(ticker.StrMethodFormatter('{x:,.0f}'))
+# ax1.xaxis.set_major_formatter(mdates.DateFormatter     ('%Y\n%b'))
 # ax1.xaxis.set_tick_params(rotation=0)
 ax1.set(xlabel=None)
 ax1.spines[['top','right','left','bottom']].set_visible(False)
@@ -154,23 +154,23 @@ ax2.annotate('{:,.0f}'.format(RAW['total_deaths'].sort_values(ascending=False).i
                 fontsize  =    13   ,
                 fontweight='semibold')
 ax2.set_title('COVID-19: WorldWide Deaths', fontsize=15, fontweight='bold')
-ax2.yaxis.set_major_formatter(ticker.StrMethodFormatter('{x:,.0f}'))
 ax2.grid(linestyle=':', linewidth=1, color='#DCDCDC', mouseover=True)
 ax2.tick_params(axis  ='both',
                 which ='both',
                 left  = False,
                 bottom= False)
-ax2.set_yticks([0,1000000, 2000000 , 3000000 , 4000000 , 5000000 , 6000000],            minor=False)
-# ax2.xaxis.set_major_formatter(mdates.DateFormatter('%Y\n%b'))
+ax2.set_yticks([0, 1e6, 2e6, 3e6, 4e6, 5e6, 6e6], minor=False)
+# ax2.yaxis.set_major_formatter(ticker.StrMethodFormatter('{x:,.0f}'))
+# ax2.xaxis.set_major_formatter(mdates.DateFormatter     ('%Y\n%b'))
 # ax2.xaxis.set_tick_params(rotation=360)
 ax2.set(xlabel=None)
 ax2.spines[['top','right','left','bottom']].set_visible(False)
 st.pyplot(fig)
 
-W =OWID.loc[OWID[    'location']=='World'].copy    (          )
-D =W.index[W[      'new_deaths']!=0.0][-1].strftime('%d %b %Y')
-C =W.index[W[       'new_cases']!=0.0][-1].strftime('%d %b %Y')
-V =W.index[W['new_vaccinations']!=0.0][-1].strftime('%d %b %Y')
+W =OWID.loc[OWID[       'location']=='World'].copy (  )
+D =   W.index[W [      'new_deaths_smoothed']!=0.0][-1].strftime('%d %b %Y')
+C =   W.index[W [       'new_cases_smoothed']!=0.0][-1].strftime('%d %b %Y')
+V =   W.index[W ['new_vaccinations_smoothed']!=0.0][-1].strftime('%d %b %Y')
 st.write('• Last       death entry on the dataset for the World: {}'.format(D))
 st.write('• Last        case entry on the dataset for the World: {}'.format(C))
 st.write('• Last vaccination entry on the dataset for the World: {}'.format(V))
@@ -182,7 +182,7 @@ About 10% of those deaths happened in Brazil!
 
 st.subheader('Chart 3: Linear Evolution for COVID-19 in Brazil (Cases & Deaths)')
 BR = OWID.loc[OWID.location =='Brazil'].copy()
-fig, (ax1, ax2) = plt.subplots(nrows=2, ncols=1, figsize=(12,6),  tight_layout=True)
+fig, (ax1, ax2) = plt.subplots(nrows=2, ncols=1, figsize=(12,6),  tight_layout=True)#12,8
 OWID.loc[OWID.location == 'Brazil','total_cases'].sort_values(ascending=False).plot(
                 kind       ='line'   ,
                 ax         = ax1     ,
@@ -200,14 +200,14 @@ ax1.annotate('{:,.0f}'.format(BR['total_cases'].sort_values(ascending=False).ilo
                 fontsize  =    13   ,
                 fontweight='semibold')
 ax1.set_title('COVID-19: Cases in Brazil', fontsize=15, fontweight='bold')
-ax1.yaxis.set_major_formatter(ticker.StrMethodFormatter('{x:,.0f}'))
 ax1.grid(linestyle=':', linewidth=1, color='#DCDCDC', mouseover=True)
 ax1.tick_params(axis  ='both',
                 which ='both',
                 left  = False,
                 bottom= False)
-ax1.set_yticks([0, 5000000, 10000000, 15000000, 20000000, 25000000, 30000000, 35000000], minor=False)
-# ax1.xaxis.set_major_formatter(mdates.DateFormatter('%Y\n%b'))
+ax1.set_yticks([0, 5e6, 1e7, 1.5e7, 2e7, 2.5e7, 3e7, 3.5e7], minor=False)
+ax1.yaxis.set_major_formatter(ticker.StrMethodFormatter('{x:,.0f}'))
+# ax1.xaxis.set_major_formatter(mdates.DateFormatter     ('%Y\n%b'))
 # ax1.xaxis.set_tick_params(rotation=0)
 ax1.set(xlabel=None)
 ax1.spines[['top','right','left','bottom']].set_visible(False)
@@ -228,14 +228,14 @@ ax2.annotate('{:,.0f}'.format(BR['total_deaths'].sort_values(ascending=False).il
                 fontsize  =    13   ,
                 fontweight='semibold')
 ax2.set_title('COVID-19: Deaths in Brazil', fontsize=15, fontweight='bold')
-ax2.yaxis.set_major_formatter(ticker.StrMethodFormatter('{x:,.0f}'))
 ax2.grid(linestyle=':', linewidth=1, color='#DCDCDC', mouseover=True)
 ax2.tick_params(axis  ='both',
                 which ='both',
                 left  = False,
                 bottom= False)
-ax2.set_yticks([0,100000 , 200000  , 300000  , 400000  , 500000  , 600000 ],            minor=False)
-# ax2.xaxis.set_major_formatter(mdates.DateFormatter('%Y\n%b'))
+ax2.set_yticks([0,      1e5,   2e5, 3e5,   4e5, 5e5,   6e5], minor=False)
+ax2.yaxis.set_major_formatter(ticker.StrMethodFormatter('{x:,.0f}'))
+# ax2.xaxis.set_major_formatter(mdates.DateFormatter     ('%Y\n%b'))
 # ax2.xaxis.set_tick_params(rotation=360)
 ax2.set(xlabel=None)
 ax2.spines[['top','right','left','bottom']].set_visible(False)
