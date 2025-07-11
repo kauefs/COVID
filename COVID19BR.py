@@ -9,19 +9,19 @@ import matplotlib.dates    as mdates
 import    seaborn          as sns
 import   datetime
 # Configurations:
-pd.options.plotting.matplotlib.register_converters = True
-pd.options.display.max_columns         =             None
-plt.rcParams[  'figure.autolayout']    =             True
+pd.options.plotting.matplotlib.register_converters=True
+pd.options.display.max_columns         =           None
+plt.rcParams[  'figure.autolayout']    =           True
 plt.rcParams[    'font.family']        =                                        'sans-serif'
 sns.set_theme(context='notebook', style='whitegrid', palette='colorblind', font='sans-serif', font_scale=1.15, color_codes=True, rc={'grid.color':'1','grid.linestyle':':'})
 st.set_page_config(page_title='COVID19BR', page_icon='😷', layout='wide', initial_sidebar_state='collapsed')
 # DATA:
-DATA     = 'https://covid.ourworldindata.org/data/owid-covid-data.csv'
+DATA     ='https://covid.ourworldindata.org/data/owid-covid-data.csv'
 @st.cache_data
-def LoadData():
+def LoadData( ):
     data =pd.read_csv(DATA, parse_dates=['date'])
    # Selecting Columns:
-    df   =data[ [ 'date',
+    df   =data[  ['date',
                   'location',
                   'new_cases',
                   'new_deaths',
@@ -29,7 +29,7 @@ def LoadData():
                   'new_cases_smoothed',
                   'new_deaths_smoothed',
                   'new_vaccinations_smoothed',
-                  'total_cases',
+                  'total_cases' ,
                   'total_deaths',
                   'total_vaccinations']].copy( )
     df.set_index ('date',inplace=True)
@@ -50,11 +50,11 @@ st.sidebar.header   ('COVID-19 in Brazil' )
 st.sidebar.subheader('Data Analysis'      )
 st.sidebar.divider  (                     )
 st.sidebar.markdown ('''Source:    [Our World in Data](https://covid.ourworldindata.org/)''')
-st.sidebar.write    ('OWID daily reports from {} to {}'.format(RAW.index.min(), RAW.index.max()))
+st.sidebar.write    ('OWID daily reports from {} to {}'.format(RAW.index.min( ), RAW.index.max( )))
 st.sidebar.markdown ('''Reference: [Data Cleaning Techniques in Python: the Ultimate Guide](https://www.justintodata.com/data-cleaning-techniques-python-guide/)''')
 st.sidebar.divider  (                       )
 st.sidebar.markdown ('''
-![2023.11.23](  https://img.shields.io/badge/2023.11.23-000000)
+![2023.11.23   ](https://img.shields.io/badge/2023.11.23-000000)
 
 [![License     ](https://img.shields.io/badge/Apache--2.0-D22128?&logo=apache&logoColor=CB2138&label=License&labelColor=6D6E71)](https://www.apache.org/licenses/LICENSE-2.0)
 
@@ -89,9 +89,9 @@ fig,ax = plt.subplots(figsize=(12,6), tight_layout=True)
 sns.barplot(x='location',   y='total_deaths', data=top, ax=ax, hue='location', palette='autumn', saturation=.75, legend=False)
 ax.set_title('COVID-19: Top 5 Countries with Most Deaths', fontsize=20, fontweight='bold')
 for spine in ['top','right','left','bottom']:ax.spines[spine].set_visible(False)
-plt.gca().axes.get_yaxis().set_visible(False)
-plt.gca().axes.get_xaxis().set_visible(True)
-for tick in ax.get_xticklabels():
+plt.gca( ).axes.get_yaxis( ).set_visible(False)
+plt.gca( ).axes.get_xaxis( ).set_visible(True)
+for tick in ax.get_xticklabels( ):
     tick.set_fontweight('semibold')
     tick.set_fontsize    (15)
 plt.tick_params(axis  = 'both',
@@ -239,12 +239,12 @@ ax2.yaxis.set_major_formatter(ticker.StrMethodFormatter('{x:,.0f}'))
 # ax2.xaxis.set_tick_params(rotation=360)
 ax2.set(xlabel=None)
 ax2.spines[['top','right','left','bottom']].set_visible(False)
-st.pyplot(fig)
+st.pyplot  (fig)
 st.markdown('''
 Brazil has always had a history of vaccinations with a National Immunization Program efficient and effective,
 famous for the eradication of polio for which the vaccination campaign _Zé Gotinha_ ('Droplet Joe') mascot was created in 1986 and became a symbol in saving lives.
             ''')
-with st.container():
+with st.container( ):
     Cols      =  st.columns(3)
     with Cols[0]:st.empty  ( )
     with Cols[1]:st.image('https://www.gov.br/saude/pt-br/campanhas-da-saude/2023/vacinacao/ze-gotinha/ze-gotinha/@@govbr.institucional.banner/f0ed8b09-fbd2-47b6-b441-d54c6fa4a87b/@@images/201a5721-4a35-4010-a373-c3e89f3399b2.gif', width=250)
@@ -294,11 +294,11 @@ ax.tick_params(axis   ='both',
                 bottom= False)
 ax.set(xlabel=None)
 ax.spines[['top','right','left','bottom']].set_visible(False)
-ax.legend(loc='best', fontsize=13   )
-plt.gca().set_ylim(     bottom=10**0)
-plt.gca().set_xlim(       left=None )
+ax.legend(loc='best', fontsize=13, frameon=False)
+plt.gca( ).set_ylim(    bottom=10**0)
+plt.gca( ).set_xlim(      left=None )
 plt.yscale ('log')
-st.pyplot     (fig)
+st.pyplot   (fig)
 
 d  =  BR.index[BR[      'new_deaths_smoothed']!=0.][-1].strftime('%d %b %Y')
 c  =  BR.index[BR[       'new_cases_smoothed']!=0.][-1].strftime('%d %b %Y')
