@@ -62,7 +62,7 @@ st.sidebar.markdown('''
 [![LinkedIn    ](https://img.shields.io/badge/in-0077B5?logo=linkedin&logoColor=FFFFFF)](https://www.linkedin.com/in/kauefs/)
 [![Python      ](https://img.shields.io/badge/3-646464?logo=python&logoColor=FFDE57&labelColor=4584B6)](https://www.python.org/)
 
-[![ƊⱭȾɅViƧi🧿Ƞ](https://img.shields.io/badge/ƊⱭȾɅViƧi🧿Ƞ&trade;-0065FF?style=plastic&logoColor=0065FF&label=&copy;2024&labelColor=0065FF)](https://datavision.one/)
+[![ƊⱭȾɅViƧi🧿Ƞ](https://img.shields.io/badge/ƊⱭȾɅViƧi🧿Ƞ&trade;-0065FF?style=plastic&logoColor=0065FF&label=&copy;2025&labelColor=0065FF)](https://datavision.one/)
                     ''')
 # MAIN:
 st.divider  (                    )
@@ -119,7 +119,7 @@ if table1.checkbox('DataFrame 1', value=False):st.write(FilteredDF1)
 st.markdown('''
             ''')
 st.markdown(f'''Latest entries for **{FilteredLoc1}**:''')
-AA=df.loc  [df.location          == FilteredLoc1].copy( )
+AA=df.loc  [df['country'                  ]== FilteredLoc1].copy( )
 C1=         AA['total_cases'              ].sort_values(ascending=False)[0]
 D1=         AA['total_deaths'             ].sort_values(ascending=False)[0]
 d1=AA.index[AA['new_deaths_smoothed'      ]!=0.0][-1].strftime('%d %b %Y')
