@@ -13,15 +13,15 @@ st.set_page_config(page_title='COVID19', page_icon='😷', layout='wide', initia
 DATA     ='https://catalog.ourworldindata.org/garden/covid/latest/compact/compact.csv' # 'https://covid.ourworldindata.org/data/owid-covid-data.csv'
 @st.cache_data
 def LoadData( ):
-    data = pd.read_csv(DATA, index_col=0)
+    data = pd.read_csv(DATA, index_col=1)
 # Selecting Columns:
     X    = data[['date',
-                 'location',
+                 'country',
                  'total_cases',
                  'total_deaths',
                  'new_cases_smoothed',
                  'new_deaths_smoothed',
-                 'new_vaccinations_smoothed']].copy()
+                 'new_vaccinations_smoothed']].copy( )
     X.reset_index(inplace=True)
     X['date']=pd.to_datetime(X['date'], format='%Y-%m-%d')
     X.set_index('date', inplace=True)
@@ -35,17 +35,17 @@ st.sidebar.title    ('COVID-19'           )
 st.sidebar.header   ('Data Analysis'      )
 st.sidebar.subheader('Comparisson Charts' )
 st.sidebar.divider  (                     )
-Location1    = df['location'].sort_values(ascending=True).unique( )
-FilteredLoc1 = st.sidebar.selectbox('Location 1:', Location1, index=241)
-SideBarInfo1 = st.sidebar.empty( )
-table1       = st.sidebar.empty( )
-FilteredDF1  = df[df['location'].str.contains(FilteredLoc1)]
+Location1   =df['country'].sort_values(ascending=True).unique( )
+FilteredLoc1=st.sidebar.selectbox('Location 1:', Location1, index=241)
+SideBarInfo1=st.sidebar.empty( )
+table1      =st.sidebar.empty( )
+FilteredDF1 =df[df['country'].str.contains  (FilteredLoc1)]
 SideBarInfo1.info('{} Entries for {}'.format(FilteredDF1.shape[0], FilteredLoc1))
-Location2    = df['location'].sort_values(ascending=True).unique( )
-FilteredLoc2 = st.sidebar.selectbox('Location 2:', Location2, index=128)
-SideBarInfo2 = st.sidebar.empty( )
-table2       = st.sidebar.empty( )
-FilteredDF2  = df[df['location'].str.contains(FilteredLoc2)]
+Location2   =df['country'].sort_values(ascending=True).unique( )
+FilteredLoc2=st.sidebar.selectbox('Location 2:', Location2, index=128)
+SideBarInfo2=st.sidebar.empty( )
+table2      =st.sidebar.empty( )
+FilteredDF2 =df[df['country'].str.contains     (FilteredLoc2)]
 SideBarInfo2.success('{} Entries for {}'.format(FilteredDF2.shape[0], FilteredLoc2))
 st.sidebar.divider (   )
 st.sidebar.markdown('''Source:    [Our World in Data](https://covid.ourworldindata.org/)''')
