@@ -10,7 +10,7 @@ import seaborn             as   sns
 from   datetime          import date, datetime, timedelta
 st.set_page_config(page_title='COVID19', page_icon='😷', layout='wide', initial_sidebar_state='expanded')
 # DATA:
-DATA     ='https://covid.ourworldindata.org/data/owid-covid-data.csv'
+DATA     ='https://catalog.ourworldindata.org/garden/covid/latest/compact/compact.csv' # 'https://covid.ourworldindata.org/data/owid-covid-data.csv'
 @st.cache_data
 def LoadData( ):
     data = pd.read_csv(DATA, index_col=0)
