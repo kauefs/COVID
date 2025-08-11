@@ -132,9 +132,9 @@ st.write('  – Lastest death:          {}'.format(d1))
 st.write('• Lastest vaccination:      {}'.format(v1))
 # Chart2:
 st.markdown(f'''➡️ {'**{}**'.format(FilteredDF2.shape[0])} Entries for **{FilteredLoc2}**:'''
-             'from {} to {}'.format(df.loc[df.location==FilteredLoc2].index.min( ), df.loc[df.location==FilteredLoc2].index.max( )))
+             'from {} to {}'.format(df.loc[df['country']==FilteredLoc2].index.min( ), df.loc[df['country']==FilteredLoc2].index.max( )))
 fig,ax= plt.subplots(figsize=(12,8)  , tight_layout=True)
-df.loc[df.location== FilteredLoc2,'new_vaccinations_smoothed'].plot(
+df.loc[df['country']== FilteredLoc2,'new_vaccinations_smoothed'].plot(
                 kind       ='line'   ,
                 label      ='Vaccinations',
                 ax         = ax      ,
@@ -143,7 +143,7 @@ df.loc[df.location== FilteredLoc2,'new_vaccinations_smoothed'].plot(
                 color      ='#4CAF50',
                 linewidth  ='2.25'   ,
                 ms=.01, mec='#4CAF50',   mfc='#4CAF50')
-df.loc[df.location== FilteredLoc2,'new_cases_smoothed'].plot(
+df.loc[df['country']== FilteredLoc2,'new_cases_smoothed'].plot(
                 kind       ='line'   ,
                 label      ='Cases'  ,
                 ax         = ax      ,
@@ -152,7 +152,7 @@ df.loc[df.location== FilteredLoc2,'new_cases_smoothed'].plot(
                 color      ='#FF8C00',
                 linewidth  ='2.25'   ,
                 ms=.01, mec='#FF8C00',   mfc='#FF8C00')
-df.loc[df.location== FilteredLoc2,'new_deaths_smoothed'].plot(
+df.loc[df['country']== FilteredLoc2,'new_deaths_smoothed'].plot(
                 kind       ='line'   ,
                 label      ='Deaths' ,
                 ax         = ax      ,
@@ -178,7 +178,7 @@ plt.yscale  ('log')
 st.pyplot    (fig)
 if table2.checkbox('DataFrame 2', value=False):st.write(FilteredDF2)
 st.markdown(f'''Latest entries for **{FilteredLoc2}**:''')
-aa = df.loc[df.location            == FilteredLoc2].copy( )
+aa = df.loc[df['country'                  ]==FilteredLoc2].copy( )
 C2=         aa['total_cases'              ].sort_values(ascending=False)[0]
 D2=         aa['total_deaths'             ].sort_values(ascending=False)[0]
 d2=aa.index[aa['new_deaths_smoothed'      ]!=0.0][-1].strftime('%d %b %Y')
