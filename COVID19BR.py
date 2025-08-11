@@ -16,13 +16,13 @@ plt.rcParams[    'font.family']        =                                        
 sns.set_theme(context='notebook', style='whitegrid', palette='colorblind', font='sans-serif', font_scale=1.15, color_codes=True, rc={'grid.color':'1','grid.linestyle':':'})
 st.set_page_config(page_title='COVID19BR', page_icon='😷', layout='wide', initial_sidebar_state='collapsed')
 # DATA:
-DATA     ='https://covid.ourworldindata.org/data/owid-covid-data.csv'
+DATA     ='https://catalog.ourworldindata.org/garden/covid/latest/compact/compact.csv' # 'https://covid.ourworldindata.org/data/owid-covid-data.csv'
 @st.cache_data
 def LoadData( ):
     data =pd.read_csv(DATA, parse_dates=['date'])
    # Selecting Columns:
     df   =data[  ['date',
-                  'location',
+                  'country',
                   'new_cases',
                   'new_deaths',
                   'new_vaccinations',
@@ -49,7 +49,7 @@ st.sidebar.divider  (                     )
 st.sidebar.header   ('COVID-19 in Brazil' )
 st.sidebar.subheader('Data Analysis'      )
 st.sidebar.divider  (                     )
-st.sidebar.markdown ('''Source:    [Our World in Data](https://covid.ourworldindata.org/)''')
+st.sidebar.markdown ('''Source:    [Our World in Data](https://github.com/owid/covid-19-data)''')
 st.sidebar.write    ('OWID daily reports from {} to {}'.format(RAW.index.min( ), RAW.index.max( )))
 st.sidebar.markdown ('''Reference: [Data Cleaning Techniques in Python: the Ultimate Guide](https://www.justintodata.com/data-cleaning-techniques-python-guide/)''')
 st.sidebar.divider  (                       )
@@ -83,10 +83,10 @@ diminishing the disease and discrediting vaccines.
 st.subheader('Chart 1: Top 5 Countries with most Deaths')
 filter = OWID.index[OWID['total_deaths']!=0.][-1]
 deaths = OWID.loc[filter].sort_values(by ='total_deaths', ascending=False)
-rows   = deaths.loc[(deaths['location'] =='United States')|(deaths['location']=='Brazil')|(deaths['location']=='India')|(deaths['location']=='Russia')|(deaths['location']=='Mexico')]
+rows   = deaths.loc[(deaths['country']  =='United States')|(deaths['country']=='Brazil')|(deaths['country']=='India')|(deaths['country']=='Russia')|(deaths['country']=='Mexico')]
 top    =             rows.sort_values(by ='total_deaths', ascending=False)
 fig,ax = plt.subplots(figsize=(12,6), tight_layout=True)
-sns.barplot(x='location',   y='total_deaths', data=top, ax=ax, hue='location', palette='autumn', saturation=.75, legend=False)
+sns.barplot(x='country',   y='total_deaths', data=top, ax=ax, hue='country', palette='autumn', saturation=.75, legend=False)
 ax.set_title('COVID-19: Top 5 Countries with Most Deaths', fontsize=20, fontweight='bold')
 for spine in ['top','right','left','bottom']:ax.spines[spine].set_visible(False)
 plt.gca( ).axes.get_yaxis( ).set_visible(False)
@@ -108,8 +108,8 @@ only behind the United States. A death toll rate that was almost twice the world
             ''')
 
 st.subheader('Chart 2: Linear Evolution for COVID-19 WorldWide (Cases & Deaths)')
-fig, (ax1, ax2) = plt.subplots(nrows=2, ncols=1, figsize=(12,6), tight_layout=True)#12,8
-RAW.loc[RAW.location =='World','total_cases'].sort_values(ascending=False).plot(
+fig,(ax1,ax2)=plt.subplots(nrows=2, ncols=1, figsize=(12,6), tight_layout=True)
+RAW.loc[RAW.country=='World','total_cases'].sort_values(ascending=False).plot(
                 kind       ='line'   ,
                 ax         = ax1     ,
                 marker     ='o'      ,
@@ -126,7 +126,7 @@ ax1.annotate('{:,.0f}'.format(RAW['total_cases'].sort_values(ascending=False).il
                 fontsize  =    13   ,
                 fontweight='semibold')
 ax1.set_title('COVID-19: WorldWide Cases', fontsize=15, fontweight='bold')
-ax1.grid(linestyle=':', linewidth=1, color='#DCDCDC', mouseover=True)
+ax1.grid(linestyle=':', linewidth=1, color='#DCDCDC'  , mouseover = True )
 ax1.tick_params(axis  ='both',
                 which ='both',
                 left  = False,
@@ -136,8 +136,8 @@ ax1.set_yticks([0, 1e8, 2e8, 3e8, 4e8, 5e8, 6e8], minor=False)
 # ax1.xaxis.set_major_formatter(mdates.DateFormatter     ('%Y\n%b'))
 # ax1.xaxis.set_tick_params(rotation=0)
 ax1.set(xlabel=None)
-ax1.spines[['top','right','left','bottom']].set_visible(False)
-RAW.loc[RAW.location  =='World','total_deaths'].sort_values(ascending=False).plot(
+ax1.spines[['top','right','left','bottom'] ].set_visible(          False)
+RAW.loc[RAW.country=='World','total_deaths'].sort_values(ascending=False).plot(
                 kind       ='line'   ,
                 ax         = ax2     ,
                 marker     ='o'      ,
@@ -154,7 +154,7 @@ ax2.annotate('{:,.0f}'.format(RAW['total_deaths'].sort_values(ascending=False).i
                 fontsize  =    13   ,
                 fontweight='semibold')
 ax2.set_title('COVID-19: WorldWide Deaths', fontsize=15, fontweight='bold')
-ax2.grid(linestyle=':', linewidth=1, color='#DCDCDC', mouseover=True)
+ax2.grid(linestyle=':', linewidth=1,  color='#DCDCDC'  , mouseover = True )
 ax2.tick_params(axis  ='both',
                 which ='both',
                 left  = False,
@@ -167,7 +167,7 @@ ax2.set(xlabel=None)
 ax2.spines[['top','right','left','bottom']].set_visible(False)
 st.pyplot(fig)
 
-W =OWID.loc[OWID[       'location']=='World'].copy (  )
+W =OWID.loc[OWID[        'country']=='World'].copy (  )
 D =   W.index[W [      'new_deaths_smoothed']!=0.0][-1].strftime('%d %b %Y')
 C =   W.index[W [       'new_cases_smoothed']!=0.0][-1].strftime('%d %b %Y')
 V =   W.index[W ['new_vaccinations_smoothed']!=0.0][-1].strftime('%d %b %Y')
@@ -181,9 +181,9 @@ About 10% of those deaths happened in Brazil!
             ''')
 
 st.subheader('Chart 3: Linear Evolution for COVID-19 in Brazil (Cases & Deaths)')
-BR = OWID.loc[OWID.location =='Brazil'].copy()
-fig, (ax1, ax2) = plt.subplots(nrows=2, ncols=1, figsize=(12,6),  tight_layout=True)#12,8
-OWID.loc[OWID.location == 'Brazil','total_cases'].sort_values(ascending=False).plot(
+BR = OWID.loc[OWID.country=='Brazil'].copy( )
+fig,(ax1 ,ax2)=plt.subplots(nrows=2, ncols=1, figsize=(12,6), tight_layout= True)
+OWID.loc[OWID.country=='Brazil','total_cases'].sort_values      (ascending=False).plot(
                 kind       ='line'   ,
                 ax         = ax1     ,
                 marker     ='o'      ,
@@ -200,18 +200,18 @@ ax1.annotate('{:,.0f}'.format(BR['total_cases'].sort_values(ascending=False).ilo
                 fontsize  =    13   ,
                 fontweight='semibold')
 ax1.set_title('COVID-19: Cases in Brazil', fontsize=15, fontweight='bold')
-ax1.grid(linestyle=':', linewidth=1, color='#DCDCDC', mouseover=True)
+ax1.grid(linestyle=':', linewidth=1, color='#DCDCDC'  , mouseover = True )
 ax1.tick_params(axis  ='both',
                 which ='both',
                 left  = False,
                 bottom= False)
-ax1.set_yticks([0, 5e6, 1e7, 1.5e7, 2e7, 2.5e7, 3e7, 3.5e7], minor=False)
+ax1.set_yticks([0, 5e6, 1e7, 1.5e7, 2e7, 2.5e7, 3e7, 3.5e7],    minor=False)
 ax1.yaxis.set_major_formatter(ticker.StrMethodFormatter('{x:,.0f}'))
 # ax1.xaxis.set_major_formatter(mdates.DateFormatter     ('%Y\n%b'))
 # ax1.xaxis.set_tick_params(rotation=0)
 ax1.set(xlabel=None)
-ax1.spines[['top','right','left','bottom']].set_visible(False)
-OWID.loc[OWID.location == 'Brazil','total_deaths'].sort_values(ascending=False).plot(
+ax1.spines[['top','right','left','bottom']    ].set_visible          (False)
+OWID.loc[OWID.country=='Brazil','total_deaths'].sort_values(ascending=False).plot(
                 kind       ='line'   ,
                 ax         = ax2     ,
                 marker     ='o'      ,
@@ -235,8 +235,8 @@ ax2.tick_params(axis  ='both',
                 bottom= False)
 ax2.set_yticks([0,      1e5,   2e5, 3e5,   4e5, 5e5,   6e5], minor=False)
 ax2.yaxis.set_major_formatter(ticker.StrMethodFormatter('{x:,.0f}'))
-# ax2.xaxis.set_major_formatter(mdates.DateFormatter     ('%Y\n%b'))
-# ax2.xaxis.set_tick_params(rotation=360)
+#ax2.xaxis.set_major_formatter(mdates.DateFormatter     ('%Y\n%b'))
+#ax2.xaxis.set_tick_params(rotation=360)
 ax2.set(xlabel=None)
 ax2.spines[['top','right','left','bottom']].set_visible(False)
 st.pyplot  (fig)
