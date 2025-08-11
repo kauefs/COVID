@@ -71,9 +71,9 @@ st.divider  (                    )
 st.subheader('Comparisson Charts')
 # Chart1:
 st.markdown(f'''➡️ {'**{}**'.format(FilteredDF1.shape[0])} Entries for **{FilteredLoc1}**:'''
-             'from {} to {}'.format(df.loc[df.location==FilteredLoc1].index.min( ), df.loc[df.location==FilteredLoc1].index.max( )))
+             'from {} to {}'.format(df.loc[df['country']==FilteredLoc1].index.min( ), df.loc[df['country']==FilteredLoc1].index.max( )))
 fig,ax= plt.subplots(figsize=(12,8)  , tight_layout=True)
-df.loc[df.location== FilteredLoc1,'new_vaccinations_smoothed'].plot(
+df.loc[df['country']== FilteredLoc1,'new_vaccinations_smoothed'].plot(
                 kind       ='line'   ,
                 label      ='Vaccinations',
                 ax         = ax      ,
@@ -82,7 +82,7 @@ df.loc[df.location== FilteredLoc1,'new_vaccinations_smoothed'].plot(
                 color      ='#4CAF50',
                 linewidth  ='2.25'   ,
                 ms=.01, mec='#4CAF50',   mfc='#4CAF50')
-df.loc[df.location== FilteredLoc1,'new_cases_smoothed'].plot(
+df.loc[df['country']== FilteredLoc1,'new_cases_smoothed'].plot(
                 kind       ='line'   ,
                 label      ='Cases'  ,
                 ax         = ax      ,
@@ -91,7 +91,7 @@ df.loc[df.location== FilteredLoc1,'new_cases_smoothed'].plot(
                 color      ='#FF8C00',
                 linewidth  ='2.25'   ,
                 ms=.01, mec='#FF8C00',   mfc='#FF8C00')
-df.loc[df.location== FilteredLoc1,'new_deaths_smoothed'].plot(
+df.loc[df['country']== FilteredLoc1,'new_deaths_smoothed'].plot(
                 kind       ='line'   ,
                 label      ='Deaths' ,
                 ax         = ax      ,
