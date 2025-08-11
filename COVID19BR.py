@@ -175,13 +175,13 @@ st.write('• Last       death entry on the dataset for the World: {}'.format(D)
 st.write('• Last        case entry on the dataset for the World: {}'.format(C))
 st.write('• Last vaccination entry on the dataset for the World: {}'.format(V))
 
+BR = OWID.loc[OWID.country=='Brazil'].copy( )
 st.markdown('''
 The world has lost a population of about the size the one that lives in the metropolitan area of Rio de Janeiro.
-About 10% of those deaths happened in Brazil!
-            ''')
+About {}% of those deaths happened in Brazil!
+            '''.format(round(((BR['total_deaths'].sort_values(ascending=False).iloc[0])/(RAW['total_deaths'].sort_values(ascending=False).iloc[0]))*100)), 2)
 
 st.subheader('Chart 3: Linear Evolution for COVID-19 in Brazil (Cases & Deaths)')
-BR = OWID.loc[OWID.country=='Brazil'].copy( )
 fig,(ax1 ,ax2)=plt.subplots(nrows=2, ncols=1, figsize=(12,6), tight_layout= True)
 OWID.loc[OWID.country=='Brazil','total_cases'].sort_values      (ascending=False).plot(
                 kind       ='line'   ,
