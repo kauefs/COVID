@@ -9,8 +9,8 @@ import matplotlib.dates    as   mdates
 import seaborn             as   sns
 from   datetime          import date, datetime, timedelta
 st.set_page_config(page_title='COVID19', page_icon='😷', layout='wide', initial_sidebar_state='expanded')
-# DATA:
-DATA     ='https://catalog.ourworldindata.org/garden/covid/latest/compact/compact.csv' # 'https://covid.ourworldindata.org/data/owid-covid-data.csv'
+# DATA:     'https://covid.ourworldindata.org/data/owid-covid-data.csv'
+DATA     ='https://catalog.ourworldindata.org/garden/covid/latest/compact/compact.csv'
 @st.cache_data
 def LoadData( ):
     data = pd.read_csv(DATA) #, index_col=1)
@@ -109,8 +109,8 @@ ax.tick_params(axis   ='both',
 ax.xaxis.set_major_formatter(mdates.DateFormatter('%Y\n%b'))
 ax.xaxis.set_tick_params(rotation=0)
 ax.set(xlabel=None)
-ax.spines[['top','right','left','bottom']].set_visible(False)
-ax.legend(loc='upper left',  fontsize=15  ,    frameon=False)
+ax.spines[['top' ,  'right','left','bottom']].set_visible(False)
+ax.legend(loc='upper right', fontsize=15     ,    frameon=False)
 plt.gca( ).set_ylim(bottom=10**0)
 plt.rcParams['font.family']='sans-serif'
 plt.yscale  ('log')
@@ -170,8 +170,8 @@ ax.tick_params(axis   ='both',
 ax.xaxis.set_major_formatter(mdates.DateFormatter('%Y\n%b'))
 ax.xaxis.set_tick_params(rotation=0)
 ax.set(xlabel=None)
-ax.spines[['top','right','left','bottom']].set_visible(False)
-ax.legend(loc='upper left', fontsize=15   ,    frameon=False)
+ax.spines[['top' ,  'right','left','bottom']].set_visible(False)
+ax.legend(loc='upper right', fontsize=15     ,    frameon=False)
 plt.gca( ).set_ylim(bottom=10**0)
 plt.rcParams['font.family']='sans-serif'
 plt.yscale  ('log')
