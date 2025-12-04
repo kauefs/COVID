@@ -173,9 +173,9 @@ W =OWID.loc[OWID[        'country']=='World'].copy (  )
 D =   W.index[W [      'new_deaths_smoothed']!=0.0][-1].strftime('%d %b %Y')
 C =   W.index[W [       'new_cases_smoothed']!=0.0][-1].strftime('%d %b %Y')
 V =   W.index[W ['new_vaccinations_smoothed']!=0.0][-1].strftime('%d %b %Y')
-st.write('• Last       death entry on the dataset for the World: {}'.format(D))
-st.write('• Last        case entry on the dataset for the World: {}'.format(C))
-st.write('• Last vaccination entry on the dataset for the World: {}'.format(V))
+# st.write('• Last       death entry on the dataset for the World: {}'.format(D))
+# st.write('• Last        case entry on the dataset for the World: {}'.format(C))
+# st.write('• Last vaccination entry on the dataset for the World: {}'.format(V))
 
 BR = OWID.loc[OWID.country=='Brazil'].copy( )
 st.markdown('''
@@ -305,9 +305,9 @@ st.pyplot   (fig)
 d  =  BR.index[BR[      'new_deaths_smoothed']!=0.][-1].strftime('%d %b %Y')
 c  =  BR.index[BR[       'new_cases_smoothed']!=0.][-1].strftime('%d %b %Y')
 v  =  BR.index[BR['new_vaccinations_smoothed']!=0.][-1].strftime('%d %b %Y')
-st.write('• Last       death entry on the dataset for Brazil: {}'.format(d))
-st.write('• Last        case entry on the dataset for Brazil: {}'.format(c))
-st.write('• Last vaccination entry on the dataset for Brazil: {}'.format(v))
+# st.write('• Last       death entry on the dataset for Brazil: {}'.format(d))
+# st.write('• Last        case entry on the dataset for Brazil: {}'.format(c))
+# st.write('• Last vaccination entry on the dataset for Brazil: {}'.format(v))
 st.markdown('''
 Vaccinations have been ongoing but perhaps not reported anymore, as well as some cases.
 Deaths indeed seems to have, fortunantelly, pretty much ended. Nonetheless, has any lesson been learned at all? Is the world better equipped to deal with another pandemic?
