@@ -16,7 +16,9 @@ plt.rcParams[    'font.family']        =                                        
 sns.set_theme(context='notebook', style='whitegrid', palette='colorblind', font='sans-serif', font_scale=1.15, color_codes=True, rc={'grid.color':'1','grid.linestyle':':'})
 st.set_page_config(page_title='COVID19BR', page_icon='😷', layout='wide', initial_sidebar_state='collapsed')
 # DATA:
-DATA     ='https://github.com/owid/covid-19-data/raw/refs/heads/master/public/data/owid-covid-data-old.csv' # 'https://catalog.ourworldindata.org/garden/covid/latest/compact/compact.csv'
+#         'https://catalog.ourworldindata.org/garden/covid/latest/compact/compact.csv'
+DATA     ='https://github.com/owid/covid-19-data/raw/refs/heads/master/public/data/owid-covid-data-old.csv'
+#         'https://github.com/owid/covid-19-data/raw/refs/heads/master/public/data/jhu/COVID-19%20-%20Johns%20Hopkins%20University.csv'
 @st.cache_data
 def LoadData( ):
     data =pd.read_csv(DATA, parse_dates=['date'])
