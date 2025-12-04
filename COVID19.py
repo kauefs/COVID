@@ -120,7 +120,7 @@ st.pyplot    (fig)
 if table1.checkbox('DataFrame 1', value=False):st.write(FilteredDF1)
 st.markdown('''
             ''')
-st.markdown(f'''Latest entries for **{FilteredLoc1}**:''')
+st.markdown(f'''**{FilteredLoc1}**:''')
 AA=df.loc  [df['country'                  ]== FilteredLoc1].copy( )
 C1=         AA['total_cases'              ].sort_values(ascending=False)[0]
 D1=         AA['total_deaths'             ].sort_values(ascending=False)[0]
@@ -179,7 +179,7 @@ plt.rcParams['font.family']='sans-serif'
 plt.yscale  ('log')
 st.pyplot    (fig)
 if table2.checkbox('DataFrame 2', value=False):st.write(FilteredDF2)
-st.markdown(f'''Latest entries for **{FilteredLoc2}**:''')
+st.markdown(f'''**{FilteredLoc2}**:''')
 aa = df.loc[df['country'                  ]==FilteredLoc2].copy( )
 C2=         aa['total_cases'              ].sort_values(ascending=False)[0]
 D2=         aa['total_deaths'             ].sort_values(ascending=False)[0]
