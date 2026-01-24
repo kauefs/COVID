@@ -122,8 +122,8 @@ st.markdown('''
             ''')
 st.markdown(f'''**{FilteredLoc1}**:''')
 AA=df.loc  [df['country'                  ]== FilteredLoc1].copy( )
-C1=         AA['total_cases'              ].sort_values(ascending=False)[0]
-D1=         AA['total_deaths'             ].sort_values(ascending=False)[0]
+C1=         AA['total_cases'              ].sort_values(ascending=False).iloc[0]
+D1=         AA['total_deaths'             ].sort_values(ascending=False).iloc[0]
 d1=AA.index[AA['new_deaths_smoothed'      ]!=0.0][-1].strftime('%d %b %Y')
 c1=AA.index[AA['new_cases_smoothed'       ]!=0.0][-1].strftime('%d %b %Y')
 v1=AA.index[AA['new_vaccinations_smoothed']!=0.0][-1].strftime('%d %b %Y')
@@ -182,8 +182,8 @@ st.pyplot    (fig)
 if table2.checkbox('DataFrame 2', value=False):st.write(FilteredDF2)
 st.markdown(f'''**{FilteredLoc2}**:''')
 aa = df.loc[df['country'                  ]==FilteredLoc2].copy( )
-C2=         aa['total_cases'              ].sort_values(ascending=False)[0]
-D2=         aa['total_deaths'             ].sort_values(ascending=False)[0]
+C2=         aa['total_cases'              ].sort_values(ascending=False).iloc[0]
+D2=         aa['total_deaths'             ].sort_values(ascending=False).iloc[0]
 d2=aa.index[aa['new_deaths_smoothed'      ]!=0.0][-1].strftime('%d %b %Y')
 c2=aa.index[aa['new_cases_smoothed'       ]!=0.0][-1].strftime('%d %b %Y')
 v2=aa.index[aa['new_vaccinations_smoothed']!=0.0][-1].strftime('%d %b %Y')
