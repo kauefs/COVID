@@ -10,8 +10,8 @@ import seaborn             as   sns
 from   datetime          import date, datetime, timedelta
 st.set_page_config(page_title='COVID19', page_icon='😷', layout='wide', initial_sidebar_state='expanded')
 # DATA:
-#         'https://catalog.ourworldindata.org/garden/covid/latest/compact/compact.csv'
-DATA     ='https://github.com/owid/covid-19-data/raw/refs/heads/master/public/data/owid-covid-data-old.csv'
+#         'https://github.com/owid/covid-19-data/raw/refs/heads/master/public/data/owid-covid-data-old.csv'
+DATA     ='https://catalog.ourworldindata.org/garden/covid/latest/compact/compact.csv'
 #         'https://github.com/owid/covid-19-data/raw/refs/heads/master/public/data/jhu/COVID-19%20-%20Johns%20Hopkins%20University.csv'
 @st.cache_data
 def LoadData( ):
@@ -74,7 +74,7 @@ st.subheader('Comparisson Charts')
 # Chart1:
 st.markdown(f'''➡️ {'**{}**'.format(FilteredDF1.shape[0])} Entries for **{FilteredLoc1}**:'''
              'from {} to {}'.format(df.loc[df['country']==FilteredLoc1].index.min( ), df.loc[df['country']==FilteredLoc1].index.max( )))
-fig,ax= plt.subplots(figsize=(12,8)  , tight_layout=True)
+fig,ax=plt.subplots(figsize=(12,8)  , tight_layout=True)
 df.loc[df['country']== FilteredLoc1,'new_vaccinations_smoothed'].plot(
                 kind       ='line'   ,
                 label      ='Vaccinations',
@@ -127,15 +127,15 @@ D1=         AA['total_deaths'             ].sort_values(ascending=False)[0]
 d1=AA.index[AA['new_deaths_smoothed'      ]!=0.0][-1].strftime('%d %b %Y')
 c1=AA.index[AA['new_cases_smoothed'       ]!=0.0][-1].strftime('%d %b %Y')
 v1=AA.index[AA['new_vaccinations_smoothed']!=0.0][-1].strftime('%d %b %Y')
-st.write('• Total   cases:       {:,.0f}'.format(C1))
+st.write('• Total   cases:       {:,.0f}' .format(C1))
 # st.write('  – Lastest  case:          {}'.format(c1))
-st.write('• Total  deaths:       {:,.0f}'.format(D1))
+st.write('• Total  deaths:       {:,.0f}' .format(D1))
 # st.write('  – Lastest death:          {}'.format(d1))
 # st.write('• Lastest vaccination:      {}'.format(v1))
 # Chart2:
 st.markdown(f'''➡️ {'**{}**'.format(FilteredDF2.shape[0])} Entries for **{FilteredLoc2}**:'''
              'from {} to {}'.format(df.loc[df['country']==FilteredLoc2].index.min( ), df.loc[df['country']==FilteredLoc2].index.max( )))
-fig,ax= plt.subplots(figsize=(12,8)  , tight_layout=True)
+fig,ax=plt.subplots(figsize=(12,8)  , tight_layout=True)
 df.loc[df['country']== FilteredLoc2,'new_vaccinations_smoothed'].plot(
                 kind       ='line'   ,
                 label      ='Vaccinations',
