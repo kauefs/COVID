@@ -132,6 +132,7 @@ st.write('• Total   cases:       {:,.0f}' .format(C1))
 st.write('• Total  deaths:       {:,.0f}' .format(D1))
 # st.write('  – Lastest death:          {}'.format(d1))
 # st.write('• Lastest vaccination:      {}'.format(v1))
+st.divider( )
 # Chart2:
 st.markdown(f'''➡️ {'**{}**'.format(FilteredDF2.shape[0])} Entries for **{FilteredLoc2}**:'''
              'from {} to {}'.format(df.loc[df['country']==FilteredLoc2].index.min( ), df.loc[df['country']==FilteredLoc2].index.max( )))
