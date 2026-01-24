@@ -16,8 +16,8 @@ plt.rcParams[    'font.family']        =                                        
 sns.set_theme(context='notebook', style='whitegrid', palette='colorblind', font='sans-serif', font_scale=1.15, color_codes=True, rc={'grid.color':'1','grid.linestyle':':'})
 st.set_page_config(page_title='COVID19BR', page_icon='😷', layout='wide', initial_sidebar_state='collapsed')
 # DATA:
-#         'https://catalog.ourworldindata.org/garden/covid/latest/compact/compact.csv'
-DATA     ='https://github.com/owid/covid-19-data/raw/refs/heads/master/public/data/owid-covid-data-old.csv'
+#         'https://github.com/owid/covid-19-data/raw/refs/heads/master/public/data/owid-covid-data-old.csv'
+DATA     ='https://catalog.ourworldindata.org/garden/covid/latest/compact/compact.csv'
 #         'https://github.com/owid/covid-19-data/raw/refs/heads/master/public/data/jhu/COVID-19%20-%20Johns%20Hopkins%20University.csv'
 @st.cache_data
 def LoadData( ):
@@ -230,7 +230,7 @@ ax2.annotate('{:,.0f}'.format(BR['total_deaths'].sort_values(ascending=False).il
                 fontsize  =    13   ,
                 fontweight='semibold')
 ax2.set_title('COVID-19: Deaths in Brazil', fontsize=15, fontweight='bold')
-ax2.grid(linestyle=':', linewidth=1, color='#DCDCDC', mouseover=True)
+ax2.grid(linestyle=':', linewidth=1, color='#DCDCDC'   , mouseover = True )
 ax2.tick_params(axis  ='both',
                 which ='both',
                 left  = False,
