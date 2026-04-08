@@ -251,7 +251,7 @@ famous for the eradication of polio for which the vaccination campaign _Zé Goti
 with st.container( ):
     Cols      =  st.columns(3)
     with Cols[0]:st.empty  ( )
-    with Cols[1]:st.image('https://www.gov.br/saude/pt-br/campanhas-da-saude/2023/vacinacao/ze-gotinha/ze-gotinha/@@govbr.institucional.banner/f0ed8b09-fbd2-47b6-b441-d54c6fa4a87b/@@images/201a5721-4a35-4010-a373-c3e89f3399b2.gif', width=250)
+    with Cols[1]:st.image('https://github.com/kauefs/COVID/raw/%40/img/ZeGotinha.gif', width=250) # https://www.gov.br/saude/pt-br/campanhas-da-saude/2023/vacinacao/ze-gotinha/ze-gotinha/@@govbr.institucional.banner/f0ed8b09-fbd2-47b6-b441-d54c6fa4a87b/@@images/201a5721-4a35-4010-a373-c3e89f3399b2.gif
     with Cols[2]:st.empty  ( )
 st.markdown('''
 The following chart makes it cristal clear how the vaccines were very effective in fighting the disease,
