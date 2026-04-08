@@ -19,14 +19,14 @@ st.set_page_config(page_title='COVID19BR', page_icon='😷', layout='wide', init
 #         'https://catalog.ourworldindata.org/garden/covid/latest/compact/compact.csv'
 #         'https://github.com/owid/covid-19-data/raw/refs/heads/master/public/data/owid-covid-data-old.csv'
 #         'https://github.com/owid/covid-19-data/raw/refs/heads/master/public/data/jhu/COVID-19%20-%20Johns%20Hopkins%20University.csv'
-DATA     ='https://catalog.ourworldindata.org/garden/covid/latest/compact/compact.csv'
+DATA     ='https://github.com/owid/covid-19-data/raw/refs/heads/master/public/data/owid-covid-data.csv'
 
 @st.cache_data
 def LoadData( ):
     data =pd.read_csv(DATA, parse_dates=['date'])
    # Selecting Columns:
     df   =data[  ['date',
-                  'country',
+                  'location',
                   'new_cases',
                   'new_deaths',
                   'new_vaccinations',
@@ -47,7 +47,7 @@ X[num]    =X[num].fillna(0)
 nan       =X.select_dtypes(exclude=['number']).columns
 X[nan]    =X[nan].fillna('np.nan')
 OWID      =X.copy( )
-BR        =OWID.loc[OWID.country=='Brazil'].copy( )
+BR        =OWID.loc[OWID['location']=='Brazil'].copy( )
 # SIDE:
 st.sidebar.title    ('ƊⱭȾɅViƧi🧿Ƞ&trade;')
 st.sidebar.divider  (                     )
@@ -88,10 +88,10 @@ diminishing the disease and discrediting vaccines.
 st.subheader('Chart 1: Top 5 Countries with most Deaths')
 filter = OWID.index[OWID['total_deaths']!=0.][-1]
 deaths = OWID.loc[filter].sort_values(by ='total_deaths', ascending=False)
-rows   = deaths.loc[(deaths['country']  =='United States')|(deaths['country']=='Brazil')|(deaths['country']=='India')|(deaths['country']=='Russia')|(deaths['country']=='Mexico')]
+rows   = deaths.loc[(deaths['location']  =='United States')|(deaths['location']=='Brazil')|(deaths['location']=='India')|(deaths['location']=='Russia')|(deaths['location']=='Mexico')]
 top    =             rows.sort_values(by ='total_deaths', ascending=False)
 fig,ax = plt.subplots(figsize=(12,6), tight_layout=True)
-sns.barplot(x='country',   y='total_deaths', data=top, ax=ax, hue='country', palette='autumn', saturation=.75, legend=False)
+sns.barplot(x='location',   y='total_deaths', data=top, ax=ax, hue='location', palette='autumn', saturation=.75, legend=False)
 ax.set_title('COVID-19: Top 5 Countries with Most Deaths', fontsize=20, fontweight='bold')
 for spine in ['top','right','left','bottom']:ax.spines[spine].set_visible(False)
 plt.gca( ).axes.get_yaxis( ).set_visible(False)
@@ -114,7 +114,7 @@ only behind the United States. A death toll rate that was almost twice the world
 
 st.subheader('Chart 2: Linear Evolution for COVID-19 WorldWide (Cases & Deaths)')
 fig,(ax1,ax2)=plt.subplots(nrows=2, ncols=1, figsize=(12,6), tight_layout=True)
-RAW.loc[RAW.country=='World','total_cases'].sort_values(ascending=False).plot(
+RAW.loc[RAW['location']=='World','total_cases'].sort_values(ascending=False).plot(
                 kind       ='line'   ,
                 ax         = ax1     ,
                 marker     ='o'      ,
@@ -142,7 +142,7 @@ ax1.set_yticks([0, 1e8, 2e8, 3e8, 4e8, 5e8, 6e8], minor=False)
 # ax1.xaxis.set_tick_params(rotation=0)
 ax1.set(xlabel=None)
 ax1.spines[['top','right','left','bottom'] ].set_visible(          False)
-RAW.loc[RAW.country=='World','total_deaths'].sort_values(ascending=False).plot(
+RAW.loc[RAW['location']=='World','total_deaths'].sort_values(ascending=False).plot(
                 kind       ='line'   ,
                 ax         = ax2     ,
                 marker     ='o'      ,
@@ -172,7 +172,7 @@ ax2.set(xlabel=None)
 ax2.spines[['top','right','left','bottom']].set_visible(False)
 st.pyplot(fig)
 
-W =OWID.loc[OWID[        'country']=='World'].copy (  )
+W =OWID.loc[OWID[       'location']=='World'].copy (  )
 D =   W.index[W [      'new_deaths_smoothed']!=0.0][-1].strftime('%d %b %Y')
 C =   W.index[W [       'new_cases_smoothed']!=0.0][-1].strftime('%d %b %Y')
 V =   W.index[W ['new_vaccinations_smoothed']!=0.0][-1].strftime('%d %b %Y')
@@ -187,7 +187,7 @@ about {}% of those deaths happened in Brazil!
 
 st.subheader('Chart 3: Linear Evolution for COVID-19 in Brazil (Cases & Deaths)')
 fig,(ax1,ax2)=plt.subplots(nrows=2, ncols=1, figsize=(12,6), tight_layout= True)
-OWID.loc[OWID.country=='Brazil','total_cases'].sort_values      (ascending=False).plot(
+OWID.loc[OWID['location']=='Brazil','total_cases'].sort_values      (ascending=False).plot(
                 kind       ='line'   ,
                 ax         = ax1     ,
                 marker     ='o'      ,
@@ -215,7 +215,7 @@ ax1.yaxis.set_major_formatter(ticker.StrMethodFormatter('{x:,.0f}'))
 # ax1.xaxis.set_tick_params(rotation=0)
 ax1.set(xlabel=None)
 ax1.spines[['top','right','left','bottom']    ].set_visible          (False)
-OWID.loc[OWID.country=='Brazil','total_deaths'].sort_values(ascending=False).plot(
+OWID.loc[OWID['location']=='Brazil','total_deaths'].sort_values(ascending=False).plot(
                 kind       ='line'   ,
                 ax         = ax2     ,
                 marker     ='o'      ,
