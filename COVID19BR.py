@@ -16,9 +16,11 @@ plt.rcParams[    'font.family']        =                                        
 sns.set_theme(context='notebook', style='whitegrid', palette='colorblind', font='sans-serif', font_scale=1.15, color_codes=True, rc={'grid.color':'1','grid.linestyle':':'})
 st.set_page_config(page_title='COVID19BR', page_icon='😷', layout='wide', initial_sidebar_state='collapsed')
 # DATA:
+#         'https://catalog.ourworldindata.org/garden/covid/latest/compact/compact.csv'
 #         'https://github.com/owid/covid-19-data/raw/refs/heads/master/public/data/owid-covid-data-old.csv'
-DATA     ='https://catalog.ourworldindata.org/garden/covid/latest/compact/compact.csv'
 #         'https://github.com/owid/covid-19-data/raw/refs/heads/master/public/data/jhu/COVID-19%20-%20Johns%20Hopkins%20University.csv'
+DATA     ='https://github.com/owid/covid-19-data/raw/refs/heads/master/public/data/owid-covid-data-old.csv'
+
 @st.cache_data
 def LoadData( ):
     data =pd.read_csv(DATA, parse_dates=['date'])
@@ -179,8 +181,8 @@ V =   W.index[W ['new_vaccinations_smoothed']!=0.0][-1].strftime('%d %b %Y')
 # st.write('• Last vaccination entry on the dataset for the World: {}'.format(V))
 
 st.markdown('''
-The world has lost a population of about the size the one that lives in the metropolitan area of Rio de Janeiro.
-About {}% of those deaths happened in Brazil!
+The world has lost a population about the size the one that lives in the metropolitan area of Rio de Janeiro;
+about {}% of those deaths happened in Brazil!
             '''.format(round(((BR['total_deaths'].sort_values(ascending=False).iloc[0])/(RAW['total_deaths'].sort_values(ascending=False).iloc[0]))*100)), 2)
 
 st.subheader('Chart 3: Linear Evolution for COVID-19 in Brazil (Cases & Deaths)')
