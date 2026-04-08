@@ -19,7 +19,7 @@ st.set_page_config(page_title='COVID19BR', page_icon='😷', layout='wide', init
 #         'https://catalog.ourworldindata.org/garden/covid/latest/compact/compact.csv'
 #         'https://github.com/owid/covid-19-data/raw/refs/heads/master/public/data/owid-covid-data-old.csv'
 #         'https://github.com/owid/covid-19-data/raw/refs/heads/master/public/data/jhu/COVID-19%20-%20Johns%20Hopkins%20University.csv'
-DATA     ='https://github.com/owid/covid-19-data/raw/refs/heads/master/public/data/owid-covid-data-old.csv'
+DATA     ='https://catalog.ourworldindata.org/garden/covid/latest/compact/compact.csv'
 
 @st.cache_data
 def LoadData( ):
