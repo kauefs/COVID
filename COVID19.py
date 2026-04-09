@@ -72,7 +72,7 @@ st.title    ('COVID-19'          )
 st.divider  (                    )
 st.subheader('Comparisson Charts')
 # Chart1:
-st.markdown(f'''➡️ {**{FilteredDF1.shape[0]}** Entries for **{FilteredLoc1}**:
+st.markdown(f'''➡️ **{FilteredDF1.shape[0]}** Entries for **{FilteredLoc1}**:
             from {df.loc[df['location']==FilteredLoc1].index.min( )} to {df.loc[df['location']==FilteredLoc1].index.max( )}''')
 fig,ax=plt.subplots(figsize=(12, 6), frameon=True , tight_layout=True)
 df.loc[df['location']== FilteredLoc1,'new_vaccinations_smoothed'].plot(
