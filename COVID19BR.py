@@ -21,7 +21,7 @@ def format(x , pos):
     elif   x >= 1e3: return f'{x*1e-3:.0f}K'
     else           : return f'{x     :.0f}'
 def Axis(ax, title):
-    ax.set_title(title, fontdict=15, fontweight='bold')
+    ax.set_title(title   ,  fontsize= 15, fontweight='bold')
     ax.grid(linestyle=':', linewidth=.75, color='#DCDCDC', mouseover= True)
     ax.tick_params(axis='both', which='both',     left=False, bottom=False)
     ax.yaxis.set_major_formatter(ticker.FuncFormatter(format))
