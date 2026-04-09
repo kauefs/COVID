@@ -130,8 +130,8 @@ st.write(f'• Total  deaths:       {D1:,.0f}')
 # st.write('• Lastest vaccination:      {}'.format(v1))
 st.divider( )
 # Chart2:
-st.markdown(f'''➡️ {'**{FilteredDF2.shape[0]}**' Entries for **{FilteredLoc2}**:
-            from {df.loc[df['location']==FilteredLoc2].index.min( )} to {df.loc[df['location']==FilteredLoc2].index.max( }''')
+st.markdown(f'''➡️ **{FilteredDF2.shape[0]}** Entries for **{FilteredLoc2}**:
+            from {df.loc[df['location']==FilteredLoc2].index.min( )} to {df.loc[df['location']==FilteredLoc2].index.max( )}''')
 fig,ax=plt.subplots(figsize=(12, 6), frameon=True , tight_layout=True)
 df.loc[df['location']== FilteredLoc2,'new_vaccinations_smoothed'].plot(
                 kind       ='line'   ,
