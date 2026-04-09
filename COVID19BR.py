@@ -129,18 +129,18 @@ WW       ['total_cases' ].plot(kind='line', ax=ax1, marker='o', linestyle='solid
 ax1.annotate(f'{       cases:,.0f}',
                 xy=(1, cases),
                 xycoords  =('axes fraction','data'),
-                xytext    =(-130, 3.75),
+                xytext    =(-100, 3.75),
                 textcoords='offset points',
                 color     ='#FF4500', fontsize=13, fontweight='semibold')
-Axis(ax1,'COVID-19 🌏 WorldWide Cases')
+Axis(ax1,'COVID-19 WorldWide Cases')
 WW       ['total_deaths'].plot(kind='line', ax=ax2, marker='o', linestyle='solid', color='#FF103F', linewidth='2.25', ms=.01, mec='#FF103F', mfc='#FF103F')
 ax2.annotate(f'{       deaths:,.0f}',
                 xy=(1, deaths),
                 xycoords  =('axes fraction','data'),
-                xytext    =(-110, 3.75),
+                xytext    =( -85, 3.75),
                 textcoords='offset points',
                 color     ='#FF103F', fontsize=13, fontweight='semibold')
-Axis(ax2,'COVID-19 🌎 WorldWide Deaths')
+Axis(ax2,'COVID-19 WorldWide Deaths')
 st.pyplot(fig)
 
 # W =OWID.loc[OWID[       'location']=='World'].copy (  )
