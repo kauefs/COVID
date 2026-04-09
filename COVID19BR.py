@@ -129,7 +129,7 @@ WW       ['total_cases' ].plot(kind='line', ax=ax1, marker='o', linestyle='solid
 ax1.annotate(f'{       cases:,.0f}',
                 xy=(1, cases),
                 xycoords  =('axes fraction','data'),
-                xytext    =(-100, 3.75),
+                xytext    =(-95, 3.75),
                 textcoords='offset points',
                 color     ='#FF4500', fontsize=13, fontweight='semibold')
 Axis(ax1,'COVID-19 WorldWide Cases')
@@ -137,7 +137,7 @@ WW       ['total_deaths'].plot(kind='line', ax=ax2, marker='o', linestyle='solid
 ax2.annotate(f'{       deaths:,.0f}',
                 xy=(1, deaths),
                 xycoords  =('axes fraction','data'),
-                xytext    =( -85, 3.75),
+                xytext    =(-75, 3.75),
                 textcoords='offset points',
                 color     ='#FF103F', fontsize=13, fontweight='semibold')
 Axis(ax2,'COVID-19 WorldWide Deaths')
@@ -157,63 +157,25 @@ about {round(((BR['total_deaths'].sort_values(ascending=False).iloc[0])/(OWID['t
              ''')
 
 st.subheader('Chart 3 – Linear Evolution for COVID-19 in Brazil 🇧🇷 Cases & Deaths')
-fig,(ax1,ax2)=plt.subplots(nrows=2, ncols=1, figsize=(12, 6), frameon=True, tight_layout= True)
-OWID.loc[OWID['location']=='Brazil','total_cases'].sort_values      (ascending=False).plot(
-                kind       ='line'   ,
-                ax         = ax1     ,
-                marker     ='o'      ,
-                linestyle  ='solid'  ,
-                color      ='#FF8C00',
-                linewidth  ='2.25'   ,
-                ms=.01, mec='#FF8C00', mfc='#FF8C00')
-ax1.annotate('{:,.0f}'.format(BR['total_cases'].sort_values(ascending=False).iloc[0]),
-                xy=( 1,       BR['total_cases'].sort_values(ascending=False).iloc[0]),
+cases =BR['total_cases' ].sort_values(ascending=False).iloc[0]
+deaths=BR['total_deaths'].sort_values(ascending=False).iloc[0]
+fig,(ax1,ax2)=plt.subplots(nrows=2, ncols=1, figsize=(12, 6),  frameon= True, tight_layout=True)
+BR       ['total_cases' ].plot(kind='line', ax=ax1, marker='o', linestyle='solid', color='#FF8C00', linewidth=2.25, ms=.01, mec='#FF8C00', mfc='#FF8C00')
+ax1.annotate(f'{       cases:,.0f}',
+                xy=(1, cases),
                 xycoords  =('axes fraction','data'),
-                xytext    =(-105,1.15),
+                xytext    =(-80, 3.75),
                 textcoords='offset points',
-                color     ='#FF4500',
-                fontsize  =    13   ,
-                fontweight='semibold')
-ax1.set_title('COVID-19: Cases in Brazil', fontsize=15, fontweight='bold')
-ax1.grid(linestyle=':', linewidth=1, color='#DCDCDC'  , mouseover = True )
-ax1.tick_params(axis  ='both',
-                which ='both',
-                left  = False,
-                bottom= False)
-ax1.set_yticks([0, 5e6, 1e7, 1.5e7, 2e7, 2.5e7, 3e7, 3.5e7],    minor=False)
-ax1.yaxis.set_major_formatter(ticker.StrMethodFormatter('{x:,.0f}'))
-# ax1.xaxis.set_major_formatter(mdates.DateFormatter     ('%Y\n%b'))
-# ax1.xaxis.set_tick_params(rotation=0)
-ax1.set(xlabel=None)
-ax1.spines[['top','right','left','bottom']    ].set_visible          (False)
-OWID.loc[OWID['location']=='Brazil','total_deaths'].sort_values(ascending=False).plot(
-                kind       ='line'   ,
-                ax         = ax2     ,
-                marker     ='o'      ,
-                linestyle  ='solid'  ,
-                color      ='#FF103F',
-                linewidth  ='2.25'   ,
-                ms=.01, mec='#FF103F', mfc='#FF103F')
-ax2.annotate('{:,.0f}'.format(BR['total_deaths'].sort_values(ascending=False).iloc[0]),
-                xy=( 1,       BR['total_deaths'].sort_values(ascending=False).iloc[0]),
+                color     ='#FF4500', fontsize=13, fontweight='semibold')
+Axis(ax1,'COVID-19 Cases in Brazil')
+BR       ['total_deaths'].plot(kind='line', ax=ax2, marker='o', linestyle='solid', color='#FF103F', linewidth='2.25', ms=.01, mec='#FF103F', mfc='#FF103F')
+ax2.annotate(f'{       deaths:,.0f}',
+                xy=(1, deaths),
                 xycoords  =('axes fraction','data'),
-                xytext    =(-85,1.15),
+                xytext    =(-60, 3.75),
                 textcoords='offset points',
-                color     ='#FF103F',
-                fontsize  =    13   ,
-                fontweight='semibold')
-ax2.set_title('COVID-19: Deaths in Brazil', fontsize=15, fontweight='bold')
-ax2.grid(linestyle=':', linewidth=1, color='#DCDCDC'   , mouseover = True )
-ax2.tick_params(axis  ='both',
-                which ='both',
-                left  = False,
-                bottom= False)
-ax2.set_yticks([0,      1e5,   2e5, 3e5,   4e5, 5e5,   6e5], minor=False)
-ax2.yaxis.set_major_formatter(ticker.StrMethodFormatter('{x:,.0f}'))
-#ax2.xaxis.set_major_formatter(mdates.DateFormatter     ('%Y\n%b'))
-#ax2.xaxis.set_tick_params(rotation=360)
-ax2.set(xlabel=None)
-ax2.spines[['top','right','left','bottom']].set_visible(False)
+                color     ='#FF103F', fontsize=13, fontweight='semibold')
+Axis(ax2,'COVID-19 Deaths in Brazil')
 st.pyplot  (fig)
 st.markdown('''
 Brazil has always had a history of vaccinations with a National Immunization Program efficient and effective,
