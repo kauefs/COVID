@@ -15,10 +15,7 @@ plt.rcParams[  'figure.autolayout']    =           True
 plt.rcParams[    'font.family']        =                                        'sans-serif'
 sns.set_theme(context='notebook', style='whitegrid', palette='colorblind', font='sans-serif', font_scale=1.15, color_codes=True, rc={'grid.color':'1','grid.linestyle':':'})
 st.set_page_config(page_title='COVID19BR', page_icon='😷', layout='wide', initial_sidebar_state='collapsed')
-# DATA
-DATA     ='https://github.com/owid/covid-19-data/raw/refs/heads/master/public/data/owid-covid-data.csv'
-
-@st.cache_data
+# Functions
 def LoadData( ):
     data =pd.read_csv(DATA, parse_dates=['date'])
    # Selecting Columns
@@ -36,6 +33,21 @@ def LoadData( ):
     df.set_index ('date',inplace=True)
     df.sort_index(       inplace=True)
     return df
+def format(x , pos):
+    if     x >= 1e6: return f'{x*1e-6:.0f}M'
+    elif   x >= 1e3: return f'{x*1e-3:.0f}K'
+    else           : return f'{x     :.0f}'
+def Axis(ax, title):
+    ax.set_title(title, fontsize=15, fontweight='bold')
+    ax.grid(linestyle=':', linewidth=.75, color='#DCDCDC', mouseover= True)
+    ax.tick_params(axis='both', which='both',     left=False, bottom=False)
+    ax.yaxis.set_major_formatter(ticker.FuncFormatter(format))
+    ax.set_xlabel(None)
+    for spine in ax.spines.values( ):spine.set_visible(False)
+# DATA
+DATA     ='https://github.com/owid/covid-19-data/raw/refs/heads/master/public/data/owid-covid-data.csv'
+
+@st.cache_data
 RAW       =LoadData( )
 # Filling Missing Data:
 X         =RAW.copy( ) 
@@ -44,7 +56,8 @@ X[num]    =X[num].fillna(  0  )
 nan       =X.select_dtypes(exclude=['number']).columns
 X[nan]    =X[nan].fillna('N/A')
 OWID      =X.copy( )
-BR        =OWID.loc[OWID['location']=='Brazil'].copy( )
+WW        =OWID[OWID['location']== 'World'].sort_values('date').copy( ) # WorldWide Set
+BR        =OWID[OWID['location']=='Brazil'].sort_values('date').copy( ) #     BR    Set
 # SIDE:
 st.sidebar.title    ('ƊⱭȾɅViƧi🧿Ƞ&trade;')
 st.sidebar.divider  (                     )
@@ -108,51 +121,25 @@ only behind the United States. A death toll rate that was almost twice the world
             ''')
 
 st.subheader('Chart 2 – Linear Evolution for COVID-19 WorldWide 🌍 Cases & Deaths')
+cases =WW['total_cases' ].sort_values(ascending=False).iloc[0]
+deaths=WW['total_deaths'].sort_values(ascending=False).iloc[0]
 fig,(ax1,ax2)=plt.subplots(nrows=2, ncols=1, figsize=(12, 6),  frameon= True, tight_layout=True)
-RAW.loc[RAW['location']=='World', 'total_cases'].sort_values(ascending=False).plot(
-                kind       ='line'   ,
-                ax         = ax1     ,
-                marker     ='o'      ,
-                linestyle  ='solid'  ,
-                color      ='#FF8C00',
-                linewidth  ='2.25'   ,
-                ms=.01, mec='#FF8C00', mfc='#FF8C00')
-ax1.annotate('{:,.0f}'.format(RAW['total_cases'].sort_values(ascending=False).iloc[0]),
-                xy=( 1,       RAW['total_cases'].sort_values(ascending=False).iloc[0]),
+WW       ['total_cases' ].plot(kind='line', ax=ax1, marker='o', linestyle='solid', color='#FF8C00', linewidth=2.25, ms=.01, mec='#FF8C00', mfc='#FF8C00')
+ax1.annotate(f'{       cases:,.0f}',
+                xy=(1, cases),
                 xycoords  =('axes fraction','data'),
                 xytext    =(-130, 3.75),
                 textcoords='offset points',
-                color     ='#FF4500',
-                fontsize  =    13   ,
-                fontweight='semibold')
-ax1.set_title('COVID-19 🌏 WorldWide Cases', fontsize=15, fontweight='bold')
-ax1.grid(linestyle=':', linewidth=.75, color='#DCDCDC', mouseover = True )
-ax1.tick_params(axis='both', which='both',      left=False, bottom=False )
-ax1.yaxis.set_major_formatter(ticker.FuncFormatter(format))
-ax1.set(xlabel=None)
-ax1.spines[['top','right', 'left','bottom']     ].set_visible(          False)
-RAW.loc[RAW['location']=='World', 'total_deaths'].sort_values(ascending=False).plot(
-                kind       ='line'   ,
-                ax         = ax2     ,
-                marker     ='o'      ,
-                linestyle  ='solid'  ,
-                color      ='#FF103F',
-                linewidth  ='2.25'   ,
-                ms=.01, mec='#FF103F', mfc='#FF103F')
-ax2.annotate('{:,.0f}'.format(RAW['total_deaths'].sort_values(ascending=False).iloc[0]),
-                xy=( 1,       RAW['total_deaths'].sort_values(ascending=False).iloc[0]),
+                color     ='#FF4500', fontsize=13, fontweight='semibold')
+Axis(ax1,'COVID-19 🌏 WorldWide Cases')
+WW       ['total_deaths'].plot(kind='line', ax=ax2, marker='o', linestyle='solid', color='#FF103F', linewidth='2.25', ms=.01, mec='#FF103F', mfc='#FF103F')
+ax2.annotate(f'{       deaths:,.0f}',
+                xy=(1, deaths),
                 xycoords  =('axes fraction','data'),
                 xytext    =(-110, 3.75),
                 textcoords='offset points',
-                color     ='#FF103F',
-                fontsize  =    13   ,
-                fontweight='semibold')
-ax2.set_title('COVID-19 🌎 WorldWide Deaths', fontsize=15, fontweight='bold')
-ax2.grid(linestyle=':', linewidth=.75,  color='#DCDCDC', mouseover = True )
-ax2.tick_params(axis='both', which='both',       left=False, bottom=False )
-ax2.yaxis.set_major_formatter(ticker.FuncFormatter(format))
-ax2.set(xlabel=None)
-ax2.spines[['top','right','left','bottom']].set_visible(False)
+                color     ='#FF103F', fontsize=13, fontweight='semibold')
+Axis(ax2,'COVID-19 🌎 WorldWide Deaths')
 st.pyplot(fig)
 
 # W =OWID.loc[OWID[       'location']=='World'].copy (  )
