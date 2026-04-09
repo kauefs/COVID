@@ -18,7 +18,7 @@ def LoadData( ):
     data = pd.read_csv(DATA) #, index_col=1)
 # Selecting Columns:
     X    = data[['date',
-                 'country',
+                 'location',
                  'total_cases',
                  'total_deaths',
                  'new_cases_smoothed',
@@ -37,21 +37,21 @@ st.sidebar.title    ('COVID-19'           )
 st.sidebar.header   ('Data Analysis'      )
 st.sidebar.subheader('Comparisson Charts' )
 st.sidebar.divider  (                     )
-Location1   =df['country'].sort_values(ascending=True).unique( )
+Location1   =df['location'].sort_values(ascending=True).unique( )
 FilteredLoc1=st.sidebar.selectbox('Location 1:', Location1, index= 99)
 SideBarInfo1=st.sidebar.empty( )
 table1      =st.sidebar.empty( )
-FilteredDF1 =df[df['country'].str.contains  (FilteredLoc1)]
-SideBarInfo1.info('{} Entries for {}'.format(FilteredDF1.shape[0], FilteredLoc1))
-Location2   =df['country'].sort_values(ascending=True).unique( )
+FilteredDF1 =df[df['location'].str.contains  (FilteredLoc1)]
+SideBarInfo1.info(f'{FilteredDF1.shape[0]} Entries for {FilteredLoc1}')
+Location2   =df['location'].sort_values(ascending=True).unique( )
 FilteredLoc2=st.sidebar.selectbox('Location 2:', Location2, index=130)
 SideBarInfo2=st.sidebar.empty( )
 table2      =st.sidebar.empty( )
-FilteredDF2 =df[df['country'].str.contains     (FilteredLoc2)]
-SideBarInfo2.success('{} Entries for {}'.format(FilteredDF2.shape[0], FilteredLoc2))
+FilteredDF2 =df[df['location'].str.contains     (FilteredLoc2)]
+SideBarInfo2.success(f'{FilteredDF2.shape[0]} Entries for {FilteredLoc2}')
 st.sidebar.divider (   )
 st.sidebar.markdown('''Source:    [Our World in Data](https://github.com/owid/covid-19-data/)''')
-st.sidebar.write   (  'OWID daily reports from {} to {}'.format(df.index.min( ), df.index.max( )))
+st.sidebar.write   ( f'OWID daily reports from {df.index.min( )} to {df.index.max( )}')
 st.sidebar.markdown('''Reference: [Data Cleaning Techniques in Python: the Ultimate Guide](https://www.justintodata.com/data-cleaning-techniques-python-guide/)''')
 st.sidebar.divider (   )
 st.sidebar.markdown('''
@@ -64,7 +64,7 @@ st.sidebar.markdown('''
 [![LinkedIn    ](https://img.shields.io/badge/in-0077B5?logo=linkedin&logoColor=FFFFFF)](https://www.linkedin.com/in/kauefs/)
 [![Python      ](https://img.shields.io/badge/3-646464?logo=python&logoColor=FFDE57&labelColor=4584B6)](https://www.python.org/)
 
-[![ƊⱭȾɅViƧi🧿Ƞ](https://img.shields.io/badge/ƊⱭȾɅViƧi🧿Ƞ&trade;-0065FF?style=plastic&logoColor=0065FF&label=&copy;2025&labelColor=0065FF)](https://datavision.one/)
+[![ƊⱭȾɅViƧi🧿Ƞ](https://img.shields.io/badge/ƊⱭȾɅViƧi🧿Ƞ&trade;-0065FF?style=plastic&logoColor=0065FF&label=&copy;2026&labelColor=0065FF)](https://datavision.one/)
                     ''')
 # MAIN:
 st.divider  (                    )
@@ -72,10 +72,10 @@ st.title    ('COVID-19'          )
 st.divider  (                    )
 st.subheader('Comparisson Charts')
 # Chart1:
-st.markdown(f'''➡️ {'**{}**'.format(FilteredDF1.shape[0])} Entries for **{FilteredLoc1}**:'''
-             'from {} to {}'.format(df.loc[df['country']==FilteredLoc1].index.min( ), df.loc[df['country']==FilteredLoc1].index.max( )))
-fig,ax=plt.subplots(figsize=(12,8)  , tight_layout=True)
-df.loc[df['country']== FilteredLoc1,'new_vaccinations_smoothed'].plot(
+st.markdown(f'''➡️ {**{FilteredDF1.shape[0]}** Entries for **{FilteredLoc1}**:
+            from {df.loc[df['location']==FilteredLoc1].index.min( )} to {df.loc[df['location']==FilteredLoc1].index.max( )}''')
+fig,ax=plt.subplots(figsize=(12, 6), frameon=True , tight_layout=True)
+df.loc[df['location']== FilteredLoc1,'new_vaccinations_smoothed'].plot(
                 kind       ='line'   ,
                 label      ='Vaccinations',
                 ax         = ax      ,
@@ -84,7 +84,7 @@ df.loc[df['country']== FilteredLoc1,'new_vaccinations_smoothed'].plot(
                 color      ='#4CAF50',
                 linewidth  ='2.25'   ,
                 ms=.01, mec='#4CAF50',   mfc='#4CAF50')
-df.loc[df['country']== FilteredLoc1,'new_cases_smoothed'].plot(
+df.loc[df['location']== FilteredLoc1,'new_cases_smoothed'].plot(
                 kind       ='line'   ,
                 label      ='Cases'  ,
                 ax         = ax      ,
@@ -93,7 +93,7 @@ df.loc[df['country']== FilteredLoc1,'new_cases_smoothed'].plot(
                 color      ='#FF8C00',
                 linewidth  ='2.25'   ,
                 ms=.01, mec='#FF8C00',   mfc='#FF8C00')
-df.loc[df['country']== FilteredLoc1,'new_deaths_smoothed'].plot(
+df.loc[df['location']== FilteredLoc1,'new_deaths_smoothed'].plot(
                 kind       ='line'   ,
                 label      ='Deaths' ,
                 ax         = ax      ,
@@ -102,42 +102,38 @@ df.loc[df['country']== FilteredLoc1,'new_deaths_smoothed'].plot(
                 color      ='#FF103F',
                 linewidth  ='2.25'   ,
                 ms=.01, mec='#FF103F',   mfc='#FF103F')
-ax.set_title('COVID in {}: Vaccinations & Cases & Deaths'.format(FilteredLoc1), fontsize=20, fontweight='bold')
-ax.grid(linestyle=':' ,   linewidth=1, color='#DCDCDC')
-ax.tick_params(axis   ='both',
-                which ='both',
-                left  = False,
-                bottom= False)
+ax.set_title(f'COVID in {FilteredLoc1}: Vaccinations & Cases & Deaths', fontsize=15, fontweight='bold')
+ax.grid(linestyle=':',   linewidth=.75, color='#DCDCDC')
+ax.tick_params(axis='both', which ='both', left=False, bottom=False)
 ax.xaxis.set_major_formatter(mdates.DateFormatter('%Y\n%b'))
 ax.xaxis.set_tick_params(rotation=0)
 ax.set(xlabel=None)
-ax.spines[['top' ,  'right','left','bottom']].set_visible(False)
-ax.legend(loc='upper right', fontsize=15     ,    frameon=False)
+for spine in ax.spines.values( ):spine.set_visible(False)
+ax.legend(loc='upper right', fontsize=15,  frameon=False)
 plt.gca( ).set_ylim(bottom=10**0)
-plt.rcParams['font.family']='sans-serif'
 plt.yscale  ('log')
 st.pyplot    (fig)
 if table1.checkbox('DataFrame 1', value=False):st.write(FilteredDF1)
 st.markdown('''
             ''')
 st.markdown(f'''**{FilteredLoc1}**:''')
-AA=df.loc  [df['country'                  ]== FilteredLoc1].copy( )
+AA=df.loc  [df['location'                 ]== FilteredLoc1].copy( )
 C1=         AA['total_cases'              ].sort_values(ascending=False).iloc[0]
 D1=         AA['total_deaths'             ].sort_values(ascending=False).iloc[0]
-d1=AA.index[AA['new_deaths_smoothed'      ]!=0.0][-1].strftime('%d %b %Y')
-c1=AA.index[AA['new_cases_smoothed'       ]!=0.0][-1].strftime('%d %b %Y')
-v1=AA.index[AA['new_vaccinations_smoothed']!=0.0][-1].strftime('%d %b %Y')
-st.write('• Total   cases:       {:,.0f}' .format(C1))
+d1=AA.index[AA['new_deaths_smoothed'      ]>0][-1].strftime('%d %b %Y')
+c1=AA.index[AA['new_cases_smoothed'       ]>0][-1].strftime('%d %b %Y')
+v1=AA.index[AA['new_vaccinations_smoothed']>0][-1].strftime('%d %b %Y')
+st.write(f'• Total   cases:       {C1:,.0f}')
 # st.write('  – Lastest  case:          {}'.format(c1))
-st.write('• Total  deaths:       {:,.0f}' .format(D1))
+st.write(f'• Total  deaths:       {D1:,.0f}')
 # st.write('  – Lastest death:          {}'.format(d1))
 # st.write('• Lastest vaccination:      {}'.format(v1))
 st.divider( )
 # Chart2:
-st.markdown(f'''➡️ {'**{}**'.format(FilteredDF2.shape[0])} Entries for **{FilteredLoc2}**:'''
-             'from {} to {}'.format(df.loc[df['country']==FilteredLoc2].index.min( ), df.loc[df['country']==FilteredLoc2].index.max( )))
-fig,ax=plt.subplots(figsize=(12,8)  , tight_layout=True)
-df.loc[df['country']== FilteredLoc2,'new_vaccinations_smoothed'].plot(
+st.markdown(f'''➡️ {'**{FilteredDF2.shape[0]}**' Entries for **{FilteredLoc2}**:
+            from {df.loc[df['location']==FilteredLoc2].index.min( )} to {df.loc[df['location']==FilteredLoc2].index.max( }''')
+fig,ax=plt.subplots(figsize=(12, 6), frameon=True , tight_layout=True)
+df.loc[df['location']== FilteredLoc2,'new_vaccinations_smoothed'].plot(
                 kind       ='line'   ,
                 label      ='Vaccinations',
                 ax         = ax      ,
@@ -164,7 +160,7 @@ df.loc[df['country']== FilteredLoc2,'new_deaths_smoothed'].plot(
                 color      ='#FF103F',
                 linewidth  ='2.25'   ,
                 ms=.01, mec='#FF103F',   mfc='#FF103F')
-ax.set_title('COVID in {}: Vaccinations & Cases & Deaths'.format(FilteredLoc2), fontsize=20, fontweight='bold')
+ax.set_title('COVID in {}: Vaccinations & Cases & Deaths'.format(FilteredLoc2), fontsize=15, fontweight='bold')
 ax.grid(linestyle=':' ,   linewidth=1, color='#DCDCDC')
 ax.tick_params(axis   ='both',
                 which ='both',
@@ -173,23 +169,22 @@ ax.tick_params(axis   ='both',
 ax.xaxis.set_major_formatter(mdates.DateFormatter('%Y\n%b'))
 ax.xaxis.set_tick_params(rotation=0)
 ax.set(xlabel=None)
-ax.spines[['top' ,  'right','left','bottom']].set_visible(False)
-ax.legend(loc='upper right', fontsize=15     ,    frameon=False)
+for spine in ax.spines.values( ):spine.set_visible(False)
+ax.legend(loc='upper right', fontsize=15,  frameon=False)
 plt.gca( ).set_ylim(bottom=10**0)
-plt.rcParams['font.family']='sans-serif'
 plt.yscale  ('log')
 st.pyplot    (fig)
 if table2.checkbox('DataFrame 2', value=False):st.write(FilteredDF2)
 st.markdown(f'''**{FilteredLoc2}**:''')
-aa = df.loc[df['country'                  ]==FilteredLoc2].copy( )
+aa = df.loc[df['location'                 ]==FilteredLoc2].copy( )
 C2=         aa['total_cases'              ].sort_values(ascending=False).iloc[0]
 D2=         aa['total_deaths'             ].sort_values(ascending=False).iloc[0]
-d2=aa.index[aa['new_deaths_smoothed'      ]!=0.0][-1].strftime('%d %b %Y')
-c2=aa.index[aa['new_cases_smoothed'       ]!=0.0][-1].strftime('%d %b %Y')
-v2=aa.index[aa['new_vaccinations_smoothed']!=0.0][-1].strftime('%d %b %Y')
-st.write('• Total   cases:       {:,.0f}'.format(C2))
+d2=aa.index[aa['new_deaths_smoothed'      ]>0][-1].strftime('%d %b %Y')
+c2=aa.index[aa['new_cases_smoothed'       ]>0][-1].strftime('%d %b %Y')
+v2=aa.index[aa['new_vaccinations_smoothed']>0][-1].strftime('%d %b %Y')
+st.write(f'• Total   cases:       {C2:,.0f}')
 # st.write('  – Lastest  case:          {}'.format(c2))
-st.write('• Total  deaths:       {:,.0f}'.format(D2))
+st.write(f'• Total  deaths:       {D2:,.0f}')
 # st.write('  – Lastest death:          {}'.format(d2))
 # st.write('• Lastest vaccination:      {}'.format(v2))
 st.toast('Vaccinate!', icon='💉')
