@@ -224,6 +224,7 @@ z['new_deaths_smoothed'].plot(
                 linewidth  = 2.25     ,
                 ms=.01, mec='#FF103F' , mfc='#FF103F')
 Axis(ax,'COVID in Brazil – Vaccination & Cases & Deaths')
+ax.legend(loc='best', fontsize=13, frameon=False)
 plt.gca( ).set_ylim(    bottom=10**0)
 plt.gca( ).set_xlim(      left=None )
 plt.yscale ('log')
