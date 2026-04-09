@@ -80,7 +80,7 @@ df.loc[df['location']== FilteredLoc1,'new_vaccinations_smoothed'].plot(
                 marker     ='o'      ,
                 linestyle  ='solid'  ,
                 color      ='#4CAF50',
-                linewidth  ='2.25'   ,
+                linewidth  = 2.25    ,
                 ms=.01, mec='#4CAF50',   mfc='#4CAF50')
 df.loc[df['location']== FilteredLoc1,'new_cases_smoothed'].plot(
                 kind       ='line'   ,
@@ -89,7 +89,7 @@ df.loc[df['location']== FilteredLoc1,'new_cases_smoothed'].plot(
                 marker     ='o'      ,
                 linestyle  ='solid'  ,
                 color      ='#FF8C00',
-                linewidth  ='2.25'   ,
+                linewidth  = 2.25    ,
                 ms=.01, mec='#FF8C00',   mfc='#FF8C00')
 df.loc[df['location']== FilteredLoc1,'new_deaths_smoothed'].plot(
                 kind       ='line'   ,
@@ -98,16 +98,16 @@ df.loc[df['location']== FilteredLoc1,'new_deaths_smoothed'].plot(
                 marker     ='o'      ,
                 linestyle  ='solid'  ,
                 color      ='#FF103F',
-                linewidth  ='2.25'   ,
+                linewidth  = 2.25    ,
                 ms=.01, mec='#FF103F',   mfc='#FF103F')
 ax.set_title(f'COVID in {FilteredLoc1}: Vaccinations & Cases & Deaths', fontsize=15, fontweight='bold')
-ax.grid(linestyle=':',   linewidth=.75, color='#DCDCDC')
+ax.grid(linestyle=':',   linewidth=.75,   color='#DCDCDC')
 ax.tick_params(axis='both', which ='both', left=False, bottom=False)
 ax.xaxis.set_major_formatter(mdates.DateFormatter('%Y\n%b'))
 ax.xaxis.set_tick_params(rotation=0)
 ax.set(xlabel=None)
 for spine in ax.spines.values( ):spine.set_visible(False)
-ax.legend(loc='upper right', fontsize=15,  frameon=False)
+ax.legend(loc='upper right', fontsize=13,  frameon=False)
 plt.gca( ).set_ylim(bottom=10**0)
 plt.yscale  ('log')
 st.pyplot    (fig)
@@ -138,7 +138,7 @@ df.loc[df['location']== FilteredLoc2,'new_vaccinations_smoothed'].plot(
                 marker     ='o'      ,
                 linestyle  ='solid'  ,
                 color      ='#4CAF50',
-                linewidth  ='2.25'   ,
+                linewidth  = 2.25    ,
                 ms=.01, mec='#4CAF50',   mfc='#4CAF50')
 df.loc[df['location']== FilteredLoc2,'new_cases_smoothed'].plot(
                 kind       ='line'   ,
@@ -147,7 +147,7 @@ df.loc[df['location']== FilteredLoc2,'new_cases_smoothed'].plot(
                 marker     ='o'      ,
                 linestyle  ='solid'  ,
                 color      ='#FF8C00',
-                linewidth  ='2.25'   ,
+                linewidth  = 2.25    ,
                 ms=.01, mec='#FF8C00',   mfc='#FF8C00')
 df.loc[df['location']== FilteredLoc2,'new_deaths_smoothed'].plot(
                 kind       ='line'   ,
@@ -156,19 +156,16 @@ df.loc[df['location']== FilteredLoc2,'new_deaths_smoothed'].plot(
                 marker     ='o'      ,
                 linestyle  ='solid'  ,
                 color      ='#FF103F',
-                linewidth  ='2.25'   ,
+                linewidth  = 2.25    ,
                 ms=.01, mec='#FF103F',   mfc='#FF103F')
 ax.set_title('COVID in {}: Vaccinations & Cases & Deaths'.format(FilteredLoc2), fontsize=15, fontweight='bold')
-ax.grid(linestyle=':' ,   linewidth=1, color='#DCDCDC')
-ax.tick_params(axis   ='both',
-                which ='both',
-                left  = False,
-                bottom= False)
+ax.grid(linestyle=':',   linewidth=.75,   color='#DCDCDC')
+ax.tick_params(axis='both', which ='both', left=False, bottom=False)
 ax.xaxis.set_major_formatter(mdates.DateFormatter('%Y\n%b'))
 ax.xaxis.set_tick_params(rotation=0)
 ax.set(xlabel=None)
 for spine in ax.spines.values( ):spine.set_visible(False)
-ax.legend(loc='upper right', fontsize=15,  frameon=False)
+ax.legend(loc='upper right', fontsize=13,  frameon=False)
 plt.gca( ).set_ylim(bottom=10**0)
 plt.yscale  ('log')
 st.pyplot    (fig)
