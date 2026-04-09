@@ -1,4 +1,4 @@
-# Libraries:
+# Libraries
 import streamlit           as   st
 import numpy               as   np
 import pandas              as   pd
@@ -9,14 +9,12 @@ import matplotlib.dates    as   mdates
 import seaborn             as   sns
 from   datetime          import date, datetime, timedelta
 st.set_page_config(page_title='COVID19', page_icon='😷', layout='wide', initial_sidebar_state='expanded')
-# DATA:
-#         'https://github.com/owid/covid-19-data/raw/refs/heads/master/public/data/owid-covid-data-old.csv'
-DATA     ='https://catalog.ourworldindata.org/garden/covid/latest/compact/compact.csv'
-#         'https://github.com/owid/covid-19-data/raw/refs/heads/master/public/data/jhu/COVID-19%20-%20Johns%20Hopkins%20University.csv'
+# DATA
+DATA     ='https://github.com/owid/covid-19-data/raw/refs/heads/master/public/data/owid-covid-data.csv'
 @st.cache_data
 def LoadData( ):
     data = pd.read_csv(DATA) #, index_col=1)
-# Selecting Columns:
+# Selecting Columns
     X    = data[['date',
                  'location',
                  'total_cases',
@@ -30,7 +28,7 @@ def LoadData( ):
     X.sort_index(inplace=True)
     return X
 df            =  LoadData(   )
-# SIDE:
+# SIDE
 st.sidebar.title    ('ƊⱭȾɅViƧi🧿Ƞ&trade;')
 st.sidebar.divider  (                     )
 st.sidebar.title    ('COVID-19'           )
@@ -66,12 +64,12 @@ st.sidebar.markdown('''
 
 [![ƊⱭȾɅViƧi🧿Ƞ](https://img.shields.io/badge/ƊⱭȾɅViƧi🧿Ƞ&trade;-0065FF?style=plastic&logoColor=0065FF&label=&copy;2026&labelColor=0065FF)](https://datavision.one/)
                     ''')
-# MAIN:
+# MAIN
 st.divider  (                    )
 st.title    ('COVID-19'          )
 st.divider  (                    )
 st.subheader('Comparisson Charts')
-# Chart1:
+# Chart1
 st.markdown(f'''➡️ **{FilteredDF1.shape[0]}** Entries for **{FilteredLoc1}**:
             from {df.loc[df['location']==FilteredLoc1].index.min( )} to {df.loc[df['location']==FilteredLoc1].index.max( )}''')
 fig,ax=plt.subplots(figsize=(12, 6), frameon=True , tight_layout=True)
@@ -129,7 +127,7 @@ st.write(f'• Total  deaths:       {D1:,.0f}')
 # st.write('  – Lastest death:          {}'.format(d1))
 # st.write('• Lastest vaccination:      {}'.format(v1))
 st.divider( )
-# Chart2:
+# Chart2
 st.markdown(f'''➡️ **{FilteredDF2.shape[0]}** Entries for **{FilteredLoc2}**:
             from {df.loc[df['location']==FilteredLoc2].index.min( )} to {df.loc[df['location']==FilteredLoc2].index.max( )}''')
 fig,ax=plt.subplots(figsize=(12, 6), frameon=True , tight_layout=True)
