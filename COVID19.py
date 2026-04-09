@@ -100,7 +100,7 @@ df.loc[df['location']== FilteredLoc1,'new_deaths_smoothed'].plot(
                 color      ='#FF103F',
                 linewidth  = 2.25    ,
                 ms=.01, mec='#FF103F',   mfc='#FF103F')
-ax.set_title(f'COVID in {FilteredLoc1}: Vaccinations & Cases & Deaths', fontsize=15, fontweight='bold')
+ax.set_title(f'COVID in {FilteredLoc1} – Vaccinations & Cases & Deaths', fontsize=15, fontweight='bold')
 ax.grid(linestyle=':',   linewidth=.75,   color='#DCDCDC')
 ax.tick_params(axis='both', which ='both', left=False, bottom=False)
 ax.xaxis.set_major_formatter(mdates.DateFormatter('%Y\n%b'))
@@ -159,7 +159,7 @@ df.loc[df['location']== FilteredLoc2,'new_deaths_smoothed'].plot(
                 color      ='#FF103F',
                 linewidth  = 2.25    ,
                 ms=.01, mec='#FF103F',   mfc='#FF103F')
-ax.set_title('COVID in {}: Vaccinations & Cases & Deaths'.format(FilteredLoc2), fontsize=15, fontweight='bold')
+ax.set_title(f'COVID in {FilteredLoc2} – Vaccinations & Cases & Deaths', fontsize=15, fontweight='bold')
 ax.grid(linestyle=':',   linewidth=.75,   color='#DCDCDC')
 ax.tick_params(axis='both', which ='both', left=False, bottom=False)
 ax.xaxis.set_major_formatter(mdates.DateFormatter('%Y\n%b'))
