@@ -40,13 +40,13 @@ FilteredLoc1=st.sidebar.selectbox('Location 1:', Location1, index= 97)
 SideBarInfo1=st.sidebar.empty( )
 table1      =st.sidebar.empty( )
 FilteredDF1 =df[df['location'].str.contains  (FilteredLoc1)]
-SideBarInfo1.info(f'{FilteredDF1.shape[0]} Entries for {FilteredLoc1}')
+SideBarInfo1.info(f'{FilteredDF1.shape[0]} entries for {FilteredLoc1}')
 Location2   =df['location'].sort_values(ascending=True).unique( )
 FilteredLoc2=st.sidebar.selectbox('Location 2:', Location2, index=128)
 SideBarInfo2=st.sidebar.empty( )
 table2      =st.sidebar.empty( )
 FilteredDF2 =df[df['location'].str.contains     (FilteredLoc2)]
-SideBarInfo2.success(f'{FilteredDF2.shape[0]} Entries for {FilteredLoc2}')
+SideBarInfo2.success(f'{FilteredDF2.shape[0]} entries for {FilteredLoc2}')
 st.sidebar.divider (   )
 st.sidebar.markdown('''Source:    [Our World in Data](https://github.com/owid/covid-19-data/)''')
 st.sidebar.write   ( f'OWID daily reports from {df.index.min( )} to {df.index.max( )}')
@@ -70,7 +70,7 @@ st.title    ('COVID-19'          )
 st.divider  (                    )
 st.subheader('Comparisson Charts')
 # Chart1
-st.markdown(f'''➡️ **{FilteredDF1.shape[0]}** Entries for **{FilteredLoc1}**:
+st.markdown(f'''➡️ **{FilteredDF1.shape[0]}** entries for **{FilteredLoc1}**:
             from {df.loc[df['location']==FilteredLoc1].index.min( )} to {df.loc[df['location']==FilteredLoc1].index.max( )}''')
 fig,ax=plt.subplots(figsize=(12, 6), frameon=True , tight_layout=True)
 df.loc[df['location']== FilteredLoc1,'new_vaccinations_smoothed'].plot(
@@ -118,17 +118,18 @@ st.markdown(f'''**{FilteredLoc1}**:''')
 AA=df.loc  [df['location'                 ]== FilteredLoc1].copy( )
 C1=         AA['total_cases'              ].sort_values(ascending=False).iloc[0]
 D1=         AA['total_deaths'             ].sort_values(ascending=False).iloc[0]
-d1=AA.index[AA['new_deaths_smoothed'      ]>0][-1].strftime('%d %b %Y')
-c1=AA.index[AA['new_cases_smoothed'       ]>0][-1].strftime('%d %b %Y')
-v1=AA.index[AA['new_vaccinations_smoothed']>0][-1].strftime('%d %b %Y')
+# d1=AA.index[AA['new_deaths_smoothed'      ]>0][-1].strftime('%d %b %Y')
+# c1=AA.index[AA['new_cases_smoothed'       ]>0][-1].strftime('%d %b %Y')
+# v1=AA.index[AA['new_vaccinations_smoothed']>0][-1].strftime('%d %b %Y')
 st.write(f'• Total   cases:       {C1:,.0f}')
 # st.write('  – Lastest  case:          {}'.format(c1))
 st.write(f'• Total  deaths:       {D1:,.0f}')
 # st.write('  – Lastest death:          {}'.format(d1))
 # st.write('• Lastest vaccination:      {}'.format(v1))
 st.divider( )
+
 # Chart2
-st.markdown(f'''➡️ **{FilteredDF2.shape[0]}** Entries for **{FilteredLoc2}**:
+st.markdown(f'''➡️ **{FilteredDF2.shape[0]}** entries for **{FilteredLoc2}**:
             from {df.loc[df['location']==FilteredLoc2].index.min( )} to {df.loc[df['location']==FilteredLoc2].index.max( )}''')
 fig,ax=plt.subplots(figsize=(12, 6), frameon=True , tight_layout=True)
 df.loc[df['location']== FilteredLoc2,'new_vaccinations_smoothed'].plot(
@@ -174,9 +175,9 @@ st.markdown(f'''**{FilteredLoc2}**:''')
 aa = df.loc[df['location'                 ]==FilteredLoc2].copy( )
 C2=         aa['total_cases'              ].sort_values(ascending=False).iloc[0]
 D2=         aa['total_deaths'             ].sort_values(ascending=False).iloc[0]
-d2=aa.index[aa['new_deaths_smoothed'      ]>0][-1].strftime('%d %b %Y')
-c2=aa.index[aa['new_cases_smoothed'       ]>0][-1].strftime('%d %b %Y')
-v2=aa.index[aa['new_vaccinations_smoothed']>0][-1].strftime('%d %b %Y')
+# d2=aa.index[aa['new_deaths_smoothed'      ]>0][-1].strftime('%d %b %Y')
+# c2=aa.index[aa['new_cases_smoothed'       ]>0][-1].strftime('%d %b %Y')
+# v2=aa.index[aa['new_vaccinations_smoothed']>0][-1].strftime('%d %b %Y')
 st.write(f'• Total   cases:       {C2:,.0f}')
 # st.write('  – Lastest  case:          {}'.format(c2))
 st.write(f'• Total  deaths:       {D2:,.0f}')
