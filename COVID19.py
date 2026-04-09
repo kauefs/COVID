@@ -36,13 +36,13 @@ st.sidebar.header   ('Data Analysis'      )
 st.sidebar.subheader('Comparisson Charts' )
 st.sidebar.divider  (                     )
 Location1   =df['location'].sort_values(ascending=True).unique( )
-FilteredLoc1=st.sidebar.selectbox('Location 1:', Location1, index= 97)
+FilteredLoc1=st.sidebar.selectbox('Location 1', Location1, index= 97)
 SideBarInfo1=st.sidebar.empty( )
 table1      =st.sidebar.empty( )
 FilteredDF1 =df[df['location'].str.contains  (FilteredLoc1)]
 SideBarInfo1.info(f'{FilteredDF1.shape[0]} entries for {FilteredLoc1}')
 Location2   =df['location'].sort_values(ascending=True).unique( )
-FilteredLoc2=st.sidebar.selectbox('Location 2:', Location2, index=128)
+FilteredLoc2=st.sidebar.selectbox('Location 2', Location2, index=128)
 SideBarInfo2=st.sidebar.empty( )
 table2      =st.sidebar.empty( )
 FilteredDF2 =df[df['location'].str.contains     (FilteredLoc2)]
@@ -66,11 +66,11 @@ st.sidebar.markdown('''
                     ''')
 # MAIN
 st.divider  (                    )
-st.title    ('COVID-19'          )
+st.title    (      'COVID-19'    )
 st.divider  (                    )
 st.subheader('Comparisson Charts')
 # Chart1
-st.markdown(f'''➡️ **{FilteredDF1.shape[0]}** entries for **{FilteredLoc1}**:
+st.markdown(f'''➡️ **{FilteredDF1.shape[0]}** entries for **{FilteredLoc1}**
             from {df.loc[df['location']==FilteredLoc1].index.min( )} to {df.loc[df['location']==FilteredLoc1].index.max( )}''')
 fig,ax=plt.subplots(figsize=(12, 6), frameon=True , tight_layout=True)
 df.loc[df['location']== FilteredLoc1,'new_vaccinations_smoothed'].plot(
@@ -114,7 +114,7 @@ st.pyplot    (fig)
 if table1.checkbox('DataFrame 1', value=False):st.write(FilteredDF1)
 st.markdown('''
             ''')
-st.markdown(f'''**{FilteredLoc1}**:''')
+st.markdown(f'''**{FilteredLoc1}**''')
 AA=df.loc  [df['location'                 ]== FilteredLoc1].copy( )
 C1=         AA['total_cases'              ].sort_values(ascending=False).iloc[0]
 D1=         AA['total_deaths'             ].sort_values(ascending=False).iloc[0]
@@ -129,7 +129,7 @@ st.write(f'• Total  deaths:       {D1:,.0f}')
 st.divider( )
 
 # Chart2
-st.markdown(f'''➡️ **{FilteredDF2.shape[0]}** entries for **{FilteredLoc2}**:
+st.markdown(f'''➡️ **{FilteredDF2.shape[0]}** entries for **{FilteredLoc2}**
             from {df.loc[df['location']==FilteredLoc2].index.min( )} to {df.loc[df['location']==FilteredLoc2].index.max( )}''')
 fig,ax=plt.subplots(figsize=(12, 6), frameon=True , tight_layout=True)
 df.loc[df['location']== FilteredLoc2,'new_vaccinations_smoothed'].plot(
@@ -171,7 +171,7 @@ plt.gca( ).set_ylim(bottom=10**0)
 plt.yscale  ('log')
 st.pyplot    (fig)
 if table2.checkbox('DataFrame 2', value=False):st.write(FilteredDF2)
-st.markdown(f'''**{FilteredLoc2}**:''')
+st.markdown(f'''**{FilteredLoc2}**''')
 aa = df.loc[df['location'                 ]==FilteredLoc2].copy( )
 C2=         aa['total_cases'              ].sort_values(ascending=False).iloc[0]
 D2=         aa['total_deaths'             ].sort_values(ascending=False).iloc[0]
