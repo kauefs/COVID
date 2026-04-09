@@ -36,13 +36,13 @@ st.sidebar.header   ('Data Analysis'      )
 st.sidebar.subheader('Comparisson Charts' )
 st.sidebar.divider  (                     )
 Location1   =df['location'].sort_values(ascending=True).unique( )
-FilteredLoc1=st.sidebar.selectbox('Location 1:', Location1, index= 99)
+FilteredLoc1=st.sidebar.selectbox('Location 1:', Location1, index= 97)
 SideBarInfo1=st.sidebar.empty( )
 table1      =st.sidebar.empty( )
 FilteredDF1 =df[df['location'].str.contains  (FilteredLoc1)]
 SideBarInfo1.info(f'{FilteredDF1.shape[0]} Entries for {FilteredLoc1}')
 Location2   =df['location'].sort_values(ascending=True).unique( )
-FilteredLoc2=st.sidebar.selectbox('Location 2:', Location2, index=130)
+FilteredLoc2=st.sidebar.selectbox('Location 2:', Location2, index=128)
 SideBarInfo2=st.sidebar.empty( )
 table2      =st.sidebar.empty( )
 FilteredDF2 =df[df['location'].str.contains     (FilteredLoc2)]
@@ -140,7 +140,7 @@ df.loc[df['location']== FilteredLoc2,'new_vaccinations_smoothed'].plot(
                 color      ='#4CAF50',
                 linewidth  ='2.25'   ,
                 ms=.01, mec='#4CAF50',   mfc='#4CAF50')
-df.loc[df['country']== FilteredLoc2,'new_cases_smoothed'].plot(
+df.loc[df['location']== FilteredLoc2,'new_cases_smoothed'].plot(
                 kind       ='line'   ,
                 label      ='Cases'  ,
                 ax         = ax      ,
@@ -149,7 +149,7 @@ df.loc[df['country']== FilteredLoc2,'new_cases_smoothed'].plot(
                 color      ='#FF8C00',
                 linewidth  ='2.25'   ,
                 ms=.01, mec='#FF8C00',   mfc='#FF8C00')
-df.loc[df['country']== FilteredLoc2,'new_deaths_smoothed'].plot(
+df.loc[df['location']== FilteredLoc2,'new_deaths_smoothed'].plot(
                 kind       ='line'   ,
                 label      ='Deaths' ,
                 ax         = ax      ,
