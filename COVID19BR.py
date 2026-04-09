@@ -16,6 +16,21 @@ plt.rcParams[    'font.family']        =                                        
 sns.set_theme(context='notebook', style='whitegrid', palette='colorblind', font='sans-serif', font_scale=1.15, color_codes=True, rc={'grid.color':'1','grid.linestyle':':'})
 st.set_page_config(page_title='COVID19BR', page_icon='😷', layout='wide', initial_sidebar_state='collapsed')
 # Functions
+def format(x , pos):
+    if     x >= 1e6: return f'{x*1e-6:.0f}M'
+    elif   x >= 1e3: return f'{x*1e-3:.0f}K'
+    else           : return f'{x     :.0f}'
+def Axis(ax, title):
+    ax.set_title(title, fontsize=15, fontweight='bold')
+    ax.grid(linestyle=':', linewidth=.75, color='#DCDCDC', mouseover= True)
+    ax.tick_params(axis='both', which='both',     left=False, bottom=False)
+    ax.yaxis.set_major_formatter(ticker.FuncFormatter(format))
+    ax.set_xlabel(None)
+    for spine in ax.spines.values( ):spine.set_visible(False)
+# DATA
+DATA     ='https://github.com/owid/covid-19-data/raw/refs/heads/master/public/data/owid-covid-data.csv'
+
+@st.cache_data
 def LoadData( ):
     data =pd.read_csv(DATA, parse_dates=['date'])
    # Selecting Columns
@@ -33,21 +48,7 @@ def LoadData( ):
     df.set_index ('date',inplace=True)
     df.sort_index(       inplace=True)
     return df
-def format(x , pos):
-    if     x >= 1e6: return f'{x*1e-6:.0f}M'
-    elif   x >= 1e3: return f'{x*1e-3:.0f}K'
-    else           : return f'{x     :.0f}'
-def Axis(ax, title):
-    ax.set_title(title, fontsize=15, fontweight='bold')
-    ax.grid(linestyle=':', linewidth=.75, color='#DCDCDC', mouseover= True)
-    ax.tick_params(axis='both', which='both',     left=False, bottom=False)
-    ax.yaxis.set_major_formatter(ticker.FuncFormatter(format))
-    ax.set_xlabel(None)
-    for spine in ax.spines.values( ):spine.set_visible(False)
-# DATA
-DATA     ='https://github.com/owid/covid-19-data/raw/refs/heads/master/public/data/owid-covid-data.csv'
 
-@st.cache_data
 RAW       =LoadData( )
 # Filling Missing Data:
 X         =RAW.copy( ) 
