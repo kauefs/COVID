@@ -21,7 +21,7 @@ def format(x , pos):
     elif   x >= 1e3: return f'{x*1e-3:.0f}K'
     else           : return f'{x     :.0f}'
 def Axis(ax, title):
-    ax.set_title(title, fontsize=15, fontweight='bold')
+    ax.set_title(title, fontdict=15, fontweight='bold')
     ax.grid(linestyle=':', linewidth=.75, color='#DCDCDC', mouseover= True)
     ax.tick_params(axis='both', which='both',     left=False, bottom=False)
     ax.yaxis.set_major_formatter(ticker.FuncFormatter(format))
@@ -103,17 +103,17 @@ rows  =deaths.loc[(deaths['location'] =='United States')|(deaths['location']=='B
 top   =            rows.sort_values(by = 'total_deaths', ascending=False)
 fig,ax=plt.subplots(figsize=(12, 6) , frameon=True,   tight_layout= True)
 sns.barplot(x='location',   y='total_deaths', data=top, ax=ax, hue='location', palette='autumn', saturation=.75, legend=False)
-ax.set_title('COVID-19 Top 5 Countries with Most Deaths', fontsize=20, fontweight='bold')
+ax.set_title('COVID-19 Top 5 Countries with Most Deaths', fontsize=15, fontweight='bold')
 for spine in['top','right','left','bottom']:ax.spines[spine].set_visible(False)
 plt.gca( ).axes.get_yaxis( ).set_visible(False)
 plt.gca( ).axes.get_xaxis( ).set_visible( True)
 for tick in ax.get_xticklabels(      ):
     tick      .set_fontweight ('bold')
-    tick      .set_fontsize   (  15  )
+    tick      .set_fontsize   (  13  )
 plt.tick_params(axis='both', which='both', bottom=False)
 for c in ax.containers:
     values=top.value_counts(ascending=False).iloc[0:0].values
-    ax.bar_label(container=c, labels=values, fmt='{:,.0f}', fontsize=13, padding=10, fontweight='bold')
+    ax.bar_label(container=c, labels=values, fmt='{:,.0f}', fontsize=11, padding=10, fontweight='bold')
 ax.set  (xlabel=None)
 st.pyplot(fig)
 st.markdown('''
@@ -191,11 +191,11 @@ The following chart makes it cristal clear how the vaccines were very effective 
 so much so the world has pretty much outcome it and life has basically resumed to what it used to be in many ways with no more lockdowns or masks.
             ''')
 
-st.subheader('Chart 4 – Logarithmic Evolution for COVID-19 in Brazil (Vaccination & Cases & Deaths)')
-x=BR[BR['new_vaccinations_smoothed']!=0.]
-y=BR[BR[       'new_cases_smoothed']!=0.]
-z=BR[BR[      'new_deaths_smoothed']!=0.]
-fig,ax=plt.subplots(figsize=(12,6), tight_layout=True)
+st.subheader('Chart 4 – Logarithmic Evolution for COVID-19 in Brazil 🇧🇷 Vaccination & Cases & Deaths')
+x=BR[BR['new_vaccinations_smoothed']>0].copy( )
+y=BR[BR[       'new_cases_smoothed']>0].copy( )
+z=BR[BR[      'new_deaths_smoothed']>0].copy( )
+fig,ax=plt.subplots(figsize=(12, 6), frameon=True, tight_layout=True)
 x['new_vaccinations_smoothed'].plot(
                 kind       ='line'    ,
                 label      ='Vaccination',
@@ -203,7 +203,7 @@ x['new_vaccinations_smoothed'].plot(
                 marker     ='o'       ,
                 linestyle  ='solid'   ,
                 color      ='#4CAF50' ,
-                linewidth  ='2.25'    ,
+                linewidth  = 2.25     ,
                 ms=.01, mec='#4CAF50' , mfc='#4CAF50')
 y['new_cases_smoothed'].plot(
                 kind       ='line'    ,
@@ -212,7 +212,7 @@ y['new_cases_smoothed'].plot(
                 marker     ='o'       ,
                 linestyle  ='solid'   ,
                 color      ='#FF8C00' ,
-                linewidth  ='2.25'    ,
+                linewidth  = 2.25     ,
                 ms=.01, mec='#FF8C00' , mfc='#FF8C00')
 z['new_deaths_smoothed'].plot(
                 kind       ='line'    ,
@@ -221,17 +221,14 @@ z['new_deaths_smoothed'].plot(
                 marker     ='o'       ,
                 linestyle  ='solid'   ,
                 color      ='#FF103F' ,
-                linewidth  ='2.25'    ,
+                linewidth  = 2.25     ,
                 ms=.01, mec='#FF103F' , mfc='#FF103F')
-ax.set_title('COVID in Brazil: Vaccination & Cases & Deaths', fontsize=18, fontweight='bold')
-ax.grid(linestyle=':' , linewidth=1  , color='#DCDCDC')
-ax.tick_params(axis   ='both',
-                which ='both',
-                left  = False,
-                bottom= False)
+ax.set_title('COVID in Brazil – Vaccination & Cases & Deaths', fontsize=15, fontweight='bold')
+ax.grid(linestyle=':' , linewidth=.75, color='#DCDCDC')
+ax.tick_params(axis='both', which='both',     left=False, bottom=False)
 ax.set(xlabel=None)
-ax.spines[['top','right','left','bottom']].set_visible(False)
-ax.legend(loc='best', fontsize=13, frameon=False)
+ax.legend(loc='best'  ,  fontsize= 13,     frameon=False)
+for spine in ax.spines.values( ):spine.set_visible(False)
 plt.gca( ).set_ylim(    bottom=10**0)
 plt.gca( ).set_xlim(      left=None )
 plt.yscale ('log')
