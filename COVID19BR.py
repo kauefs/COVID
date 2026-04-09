@@ -223,12 +223,7 @@ z['new_deaths_smoothed'].plot(
                 color      ='#FF103F' ,
                 linewidth  = 2.25     ,
                 ms=.01, mec='#FF103F' , mfc='#FF103F')
-ax.set_title('COVID in Brazil – Vaccination & Cases & Deaths', fontsize=15, fontweight='bold')
-ax.grid(linestyle=':' , linewidth=.75, color='#DCDCDC')
-ax.tick_params(axis='both', which='both',     left=False, bottom=False)
-ax.set(xlabel=None)
-ax.legend(loc='best'  ,  fontsize= 13,     frameon=False)
-for spine in ax.spines.values( ):spine.set_visible(False)
+Axis(ax,'COVID in Brazil – Vaccination & Cases & Deaths')
 plt.gca( ).set_ylim(    bottom=10**0)
 plt.gca( ).set_xlim(      left=None )
 plt.yscale ('log')
