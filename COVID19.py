@@ -54,7 +54,7 @@ FilteredDF2 =df[df['location']==FilteredLoc2]
 SideBarInfo2.success(f'{FilteredDF2.shape[0]} entries for {FilteredLoc2}')
 st.sidebar.divider (   )
 st.sidebar.markdown('''Source:    [Our World in Data](https://github.com/owid/covid-19-data/)''')
-st.sidebar.write   ( f'OWID daily reports from {df.index.min( ).strftime('%Y-%m-%d')} to {df.index.max( ).strftime('%Y-%m-%d')}')
+st.sidebar.write   ( f'OWID daily reports\nfrom {df.index.min( ).strftime('%Y-%m-%d')} to {df.index.max( ).strftime('%Y-%m-%d')}')
 st.sidebar.markdown('''Reference: [Data Cleaning Techniques in Python: the Ultimate Guide](https://www.justintodata.com/data-cleaning-techniques-python-guide/)''')
 st.sidebar.divider (   )
 st.sidebar.markdown('''
@@ -79,7 +79,7 @@ if not FilteredDF1.empty:
     st.markdown(f'''➡️ **{FilteredDF1.shape[0]}** entries for **{FilteredLoc1}**
                 from {df.loc[df['location']==FilteredLoc1].index.min( ).strftime('%Y-%m-%d')} to {df.loc[df['location']==FilteredLoc1].index.max( ).strftime('%Y-%m-%d')}''')
     fig,ax=plt.subplots(figsize=(12, 6), frameon=True , tight_layout=True)
-    FilteredLoc1['new_vaccinations_smoothed'].plot(
+    FilteredDF1['new_vaccinations_smoothed'].plot(
                     kind       ='line'   ,
                     label      ='Vaccinations',
                     ax         = ax      ,
@@ -88,7 +88,7 @@ if not FilteredDF1.empty:
                     color      ='#4CAF50',
                     linewidth  = 2.25    ,
                     ms=.01, mec='#4CAF50',   mfc='#4CAF50')
-    FilteredLoc1['new_cases_smoothed'].plot(
+    FilteredDF1['new_cases_smoothed'].plot(
                     kind       ='line'   ,
                     label      ='Cases'  ,
                     ax         = ax      ,
@@ -97,7 +97,7 @@ if not FilteredDF1.empty:
                     color      ='#FF8C00',
                     linewidth  = 2.25    ,
                     ms=.01, mec='#FF8C00',   mfc='#FF8C00')
-    FilteredLoc1['new_deaths_smoothed'].plot(
+    FilteredDF1['new_deaths_smoothed'].plot(
                     kind       ='line'   ,
                     label      ='Deaths' ,
                     ax         = ax      ,
@@ -134,7 +134,7 @@ if not FilteredDF2.empty:
     st.markdown(f'''➡️ **{FilteredDF2.shape[0]}** entries for **{FilteredLoc2}**
                 from {df.loc[df['location']==FilteredLoc2].index.min( ).strftime('%Y-%m-%d')} to {df.loc[df['location']==FilteredLoc2].index.max( ).strftime('%Y-%m-%d')}''')
     fig,ax=plt.subplots(figsize=(12, 6), frameon=True , tight_layout=True)
-    FilteredLoc2['new_vaccinations_smoothed'].plot(
+    FilteredDF2['new_vaccinations_smoothed'].plot(
                     kind       ='line'   ,
                     label      ='Vaccinations',
                     ax         = ax      ,
@@ -143,7 +143,7 @@ if not FilteredDF2.empty:
                     color      ='#4CAF50',
                     linewidth  = 2.25    ,
                     ms=.01, mec='#4CAF50',   mfc='#4CAF50')
-    FilteredLoc2['new_cases_smoothed'].plot(
+    FilteredDF2['new_cases_smoothed'].plot(
                     kind       ='line'   ,
                     label      ='Cases'  ,
                     ax         = ax      ,
@@ -152,7 +152,7 @@ if not FilteredDF2.empty:
                     color      ='#FF8C00',
                     linewidth  = 2.25    ,
                     ms=.01, mec='#FF8C00',   mfc='#FF8C00')
-    FilteredLoc2['new_deaths_smoothed'].plot(
+    FilteredDF2['new_deaths_smoothed'].plot(
                     kind       ='line'   ,
                     label      ='Deaths' ,
                     ax         = ax      ,
