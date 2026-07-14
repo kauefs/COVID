@@ -121,8 +121,8 @@ if not FilteredDF1.empty:
     st.markdown('''
                 ''')
     st.markdown(f'''**{FilteredLoc1}**''')
-    C1=                FilteredLoc1['total_cases' ].max( )
-    D1=                FilteredLoc1['total_deaths'].max( )
+    C1=                FilteredDF1['total_cases' ].max( )
+    D1=                FilteredDF1['total_deaths'].max( )
     valC1=f'{C1:,.0f}' if pd.notna(C1)else'No Data'
     valD1=f'{D1:,.0f}' if pd.notna(D1)else'No Data'
     st.write(f'• Total   cases:   {valC1}')
@@ -174,8 +174,8 @@ if not FilteredDF2.empty:
     st.pyplot    (fig)
     if table2.checkbox('DataFrame 2', value=False):st.dataframe(FilteredDF2, width='stretch')
     st.markdown(f'''**{FilteredLoc2}**''')
-    C2=                FilteredLoc2['total_cases' ].max( )
-    D2=                FilteredLoc2['total_deaths'].max( )
+    C2=                FilteredDF2['total_cases' ].max( )
+    D2=                FilteredDF2['total_deaths'].max( )
     valC2=f'{C2:,.0f}' if pd.notna(C2)else'No Data'
     valD2=f'{D2:,.0f}' if pd.notna(D2)else'No Data'
     st.write(f'• Total   cases:   {valC2}')
