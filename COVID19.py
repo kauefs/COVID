@@ -40,8 +40,8 @@ st.sidebar.title    ('COVID-19'           )
 st.sidebar.header   ('Data Analysis'      )
 st.sidebar.subheader('Comparisson Charts' )
 st.sidebar.divider  (                     )
-locations=df['location'].dropna( ).sort_values( ).unique( )
-if not df.empty else ['No Data Loaded']
+if not df.empty:locations=df['location'].dropna( ).sort_values( ).unique( )
+else           :locations['No Data Loaded']
 FilteredLoc1=st.sidebar.selectbox('Location 1', locations, index= 97)
 SideBarInfo1=st.sidebar.empty( )
 table1      =st.sidebar.empty( )
