@@ -108,7 +108,7 @@ if not OWID.empty:
         latestDate=filter[-1]
         deaths    =OWID.loc[latestDate].sort_values(by='total_deaths', ascending=False)
         countries =['United States','Brazil','India','Russia','Mexico']
-        rows      =deaths[deaths['location'].isin(countires)]
+        rows      =deaths[deaths['location'].isin(countries)]
         top       =rows.sort_values(by='total_deaths', ascending=False)
         fig,ax=plt.subplots(figsize=(12, 6), frameon=True, tight_layout=True)
         sns.barplot(x='location',   y='total_deaths', data=top, ax=ax, hue='location', palette='autumn', saturation=.75, legend=False)
