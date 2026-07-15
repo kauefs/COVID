@@ -17,6 +17,7 @@ sns.set_theme(context='notebook', style='whitegrid', palette='colorblind', font=
 st.set_page_config(page_title='COVID19BR', page_icon='😷', layout='wide', initial_sidebar_state='collapsed')
 # Functions
 def format(x , pos):
+    '''Format large axis numbers to readable K & M suffixes.'''
     if     x >= 1e6: return f'{x*1e-6:.0f}M'
     elif   x >= 1e3: return f'{x*1e-3:.0f}K'
     else           : return f'{x     :.0f}'
@@ -24,33 +25,37 @@ def Axis(ax, title):
     ax.set_title(title   ,  fontsize= 15, fontweight='bold')
     ax.grid(linestyle=':', linewidth=.75, color='#DCDCDC', mouseover= True)
     ax.tick_params(axis='both', which='both',     left=False, bottom=False)
-    ax.yaxis.set_major_formatter(ticker.FuncFormatter(format))
+    ax.yaxis.set_major_formatter(ticker.FuncFormatter(format_ticks))
     ax.set_xlabel(None)
     for spine in ax.spines.values( ):spine.set_visible(False)
-# DATA
+# DATA     https://catalog.ourworldindata.org/garden/covid/latest/compact/compact.csv
 DATA     ='https://github.com/owid/covid-19-data/raw/refs/heads/master/public/data/owid-covid-data.csv'
-
 @st.cache_data
 def LoadData( ):
     data =pd.read_csv(DATA, parse_dates=['date'])
    # Selecting Columns
-    df   =data[  ['date',
-                  'location',
-                  'new_cases',
-                  'new_deaths',
-                  'new_vaccinations',
-                  'new_cases_smoothed',
-                  'new_deaths_smoothed',
-                  'new_vaccinations_smoothed',
-                  'total_cases' ,
-                  'total_deaths',
-                  'total_vaccinations']].copy( )
+    cols['date',
+         'location',
+         'new_cases',
+         'new_deaths',
+         'new_vaccinations',
+         'new_cases_smoothed',
+         'new_deaths_smoothed',
+         'new_vaccinations_smoothed',
+         'total_cases' ,
+         'total_deaths',
+         'total_vaccinations']
+    existingCols=[c for c in cols if c in data.columns]
+    df=data[existingCols].copy( )
     df.set_index ('date',inplace=True)
     df.sort_index(       inplace=True)
     return df
-
-RAW       =LoadData( )
-# Filling Missing Data:
+try:RAW=LoadData( )
+except Exception as e:
+    st.error(f'Failed to fetch DataSet. Error: {e}')
+    # Empty Schema FallBack
+    RAW=pd.DataFrame(columns=['date','location','new_cases','new_deaths','new_vaccinations','new_cases_smoothed','new_deaths_smoothed','new_vaccinations_smoothed','total_cases','total_deaths','total_vaccinations'])
+# Filling Missing Data
 X         =RAW.copy( ) 
 num       =X.select_dtypes(include=['number']).columns
 X[num]    =X[num].fillna(  0  )
@@ -59,16 +64,16 @@ X[nan]    =X[nan].fillna('N/A')
 OWID      =X.copy( )
 WW        =OWID[OWID['location']== 'World'].sort_values('date').copy( ) # WorldWide Set
 BR        =OWID[OWID['location']=='Brazil'].sort_values('date').copy( ) #     BR    Set
-# SIDE:
+# SIDE
 st.sidebar.title    ('ƊⱭȾɅViƧi🧿Ƞ&trade;')
 st.sidebar.divider  (                     )
 st.sidebar.header   ('COVID-19 in Brazil' )
 st.sidebar.subheader('Data Analysis'      )
 st.sidebar.divider  (                     )
 st.sidebar.markdown ('''Source:    [Our World in Data](https://github.com/owid/covid-19-data)''')
-st.sidebar.write    (f'OWID daily reports from {OWID.index.min( )} to {OWID.index.max( )}')
+st.sidebar.write    (f'OWID daily reports from {OWID.index.min( ).strftime('%Y-%m-%d')} to {OWID.index.max( ).strftime('%Y-%m-%d')}')
 st.sidebar.markdown ('''Reference: [Data Cleaning Techniques in Python: the Ultimate Guide](https://www.justintodata.com/data-cleaning-techniques-python-guide/)''')
-st.sidebar.divider  (                       )
+st.sidebar.divider  (                     )
 st.sidebar.markdown ('''
 ![2023.11.23   ](https://img.shields.io/badge/2023.11.23-000000)
 
@@ -81,7 +86,7 @@ st.sidebar.markdown ('''
 
 [![ƊⱭȾɅViƧi🧿Ƞ](https://img.shields.io/badge/ƊⱭȾɅViƧi🧿Ƞ&trade;-0065FF?style=plastic&logoColor=0065FF&label=&copy;2026&labelColor=0065FF)](https://datavision.one/)
                     ''')
-# MAIN:
+# MAIN
 st.divider (                    )
 st.title   ('COVID-19 in Brazil')
 st.divider (                    )
@@ -95,88 +100,88 @@ following the World Health Organization (WHO) directives. The then President, ho
 From there on the then President became the _de facto_ Minister of Health, instating new ministers that would only 'follow orders',
 diminishing the disease and discrediting vaccines.
             ''')
-
+# Chart1
 st.subheader('Chart 1 – Top 5 Countries with most Deaths')
-filter=OWID.index[OWID['total_deaths']!=0.][-1]
-deaths=OWID.loc[filter].sort_values(by = 'total_deaths', ascending=False)
-rows  =deaths.loc[(deaths['location'] =='United States')|(deaths['location']=='Brazil')|(deaths['location']=='India')|(deaths['location']=='Russia')|(deaths['location']=='Mexico')]
-top   =            rows.sort_values(by = 'total_deaths', ascending=False)
-fig,ax=plt.subplots(figsize=(12, 6) , frameon=True,   tight_layout= True)
-sns.barplot(x='location',   y='total_deaths', data=top, ax=ax, hue='location', palette='autumn', saturation=.75, legend=False)
-ax.set_title('COVID-19 Top 5 Countries with Most Deaths', fontsize=15, fontweight='bold')
-for spine in['top','right','left','bottom']:ax.spines[spine].set_visible(False)
-plt.gca( ).axes.get_yaxis( ).set_visible(False)
-plt.gca( ).axes.get_xaxis( ).set_visible( True)
-for tick in ax.get_xticklabels(      ):
-    tick      .set_fontweight ('bold')
-    tick      .set_fontsize   (  13  )
-plt.tick_params(axis='both', which='both', bottom=False)
-for c in ax.containers:
-    values=top.value_counts(ascending=False).iloc[0:0].values
-    ax.bar_label(container=c, labels=values, fmt='{:,.0f}', fontsize=11, padding=10, fontweight='bold')
-ax.set  (xlabel=None)
-st.pyplot(fig)
+if not OWID.empty:
+    filter=OWID.index[OWID['total_deaths'] > 0]
+    if len(filter) > 0:
+        latestDate=filter[-1]
+        deaths    =OWID.loc[latestDate].sort_values(by='total_deaths', ascending=False)
+        countries =['United States','Brazil','India','Russia','Mexico']
+        rows      =deaths[deaths['location'].isin(countires)]
+        top       =rows.sort_values(by='total_deaths', ascending=False)
+        fig,ax=plt.subplots(figsize=(12, 6), frameon=True, tight_layout=True)
+        sns.barplot(x='location',   y='total_deaths', data=top, ax=ax, hue='location', palette='autumn', saturation=.75, legend=False)
+        ax.set_title('COVID-19 Top 5 Countries with Most Deaths', fontsize=15, fontweight='bold')
+        for spine in['top','right','left','bottom']:ax.spines[spine].set_visible(False)
+        plt.gca( ).axes.get_yaxis( ).set_visible(False)
+        plt.gca( ).axes.get_xaxis( ).set_visible( True)
+        for tick in ax.get_xticklabels(      ):
+            tick      .set_fontweight ('bold')
+            tick      .set_fontsize   (  13  )
+        plt.tick_params(axis='both', which='both', bottom=False)
+        for c in ax.containers:ax.bar_label(container=c, fmt='{:,.0f}', fontsize=11, padding=10, fontweight='bold')
+        ax.set  (xlabel=None)
+        st.pyplot(fig)
+    else:st.info('No record logs with deaths found to compile Chart 1')
 st.markdown('''
 The consequences could not have been more sinister. Brazil has become the country with the second highest death toll,
 only behind the United States. A death toll rate that was almost twice the worldwide rate of about 1% of deaths from registered cases.
             ''')
-
+# Chart2
 st.subheader('Chart 2 – Linear Evolution for COVID-19 WorldWide 🌍 Cases & Deaths')
-cases =WW['total_cases' ].sort_values(ascending=False).iloc[0]
-deaths=WW['total_deaths'].sort_values(ascending=False).iloc[0]
-fig,(ax1,ax2)=plt.subplots(nrows=2, ncols=1, figsize=(12, 6),  frameon= True, tight_layout=True)
-WW       ['total_cases' ].plot(kind='line', ax=ax1, marker='o', linestyle='solid', color='#FF8C00', linewidth=2.25, ms=.01, mec='#FF8C00', mfc='#FF8C00')
-ax1.annotate(f'{       cases:,.0f}',
-                xy=(1, cases),
-                xycoords  =('axes fraction','data'),
-                xytext    =(-95, 3.75),
-                textcoords='offset points',
-                color     ='#FF4500', fontsize=13, fontweight='semibold')
-Axis(ax1,'COVID-19 WorldWide Cases')
-WW       ['total_deaths'].plot(kind='line', ax=ax2, marker='o', linestyle='solid', color='#FF103F', linewidth='2.25', ms=.01, mec='#FF103F', mfc='#FF103F')
-ax2.annotate(f'{       deaths:,.0f}',
-                xy=(1, deaths),
-                xycoords  =('axes fraction','data'),
-                xytext    =(-75, 3.75),
-                textcoords='offset points',
-                color     ='#FF103F', fontsize=13, fontweight='semibold')
-Axis(ax2,'COVID-19 WorldWide Deaths')
-st.pyplot(fig)
-
-# W =OWID.loc[OWID[       'location']=='World'].copy (  )
-# D =   W.index[W [      'new_deaths_smoothed']!=0.0][-1].strftime('%d %b %Y')
-# C =   W.index[W [       'new_cases_smoothed']!=0.0][-1].strftime('%d %b %Y')
-# V =   W.index[W ['new_vaccinations_smoothed']!=0.0][-1].strftime('%d %b %Y')
-# st.write('• Last       death entry on the dataset for the World: {}'.format(D))
-# st.write('• Last        case entry on the dataset for the World: {}'.format(C))
-# st.write('• Last vaccination entry on the dataset for the World: {}'.format(V))
-
-st.markdown(f'''
-The world has lost a population about the size the one that lives in the metropolitan area of Rio de Janeiro;
-about {round(((BR['total_deaths'].sort_values(ascending=False).iloc[0])/(OWID['total_deaths'].sort_values(ascending=False).iloc[0]))*100)}% of those deaths happened in Brazil!
-             ''')
-
+if not WW.empty:
+    cases =WW['total_cases' ].max( )
+    deaths=WW['total_deaths'].max( )
+    fig,(ax1,ax2)=plt.subplots(nrows=  2, ncols=1, figsize=(12, 6), frameon=True, tight_layout=True)
+    WW['total_cases'].plot(kind = 'line',  ax=ax1, marker='o', linestyle='solid', color='#FF8C00', linewidth=2.25, ms=.01, mec='#FF8C00', mfc='#FF8C00')
+    ax1.annotate(f'{       cases:,.0f }',
+                    xy=(1, cases),
+                    xycoords    =('axes fraction','data'),
+                    xytext      =(-95, 3.75),
+                    textcoords  = 'offset points',
+                    color       = '#FF4500', fontsize=13, fontweight='semibold')
+    Axis(ax1,'COVID-19 WorldWide Cases')
+    WW['total_deaths'].plot(kind= 'line', ax=ax2, marker='o', linestyle='solid', color='#FF103F', linewidth='2.25', ms=.01, mec='#FF103F', mfc='#FF103F')
+    ax2.annotate(f'{       deaths:,.0f}',
+                    xy=(1, deaths),
+                    xycoords    =('axes fraction','data'),
+                    xytext      =(-75, 3.75),
+                    textcoords  = 'offset points',
+                    color       = '#FF103F', fontsize=13, fontweight='semibold')
+    Axis(ax2,'COVID-19 WorldWide Deaths')
+    st.pyplot(fig)
+if not BR.empty and not OWID.empty:
+    deathsBR=                     BR        ['total_deaths'].max( )
+    deathsWW=OWID[OWID['location']=='World']['total_deaths'].max( )
+    pct=round((deathsBR/deathsWW)*100)if deathsWW > 0 else 0
+    st.markdown(f'''
+    The world has lost a population about the size the one that lives in the metropolitan area of Rio de Janeiro;
+    about **{pct}%** of those deaths happened in Brazil!
+                 ''')
+# Chart3
 st.subheader('Chart 3 – Linear Evolution for COVID-19 in Brazil 🇧🇷 Cases & Deaths')
-cases =BR['total_cases' ].sort_values(ascending=False).iloc[0]
-deaths=BR['total_deaths'].sort_values(ascending=False).iloc[0]
-fig,(ax1,ax2)=plt.subplots(nrows=2, ncols=1, figsize=(12, 6),  frameon= True, tight_layout=True)
-BR       ['total_cases' ].plot(kind='line', ax=ax1, marker='o', linestyle='solid', color='#FF8C00', linewidth=2.25, ms=.01, mec='#FF8C00', mfc='#FF8C00')
-ax1.annotate(f'{       cases:,.0f}',
-                xy=(1, cases),
-                xycoords  =('axes fraction','data'),
-                xytext    =(-80, 3.75),
-                textcoords='offset points',
-                color     ='#FF4500', fontsize=13, fontweight='semibold')
-Axis(ax1,'COVID-19 Cases in Brazil')
-BR       ['total_deaths'].plot(kind='line', ax=ax2, marker='o', linestyle='solid', color='#FF103F', linewidth='2.25', ms=.01, mec='#FF103F', mfc='#FF103F')
-ax2.annotate(f'{       deaths:,.0f}',
-                xy=(1, deaths),
-                xycoords  =('axes fraction','data'),
-                xytext    =(-60, 3.75),
-                textcoords='offset points',
-                color     ='#FF103F', fontsize=13, fontweight='semibold')
-Axis(ax2,'COVID-19 Deaths in Brazil')
-st.pyplot  (fig)
+if not BR.empty:
+    cases =BR['total_cases' ].max( )
+    deaths=BR['total_deaths'].max( )
+    fig,(ax1,ax2)=plt.subplots(nrows= 2, ncols=1, figsize=(12, 6), frameon= True, tight_layout=True)
+    BR['total_cases'].plot(kind ='line', ax=ax1, marker='o', linestyle='solid', color='#FF8C00', linewidth=2.25, ms=.01, mec='#FF8C00', mfc='#FF8C00')
+    ax1.annotate(f'{       cases:,.0f}',
+                    xy=(1, cases),
+                    xycoords    =('axes fraction','data'),
+                    xytext      =(-80, 3.75),
+                    textcoords  = 'offset points',
+                    color       = '#FF4500', fontsize=13, fontweight='semibold')
+    Axis(ax1,'COVID-19 Cases in Brazil')
+    BR['total_deaths'].plot(kind= 'line', ax=ax2, marker='o', linestyle='solid', color='#FF103F', linewidth='2.25', ms=.01, mec='#FF103F', mfc='#FF103F')
+    ax2.annotate(f'{       deaths:,.0f}',
+                    xy=(1, deaths),
+                    xycoords    =('axes fraction','data'),
+                    xytext      =(-60, 3.75),
+                    textcoords  = 'offset points',
+                    color       = '#FF103F', fontsize=13, fontweight='semibold')
+    Axis(ax2,'COVID-19 Deaths in Brazil')
+    st.pyplot(fig)
 st.markdown('''
 Brazil has always had a history of vaccinations with a National Immunization Program efficient and effective,
 famous for the eradication of polio for which the vaccination campaign _Zé Gotinha_ ('Droplet Joe') mascot was created in 1986 and became a symbol in saving lives.
@@ -190,52 +195,49 @@ st.markdown('''
 The following chart makes it cristal clear how the vaccines were very effective in fighting the disease,
 so much so the world has pretty much outcome it and life has basically resumed to what it used to be in many ways with no more lockdowns or masks.
             ''')
-
+# Chart4
 st.subheader('Chart 4 – Logarithmic Evolution for COVID-19 in Brazil 🇧🇷 Vaccination & Cases & Deaths')
-x=BR[BR['new_vaccinations_smoothed']>0].copy( )
-y=BR[BR[       'new_cases_smoothed']>0].copy( )
-z=BR[BR[      'new_deaths_smoothed']>0].copy( )
-fig,ax=plt.subplots(figsize=(12, 6), frameon=True, tight_layout=True)
-x['new_vaccinations_smoothed'].plot(
-                kind       ='line'    ,
-                label      ='Vaccination',
-                ax         = ax       ,
-                marker     ='o'       ,
-                linestyle  ='solid'   ,
-                color      ='#4CAF50' ,
-                linewidth  = 2.25     ,
-                ms=.01, mec='#4CAF50' , mfc='#4CAF50')
-y['new_cases_smoothed'].plot(
-                kind       ='line'    ,
-                label      ='Cases'   ,
-                ax         = ax       ,
-                marker     ='o'       ,
-                linestyle  ='solid'   ,
-                color      ='#FF8C00' ,
-                linewidth  = 2.25     ,
-                ms=.01, mec='#FF8C00' , mfc='#FF8C00')
-z['new_deaths_smoothed'].plot(
-                kind       ='line'    ,
-                label      ='Deaths'  ,
-                ax         = ax       ,
-                marker     ='o'       ,
-                linestyle  ='solid'   ,
-                color      ='#FF103F' ,
-                linewidth  = 2.25     ,
-                ms=.01, mec='#FF103F' , mfc='#FF103F')
-Axis(ax,'COVID in Brazil – Vaccination & Cases & Deaths')
-ax.legend(loc='best', fontsize=13, frameon=False)
-plt.gca( ).set_ylim(    bottom=10**0)
-plt.gca( ).set_xlim(      left=None )
-plt.yscale ('log')
-st.pyplot   (fig)
-
-# d =  BR.index[BR[      'new_deaths_smoothed']!=0.][-1].strftime('%d %b %Y')
-# c =  BR.index[BR[       'new_cases_smoothed']!=0.][-1].strftime('%d %b %Y')
-# v =  BR.index[BR['new_vaccinations_smoothed']!=0.][-1].strftime('%d %b %Y')
-# st.write('• Last       death entry on the dataset for Brazil: {}'.format(d))
-# st.write('• Last        case entry on the dataset for Brazil: {}'.format(c))
-# st.write('• Last vaccination entry on the dataset for Brazil: {}'.format(v))
+if not BR.empty:
+    x=BR[BR['new_vaccinations_smoothed'] > 0].copy( )
+    y=BR[BR[       'new_cases_smoothed'] > 0].copy( )
+    z=BR[BR[      'new_deaths_smoothed'] > 0].copy( )
+    fig,ax=plt.subplots(figsize=(12, 6), frameon=True, tight_layout=True)
+    if not x.empty:
+        x['new_vaccinations_smoothed'].plot(
+                        kind       ='line'    ,
+                        label      ='Vaccination',
+                        ax         = ax       ,
+                        marker     ='o'       ,
+                        linestyle  ='solid'   ,
+                        color      ='#4CAF50' ,
+                        linewidth  = 2.25     ,
+                        ms=.01, mec='#4CAF50' , mfc='#4CAF50')
+    if not y.empty:
+        y['new_cases_smoothed'].plot(
+                        kind       ='line'    ,
+                        label      ='Cases'   ,
+                        ax         = ax       ,
+                        marker     ='o'       ,
+                        linestyle  ='solid'   ,
+                        color      ='#FF8C00' ,
+                        linewidth  = 2.25     ,
+                        ms=.01, mec='#FF8C00' , mfc='#FF8C00')
+    if not z.empty:
+        z['new_deaths_smoothed'].plot(
+                        kind       ='line'    ,
+                        label      ='Deaths'  ,
+                        ax         = ax       ,
+                        marker     ='o'       ,
+                        linestyle  ='solid'   ,
+                        color      ='#FF103F' ,
+                        linewidth  = 2.25     ,
+                        ms=.01, mec='#FF103F' , mfc='#FF103F')
+    Axis(ax,'COVID in Brazil – Vaccination & Cases & Deaths')
+    ax.legend(loc='best', fontsize=13, frameon=False)
+    plt.gca( ).set_ylim(    bottom=10**0)
+    plt.gca( ).set_xlim(      left=None )
+    plt.yscale ('log')
+    st.pyplot   (fig)
 st.markdown('''
 Vaccinations have been ongoing, as well as some cases, while deaths indeed seems to have, fortunantelly, pretty much ended.
 Nonetheless, has any lesson been learned at all? Is the world better equipped to deal with another pandemic?
