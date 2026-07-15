@@ -135,7 +135,7 @@ if not WW.empty:
     deaths=WW['total_deaths'].max( )
     fig,(ax1,ax2)=plt.subplots(nrows=  2, ncols=1, figsize=(12, 6), frameon=True, tight_layout=True)
     WW['total_cases'].plot(kind = 'line',  ax=ax1, marker='o', linestyle='solid', color='#FF8C00', linewidth=2.25, ms=.01, mec='#FF8C00', mfc='#FF8C00')
-    ax1.annotate(f'{       cases:,.0f }',
+    ax1.annotate(f'{cases:,.0f}',
                     xy=(1, cases),
                     xycoords    =('axes fraction','data'),
                     xytext      =(-95, 3.75),
