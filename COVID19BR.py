@@ -34,17 +34,17 @@ DATA     ='https://github.com/owid/covid-19-data/raw/refs/heads/master/public/da
 def LoadData( ):
     data =pd.read_csv(DATA, parse_dates=['date'])
    # Selecting Columns
-    cols['date',
-         'location',
-         'new_cases',
-         'new_deaths',
-         'new_vaccinations',
-         'new_cases_smoothed',
-         'new_deaths_smoothed',
-         'new_vaccinations_smoothed',
-         'total_cases' ,
-         'total_deaths',
-         'total_vaccinations']
+    cols =['date',
+           'location',
+           'new_cases',
+           'new_deaths',
+           'new_vaccinations',
+           'new_cases_smoothed',
+           'new_deaths_smoothed',
+           'new_vaccinations_smoothed',
+           'total_cases' ,
+           'total_deaths',
+           'total_vaccinations']
     existingCols=[c for c in cols if c in data.columns]
     df=data[existingCols].copy( )
     df.set_index ('date',inplace=True)
