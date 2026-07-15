@@ -16,7 +16,7 @@ plt.rcParams[    'font.family']        =                                        
 sns.set_theme(context='notebook', style='whitegrid', palette='colorblind', font='sans-serif', font_scale=1.15, color_codes=True, rc={'grid.color':'1','grid.linestyle':':'})
 st.set_page_config(page_title='COVID19BR', page_icon='😷', layout='wide', initial_sidebar_state='collapsed')
 # Functions
-def format(x , pos):
+def format_ticks(x , pos):
     '''Format large axis numbers to readable K & M suffixes.'''
     if     x >= 1e6: return f'{x*1e-6:.0f}M'
     elif   x >= 1e3: return f'{x*1e-3:.0f}K'
