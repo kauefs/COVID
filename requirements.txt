@@ -6,4 +6,6 @@ pandas
 seaborn
 altair<5
 matplotlib
-streamlit>1.49.0
+streamlit
+starlette<0.47.0
+uvicorn<0.35.0
